@@ -6,7 +6,8 @@ SRC_DIRS := ./src
 
 CC := gcc-11
 
-SRCS:= src/main.c src/qkl_decode.c
+SRCS:= src/main.c src/qkl_decode.c src/qkl_sem.c src/qkl_lr_buff.c \
+		src/qkl_usr_platform.c src/qkl_prod.c src/qkl_server.c
 OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
 DEPS := $(OBJS:.o=.d)
 
@@ -14,7 +15,8 @@ INC_DIRS = include
 INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
 CPPFLAGS := $(INC_FLAGS)  -MMD -MP
-CFLAGS := -save-temps=obj -std=c11 -fdiagnostics-color=always
+CFLAGS := -save-temps=obj  -fdiagnostics-color=always -g
+LDFLAGS := -pthread -g
 
 
 # The final build step.

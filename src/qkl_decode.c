@@ -33,10 +33,7 @@
  */
 
 
-#include <stdarg.h>
-#include <stdint.h>
-#include <stddef.h>
-#include <string.h>
+#include "qkl_usr_config.h"
 
 #define PRINT_DEC_BUFSZ 32 /* 20 is enough for 64 bit decimals */
 

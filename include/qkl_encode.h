@@ -1,8 +1,8 @@
 
 #pragma once
 
-#include <assert.h>
-#include <stdint.h>
+#include "qkl_usr_platform.h"
+#include "qkl_usr_config.h"
 
 
 typedef long long unsigned ql_llu;
@@ -31,14 +31,14 @@ typedef long long unsigned ql_llu;
 
 
 #define MAKE_TMPS1(fmt)
-#define MAKE_TMPS2(fmt, a1) typeof(a1) t1 = (a1);
-#define MAKE_TMPS3(fmt, a1, a2) typeof(a1) t1 = (a1); typeof(a2) t2 = (a2);
-#define MAKE_TMPS4(fmt, a1, a2, a3) typeof(a1) t1 = (a1); typeof(a2) t2 = (a2); typeof(a3) t3 = (a3);
-#define MAKE_TMPS5(fmt, a1, a2, a3, a4) typeof(a1) t1 = (a1); typeof(a2) t2 = (a2); typeof(a3) t3 = (a3); typeof(a4) t4 = (a4);
-#define MAKE_TMPS6(fmt, a1, a2, a3, a4, a5) typeof(a1) t1 = (a1); typeof(a2) t2 = (a2); typeof(a3) t3 = (a3); typeof(a4) t4 = (a4); typeof(a5) t5 = (a5);
-#define MAKE_TMPS7(fmt, a1, a2, a3, a4, a5, a6) typeof(a1) t1 = (a1); typeof(a2) t2 = (a2); typeof(a3) t3 = (a3); typeof(a4) t4 = (a4); typeof(a5) t5 = (a5); typeof(a6) t6 = (a6);
-#define MAKE_TMPS8(fmt, a1, a2, a3, a4, a5, a6, a7) typeof(a1) t1 = (a1); typeof(a2) t2 = (a2); typeof(a3) t3 = (a3); typeof(a4) t4 = (a4); typeof(a5) t5 = (a5); typeof(a6) t6 = (a6); typeof(a7) t7 = (a7);
-#define MAKE_TMPS9(fmt, a1, a2, a3, a4, a5, a6, a7, a8) typeof(a1) t1 = (a1); typeof(a2) t2 = (a2); typeof(a3) t3 = (a3); typeof(a4) t4 = (a4); typeof(a5) t5 = (a5); typeof(a6) t6 = (a6); typeof(a7) t7 = (a7); typeof(a8) t8 = (a8);
+#define MAKE_TMPS2(fmt, a1) __typeof__(a1) t1 = (a1);
+#define MAKE_TMPS3(fmt, a1, a2) __typeof__(a1) t1 = (a1); __typeof__(a2) t2 = (a2);
+#define MAKE_TMPS4(fmt, a1, a2, a3) __typeof__(a1) t1 = (a1); __typeof__(a2) t2 = (a2); __typeof__(a3) t3 = (a3);
+#define MAKE_TMPS5(fmt, a1, a2, a3, a4) __typeof__(a1) t1 = (a1); __typeof__(a2) t2 = (a2); __typeof__(a3) t3 = (a3); __typeof__(a4) t4 = (a4);
+#define MAKE_TMPS6(fmt, a1, a2, a3, a4, a5) __typeof__(a1) t1 = (a1); __typeof__(a2) t2 = (a2); __typeof__(a3) t3 = (a3); __typeof__(a4) t4 = (a4); __typeof__(a5) t5 = (a5);
+#define MAKE_TMPS7(fmt, a1, a2, a3, a4, a5, a6) __typeof__(a1) t1 = (a1); __typeof__(a2) t2 = (a2); __typeof__(a3) t3 = (a3); __typeof__(a4) t4 = (a4); __typeof__(a5) t5 = (a5); __typeof__(a6) t6 = (a6);
+#define MAKE_TMPS8(fmt, a1, a2, a3, a4, a5, a6, a7) __typeof__(a1) t1 = (a1); __typeof__(a2) t2 = (a2); __typeof__(a3) t3 = (a3); __typeof__(a4) t4 = (a4); __typeof__(a5) t5 = (a5); __typeof__(a6) t6 = (a6); __typeof__(a7) t7 = (a7);
+#define MAKE_TMPS9(fmt, a1, a2, a3, a4, a5, a6, a7, a8) __typeof__(a1) t1 = (a1); __typeof__(a2) t2 = (a2); __typeof__(a3) t3 = (a3); __typeof__(a4) t4 = (a4); __typeof__(a5) t5 = (a5); __typeof__(a6) t6 = (a6); __typeof__(a7) t7 = (a7); __typeof__(a8) t8 = (a8);
 
 
 
@@ -109,10 +109,10 @@ enum ql_type_id{
 
 #define GET_BYTE_N(n, v) get_byte_n(n, (void*)&v, TYPE_ID(v) )
 
-static inline uint8_t get_byte_n(int n, void *v, int sz, int ql_type_id) __attribute__((always_inline)); // Critical
-static inline uint8_t get_byte_n(int n, void *v, int sz, int ql_type_id){
+static inline uint8_t get_byte_n(int n, const void *v, int ql_type_id) __attribute__((always_inline)); // Critical
+static inline uint8_t get_byte_n(int n, const void *v, int ql_type_id){
     uint8_t buff[8] = {};
-    void *v2 = v;
+    const void *v2 = v;
 
     switch(ql_type_id){
         case t_c:
@@ -180,7 +180,7 @@ static inline uint8_t get_byte_n(int n, void *v, int sz, int ql_type_id){
             break;
         }
         default:
-            assert(0);
+            QKL_ASSERT(0);
 
 
     }
@@ -198,12 +198,12 @@ static inline uint8_t get_byte_n(int n, void *v, int sz, int ql_type_id){
 
 
 
-#define QKL_PRINTF_ENCODE(func, ...) do {                               \
+#define QKL_PRINTF_ENCODE(func, usr_data, ...) do {                               \
     MAKE_TMPS(__VA_ARGS__)                             \
     uint8_t byte_rep[] = {                             \
         TO_BYTE_REP(__VA_ARGS__)                       \
     };                                                 \
-    func(FIRST_ARG(__VA_ARGS__), byte_rep); \
+    func( usr_data, FIRST_ARG(__VA_ARGS__), byte_rep, sizeof(byte_rep)); \
     }while(0)
 
 
