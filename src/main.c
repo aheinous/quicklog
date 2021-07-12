@@ -1,15 +1,15 @@
 #include <time.h>
-#include "qkl_encode.h"
-#include "qkl_decode.h"
-#include "qkl_usr_config.h"
+#include "qkl/qkl_encode.h"
+#include "qkl/qkl_decode.h"
+#include "qkl/qkl_usr_config.h"
 
-#include "qkl_usr_platform.h"
-#include "qkl_prod.h"
-#include "qkl_server.h"
+#include "qkl/qkl_usr_platform.h"
+#include "qkl/qkl_prod.h"
+#include "qkl/qkl_server.h"
 #include <pthread.h>
 #include <sched.h>
 
-#include "qkl_lr_buff.h"
+#include "qkl/qkl_lr_buff.h"
 
 #include <stdio.h>
 

@@ -33,15 +33,15 @@
  */
 
 
-#include "qkl_usr_config.h"
-#include "qkl_usr_platform.h"
+#include "qkl/qkl_usr_config.h"
+#include "qkl/qkl_usr_platform.h"
 
 #define PRINT_DEC_BUFSZ 32 /* 20 is enough for 64 bit decimals */
 
 #if 1
 
-int ql_snprintf(char *str, size_t size, const char *format, ...);
-int ql_vsnprintf(char *str, size_t size, const char *format, va_list arg);
+int qkl_snprintf(char *str, size_t size, const char *format, ...);
+int qkl_vsnprintf(char *str, size_t size, const char *format, va_list arg);
 
 
 
@@ -56,11 +56,11 @@ int ql_vsnprintf(char *str, size_t size, const char *format, va_list arg);
  * %f, %g, %m, %p have reduced support, support for wid,prec,flags,*, but
  *   less floating point range, no %e formatting for %g.
  */
-int ql_snprintf(char *str, size_t size, const char *format, ...) {
+int qkl_snprintf(char *str, size_t size, const char *format, ...) {
     int r;
     va_list args;
     va_start(args, format);
-    r = ql_vsnprintf(str, size, format, args);
+    r = qkl_vsnprintf(str, size, format, args);
     va_end(args);
     return r;
 }
@@ -603,7 +603,7 @@ print_char(char **at, size_t *left, int *ret, int c,
  * 	and %%.
  */
 
-int ql_vsnprintf(char *str, size_t size, const char *format, va_list arg) {
+int qkl_vsnprintf(char *str, size_t size, const char *format, va_list arg) {
     char *at = str;
     size_t left = size;
     int ret = 0;

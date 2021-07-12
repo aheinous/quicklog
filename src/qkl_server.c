@@ -1,6 +1,6 @@
-#include "qkl_server.h"
-#include "qkl_decode.h"
-#include "qkl_usr_platform.h"
+#include "qkl/qkl_server.h"
+#include "qkl/qkl_decode.h"
+#include "qkl/qkl_usr_platform.h"
 
 #include <stdio.h>
 
@@ -80,7 +80,7 @@ void qkl_process(){
             qkl_lr_buff_right_put(&log_prods[i]->buff);
 
             char s2[128];
-            ql_snprintf(s2, sizeof(s2), "[%s]: %s", prod_names[i], s);
+            qkl_snprintf(s2, sizeof(s2), "[%s]: %s", prod_names[i], s);
             QKL_USR_LOG_OUT(s2);
         }
     }

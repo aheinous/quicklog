@@ -1,6 +1,6 @@
-#include "qkl_lr_buff.h"
-#include "qkl_usr_platform.h"
-#include "qkl_usr_config.h"
+#include "qkl/qkl_lr_buff.h"
+#include "qkl/qkl_usr_platform.h"
+#include "qkl/qkl_usr_config.h"
 
 
 void qkl_lr_buff_init(qkl_lr_buff *buff, void *data, int data_size, int elem_size, int num_elems){
