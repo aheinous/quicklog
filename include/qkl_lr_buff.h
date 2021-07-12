@@ -26,9 +26,12 @@ void qkl_lr_buff_init(qkl_lr_buff *buff, void *data, int data_size, int elem_siz
 
 void qkl_lr_buff_left_put(qkl_lr_buff *buff);
 void *qkl_lr_buff_left_get(qkl_lr_buff *buff);
+int qkl_lr_buff_left_avail(qkl_lr_buff *buff);
+
 
 void qkl_lr_buff_right_put(qkl_lr_buff *buff);
 void *qkl_lr_buff_right_get(qkl_lr_buff *buff);
+int qkl_lr_buff_right_avail(qkl_lr_buff *buff);
 
 
 

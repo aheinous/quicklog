@@ -3,20 +3,16 @@
 extern "C" {
 #endif
 
-#include <pthread.h>
+
+#include <stdint.h>	// used by qkl
+#include <stddef.h>	// used by qkl
+#include <string.h>	// used by qkl
+#include <stdarg.h>// used by qkl
+
+#include <pthread.h> // for usr impl
 
 #define QKL_MEMBAR() __asm__ volatile ("" : : : "memory")
 
-
-#define QKL_ASSERT(cond, ...) do{												\
-	if(!(cond)){															\
-		_onFailedAssert( #cond, __FILE__, __LINE__, "" __VA_ARGS__);  		\
-	}																		\
-} while(0)
-
-
-
-void _onFailedAssert(const char *cond, const char *file, int line, ...) ;
 
 
 

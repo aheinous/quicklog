@@ -1,6 +1,7 @@
 
 #include "qkl_sem.h"
 #include "qkl_usr_platform.h"
+#include "qkl_usr_config.h"
 
 void qkl_sem_init(qkl_sem_t *sem){
     sem->num_puts = 0;

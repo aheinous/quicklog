@@ -37,6 +37,11 @@ void *qkl_lr_buff_left_get(qkl_lr_buff *buff){
 }
 
 
+int qkl_lr_buff_left_avail(qkl_lr_buff *buff){
+    return qkl_sem_peek(&buff->left_avail);
+}
+
+
 
 
 void qkl_lr_buff_right_put(qkl_lr_buff *buff) {
@@ -51,6 +56,11 @@ void *qkl_lr_buff_right_get(qkl_lr_buff *buff) {
     qkl_sem_get(&buff->right_avail);
     return (void *) &(buff->data[buff->right_idx * buff->elem_size]);
 }
+
+int qkl_lr_buff_right_avail(qkl_lr_buff *buff){
+    return qkl_sem_peek(&buff->right_avail);
+}
+
 
 
 

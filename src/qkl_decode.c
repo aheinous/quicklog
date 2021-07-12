@@ -34,10 +34,11 @@
 
 
 #include "qkl_usr_config.h"
+#include "qkl_usr_platform.h"
 
 #define PRINT_DEC_BUFSZ 32 /* 20 is enough for 64 bit decimals */
 
-#if 0
+#if 1
 
 int ql_snprintf(char *str, size_t size, const char *format, ...);
 int ql_vsnprintf(char *str, size_t size, const char *format, va_list arg);
@@ -582,7 +583,7 @@ print_char(char **at, size_t *left, int *ret, int c,
         print_pad(at, left, ret, ' ', minw - 1);
 }
 
-#if 0
+#if 1
 /**
  * Print to string.
  * str: string buffer for result. result will be null terminated.

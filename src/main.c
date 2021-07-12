@@ -158,7 +158,7 @@ void * prod_process(void *arg){
 
     qkl_prod_init(prod,data, sizeof(qkl_entry)*ent_count, ent_count);
 
-    qkl_reg(prod);
+    qkl_reg(prod, "");
 
     for(int i =0; i<100; i++){
         QKLOG(*prod, "prod_process: %s, %d\n", prod==&prod_a ? "A" : "\tB", i);
@@ -184,10 +184,12 @@ void integ_test(){
 
     qkl_init();
 
-    char buff[4 * sizeof(qkl_entry)];
-    qkl_prod prod;
-    qkl_prod_init(&prod, buff, sizeof(buff), 4);
-    qkl_reg(&prod);
+    // char buff[4 * sizeof(qkl_entry)];
+    // qkl_prod prod;
+    // qkl_prod_init(&prod, buff, sizeof(buff), 4);
+    // qkl_reg(&prod, "");
+
+    QKL_PROD(prod, "first prod", 4);
 
     qkl_process();
 
@@ -195,19 +197,23 @@ void integ_test(){
 
 
     qkl_process();
-    QKLOG(prod, "fmt string %s %s ", "abc", s);
-    QKLOG(prod, "fmt string %c %d %d, %ld %lld", (char) 'a', (short) 23, 24, -3453534L, -43435ll);
-    QKLOG(prod, "fmt string %u , %lu %llu", 1234567890, 1234567890, 12345678901234567890llu);
-    QKLOG(prod, "fmt string %g", 123.456);
-    QKLOG(prod, "fmt string %f", 123.456f);
+    QKLOG(prod, "fmt string %s %s \n", "abc", s);
+    QKLOG(prod, "fmt string %c %d %d, %ld %lld\n", (char) 'a', (short) 23, 24, -3453534L, -43435ll);
+    QKLOG(prod, "fmt string %u , %lu %llu\n", 1234567890, 1234567890, 12345678901234567890llu);
+    QKLOG(prod, "fmt string %g\n", 123.456);
+    QKLOG(prod, "fmt string %f\n", 123.456f);
     qkl_process();
-    QKLOG(prod, "fmt string %s %s ", "abc", s);
-    QKLOG(prod, "fmt string %c %d %d, %ld %lld", (char) 'a', (short) 23, 24, -3453534L, -43435ll);
-    QKLOG(prod, "fmt string %u , %lu %llu", 1234567890, 1234567890, 12345678901234567890llu);
-    QKLOG(prod, "fmt string %g", 123.456);
-    QKLOG(prod, "fmt string %f", 123.456f);
+    QKLOG(prod, "fmt string %s %s \n", "abc", s);
+    QKLOG(prod, "fmt string %c %d %d, %ld %lld\n", (char) 'a', (short) 23, 24, -3453534L, -43435ll);
+    QKLOG(prod, "fmt string %u , %lu %llu\n", 1234567890, 1234567890, 12345678901234567890llu);
+    QKLOG(prod, "fmt string %g\n", 123.456);
+    QKLOG(prod, "fmt string %f\n", 123.456f);
+    QKLOG(prod, "fmt string %f\n", 123.456f);
+    QKLOG(prod, "fmt string %f\n", 123.456f);
+    QKLOG(prod, "fmt string %f\n", 123.456f);
     qkl_process();
-
+    QKLOG(prod, "fmt string %f\n", 123.456f);
+    qkl_process();
 
     pthread_create(&thd_a, NULL, prod_process, &prod_a);
     pthread_create(&thd_b, NULL, prod_process, &prod_b);
@@ -222,14 +228,15 @@ void integ_test(){
     // reg/unreg
 
 
-    #define  buff_cnt  64
+    const char *spell[] = {"zero", "one", "two", "three"};
+    #define  buff_cnt  16
     #define n_prods 4
     {
         qkl_prod prods[n_prods];
         char buff[n_prods][buff_cnt * sizeof(qkl_entry)];
         for(int i=0; i<n_prods; i++){
             qkl_prod_init(&prods[i], buff[i], sizeof(buff[0]), buff_cnt);
-            qkl_reg(&prods[i]);
+            qkl_reg(&prods[i], spell[i]);
 
 
         }
