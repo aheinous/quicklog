@@ -33,8 +33,8 @@
  */
 
 
-#include "qkl/qkl_usr_config.h"
-#include "qkl/qkl_usr_platform.h"
+#include "qkl/usr/config.h"
+#include "qkl/usr/platform.h"
 
 #define PRINT_DEC_BUFSZ 32 /* 20 is enough for 64 bit decimals */
 

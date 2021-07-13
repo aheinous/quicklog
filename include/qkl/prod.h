@@ -4,9 +4,9 @@ extern "C" {
 #endif
 
 
-#include "qkl/qkl_lr_buff.h"
-#include "qkl/qkl_entry.h"
-#include "qkl/qkl_usr_config.h"
+#include "qkl/lr_buff.h"
+#include "qkl/entry.h"
+#include "qkl/usr/config.h"
 
 #define QKLOG(prod, ...) QKL_PRINTF_ENCODE(qkl_prod_new_entry, &prod, __VA_ARGS__)
 

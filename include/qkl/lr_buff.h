@@ -3,7 +3,7 @@
 extern "C" {
 #endif
 
-#include "qkl/qkl_sem.h"
+#include "qkl/sem.h"
 
 
 typedef struct {

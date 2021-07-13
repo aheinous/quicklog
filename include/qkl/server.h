@@ -3,7 +3,7 @@
 extern "C" {
 #endif
 
-#include "qkl/qkl_prod.h"
+#include "qkl/prod.h"
 
 
 void qkl_init();

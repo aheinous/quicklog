@@ -1,4 +1,4 @@
-#include "qkl/qkl_usr_config.h"
+#include "qkl/usr/config.h"
 
 
 #include <stdio.h>

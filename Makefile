@@ -6,9 +6,9 @@ SRC_DIRS := ./src
 
 CC := gcc-11
 
-SRCS:= src/main.c src/qkl_decode.c src/qkl_sem.c src/qkl_lr_buff.c \
-		src/qkl_usr_platform.c src/qkl_prod.c src/qkl_server.c \
-		src/qkl_usr_config.c
+SRCS:= src/main.c src/qkl/decode.c src/qkl/sem.c src/qkl/lr_buff.c \
+		src/qkl/usr/platform.c src/qkl/prod.c src/qkl/server.c \
+		src/qkl/usr/config.c
 OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
 DEPS := $(OBJS:.o=.d)
 

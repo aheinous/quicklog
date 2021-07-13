@@ -1,6 +1,6 @@
-#include "qkl/qkl_server.h"
-#include "qkl/qkl_decode.h"
-#include "qkl/qkl_usr_platform.h"
+#include "qkl/server.h"
+#include "qkl/decode.h"
+#include "qkl/usr/platform.h"
 
 #include <stdio.h>
 

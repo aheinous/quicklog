@@ -1,6 +1,6 @@
-#include "qkl/qkl_prod.h"
-#include "qkl/qkl_usr_platform.h"
-#include "qkl/qkl_encode.h"
+#include "qkl/prod.h"
+#include "qkl/usr/platform.h"
+#include "qkl/encode.h"
 
 // void qkl_lr_buff_init(qkl_lr_buff *buff, void *data, int data_size, int elem_size, int num_elems);
 

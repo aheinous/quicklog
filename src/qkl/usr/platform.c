@@ -1,5 +1,5 @@
-#include "qkl/qkl_usr_platform.h"
-#include "qkl/qkl_usr_config.h"
+#include "qkl/usr/platform.h"
+#include "qkl/usr/config.h"
 
 
 
