@@ -71,17 +71,16 @@ void qkl_process(){
             if(!ent){
                 break;
             }
-            char s[128];
             // skip dummy msgs
             if(ent->fmt[0] == '\0'){
                 continue;
             }
-            qkl_printf_decode(s, sizeof(s), ent->fmt, ent->data);
-            qkl_lr_buff_right_put(&log_prods[i]->buff);
 
-            char s2[128];
-            qkl_snprintf(s2, sizeof(s2), "[%s]: %s", prod_names[i], s);
-            QKL_USR_LOG_OUT(s2);
+            char s[128];
+            int written = qkl_snprintf(s, sizeof(s), "[%s]: ", prod_names[i], s);
+            qkl_printf_decode(s+written, sizeof(s)-written, ent->fmt, ent->data);
+            qkl_lr_buff_right_put(&log_prods[i]->buff);
+            QKL_USR_LOG_OUT(s);
         }
     }
     qkl_usr_cond_broadcast(&cycle_cond);
