@@ -29,20 +29,27 @@ void qkl_reg(qkl_prod *log_prod, const char*name){
     qkl_usr_mutex_unlock(&mutex);
 }
 
-void qkl_unreg(qkl_prod *log_prod){
-        // make sure any enqueued msgs are flushed
-        qkl_usr_mutex_lock(&mutex);
-        qkl_usr_cond_wait(&cycle_cond, &mutex);
-        qkl_usr_mutex_unlock(&mutex);
 
+// call already holding mutex
+static inline void _flush(qkl_prod *log_prod){
+    while(qkl_lr_buff_right_avail(&log_prod->buff)){
+        qkl_usr_cond_wait(&cycle_cond, &mutex);
+    }
+
+    if(log_prod->dropped){
         // dummy msg to make dropped msgs notifications go through
         qkl_prod_new_entry(log_prod, "", NULL, 0);
 
+        while(qkl_lr_buff_right_avail(&log_prod->buff)){
+            qkl_usr_cond_wait(&cycle_cond, &mutex);
+        }
+    }
+}
 
+void qkl_unreg(qkl_prod *log_prod){
         qkl_usr_mutex_lock(&mutex);
 
-        // wait for flush
-        qkl_usr_cond_wait(&cycle_cond, &mutex);
+        _flush(log_prod);
 
         for(int i=0; i< num_log_prods; i++){
             if(log_prods[i] == log_prod){
