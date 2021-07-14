@@ -2,8 +2,6 @@
 #include "qkl/decode.h"
 #include "qkl/usr/platform.h"
 
-#include <stdio.h>
-
 static qkl_prod *log_prods[QKL_MAX_LOG_PROD];
 static const char *prod_names[QKL_MAX_LOG_PROD];
 static int num_log_prods = 0;
