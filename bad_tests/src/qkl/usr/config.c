@@ -29,7 +29,7 @@ void _onFailedAssert(const char *cond, const char *file, int line, ...) {
     va_end(vargs);
 
     fflush(stderr);
-    abort();
+
 
     exit(EXIT_FAILURE);
 }

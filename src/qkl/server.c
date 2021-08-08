@@ -1,10 +1,12 @@
 #include "qkl/server.h"
 #include "qkl/decode.h"
 #include "qkl/usr/platform.h"
+#include "qkl/entry.h"
+#include "qkl/client.h"
 
-static qkl_prod *log_prods[QKL_MAX_LOG_PROD];
-static const char *prod_names[QKL_MAX_LOG_PROD];
-static int num_log_prods = 0;
+static qkl_client *clients[QKL_MAX_CLIENTS];
+static const char *client_names[QKL_MAX_CLIENTS];
+static int num_clients = 0;
 
 
 
@@ -16,46 +18,51 @@ void qkl_init(){
     qkl_usr_cond_init(&cycle_cond);
 }
 
-void qkl_reg(qkl_prod *log_prod, const char*name){
+void qkl_reg(qkl_client *client, const char*name){
     qkl_usr_mutex_lock(&mutex);
-    QKL_ASSERT(num_log_prods < QKL_MAX_LOG_PROD);
+    QKL_ASSERT(num_clients < QKL_MAX_CLIENTS);
 
-    log_prods[num_log_prods] = log_prod;
-    prod_names[num_log_prods] = name;
+    clients[num_clients] = client;
+    client_names[num_clients] = name;
 
-    num_log_prods++;
+    num_clients++;
     qkl_usr_mutex_unlock(&mutex);
 }
 
 
-// call already holding mutex
-static inline void _flush(qkl_prod *log_prod){
-    while(qkl_lr_buff_right_avail(&log_prod->buff)){
-        qkl_usr_cond_wait(&cycle_cond, &mutex);
-    }
+// called while already holding mutex
+static inline void _flush(qkl_client *client){
 
-    if(log_prod->dropped){
-        // dummy msg to make dropped msgs notifications go through
-        qkl_prod_new_entry(log_prod, "", NULL, 0);
-
-        while(qkl_lr_buff_right_avail(&log_prod->buff)){
+    #if QKL_USR_SYNC_PRIMITIVES_PROVIDED
+        while(qkl_lr_buff_right_avail(&client->buff)){
             qkl_usr_cond_wait(&cycle_cond, &mutex);
         }
-    }
+
+        if(client->dropped){
+            // dummy msg to make dropped msgs notifications go through
+            qkl_client_new_entry(client, "", NULL, 0);
+
+            while(qkl_lr_buff_right_avail(&client->buff)){
+                qkl_usr_cond_wait(&cycle_cond, &mutex);
+            }
+        }
+    #else
+        qkl_process();
+    #endif
 }
 
-void qkl_unreg(qkl_prod *log_prod){
+void qkl_unreg(qkl_client *client){
         qkl_usr_mutex_lock(&mutex);
 
-        _flush(log_prod);
+        _flush(client);
 
-        for(int i=0; i< num_log_prods; i++){
-            if(log_prods[i] == log_prod){
+        for(int i=0; i< num_clients; i++){
+            if(clients[i] == client){
 
-                log_prods[i] = log_prods[num_log_prods-1];
-                prod_names[i] = prod_names[num_log_prods-1];
+                clients[i] = clients[num_clients-1];
+                client_names[i] = client_names[num_clients-1];
 
-                num_log_prods --;
+                num_clients --;
                 goto success;
             }
         }
@@ -70,9 +77,9 @@ void qkl_unreg(qkl_prod *log_prod){
 void qkl_process(){
     qkl_usr_mutex_lock(&mutex);
 
-    for(int i=0; i< num_log_prods; i++){
+    for(int i=0; i< num_clients; i++){
         while(1){
-            qkl_entry *ent = (qkl_entry*) qkl_lr_buff_right_get(&log_prods[i]->buff);
+            qkl_entry *ent = (qkl_entry*) qkl_lr_buff_right_get(&clients[i]->buff);
             if(!ent){
                 break;
             }
@@ -82,9 +89,9 @@ void qkl_process(){
             }
 
             char s[128];
-            int written = qkl_snprintf(s, sizeof(s), "[%s]: ", prod_names[i], s);
+            int written = qkl_snprintf(s, sizeof(s), "[%s]: ", client_names[i], s);
             qkl_printf_decode(s+written, sizeof(s)-written, ent->fmt, ent->data);
-            qkl_lr_buff_right_put(&log_prods[i]->buff);
+            qkl_lr_buff_right_put(&clients[i]->buff);
             QKL_USR_LOG_OUT(s);
         }
     }

@@ -33,5 +33,67 @@
 			"group": "build",
         },
 
+
+
+        {
+            "type": "shell",
+            "label": "clean run tests",
+            "command": "make clean run",
+            "args": [],
+            "options": {
+                "cwd": "${workspaceFolder}/tests"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+			"group": "build",
+        },
+
+        {
+            "type": "shell",
+            "label": "clean tests",
+            "command": "make clean",
+            "args": [],
+            "options": {
+                "cwd": "${workspaceFolder}/tests"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+			"group": "build",
+        },
+
+        {
+            "type": "shell",
+            "label": "run tests",
+            "command": "make run",
+            "args": [],
+            "options": {
+                "cwd": "${workspaceFolder}/tests"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+			"group": "build",
+        },
+
+
+        {
+            "type": "shell",
+            "label": "make tests",
+            "command": "make",
+            "args": [],
+            "options": {
+                "cwd": "${workspaceFolder}/tests"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+			"group": "build",
+        },
+
+
+
+
     ]
 }

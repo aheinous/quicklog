@@ -15,8 +15,7 @@ void qkl_sem_put(qkl_sem_t *sem){
 
 uint8_t qkl_sem_peek(qkl_sem_t *sem){
     QKL_MEMBAR();
-    uint8_t gets = sem->num_gets; // avoid undefined volatile order warning on some systems
-    return sem->num_puts - gets;
+    return sem->num_puts - sem->num_gets;
 }
 
 void qkl_sem_get(qkl_sem_t *sem){

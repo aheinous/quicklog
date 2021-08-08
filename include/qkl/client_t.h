@@ -3,14 +3,12 @@
 extern "C" {
 #endif
 
-
-#include "qkl/usr/config.h"
-
+#include "qkl/lr_buff.h"
 
 typedef struct {
-    const char *fmt;
-    uint8_t data[64];
-} qkl_entry;
+    qkl_lr_buff buff;
+    int dropped;
+} qkl_client;
 
 
 

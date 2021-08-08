@@ -1,16 +1,18 @@
 #pragma once
-#ifdef __CPLUSPLUS
+#ifdef __cplusplus
 extern "C" {
 #endif
 
 
-// #include "qkl/usr/config.h"
+
+
+
 #include "qkl/usr/platform.h"
 
 
 typedef struct {
-    volatile uint8_t num_puts;
-    volatile uint8_t num_gets;
+    uint8_t num_puts;
+    uint8_t num_gets;
 } qkl_sem_t;
 
 
@@ -23,6 +25,6 @@ uint8_t qkl_sem_peek(qkl_sem_t*);
  */
 void qkl_sem_get(qkl_sem_t*);
 
-#ifdef __CPLUSPLUS
+#ifdef __cplusplus
 }
 #endif

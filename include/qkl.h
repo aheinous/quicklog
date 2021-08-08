@@ -1,11 +1,11 @@
 #pragma once
-#ifdef __CPLUSPLUS
+#ifdef __cplusplus
 extern "C" {
 #endif
 
-#include "qkl/prod.h"
+#include "qkl/client.h"
 
 
-#ifdef __CPLUSPLUS
+#ifdef __cplusplus
 }
 #endif

@@ -1,5 +1,5 @@
 #pragma once
-#ifdef __CPLUSPLUS
+#ifdef __cplusplus
 extern "C" {
 #endif
 
@@ -13,7 +13,7 @@ extern "C" {
 
 #define QKL_MEMBAR() __asm__ volatile ("" : : : "memory")
 
-
+#define QKL_USR_SYNC_PRIMITIVES_PROVIDED 1
 
 
 typedef struct{
@@ -34,7 +34,7 @@ void qkl_usr_cond_broadcast(qkl_usr_cond* cond);
 void qkl_usr_cond_wait(qkl_usr_cond* cond, qkl_usr_mutex*mutex);
 
 
-#ifdef __CPLUSPLUS
+#ifdef __cplusplus
 }
 #endif
 

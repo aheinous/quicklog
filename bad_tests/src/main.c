@@ -4,12 +4,13 @@
 #include "qkl/usr/config.h"
 
 #include "qkl/usr/platform.h"
-#include "qkl/prod.h"
+#include "qkl/client.h"
 #include "qkl/server.h"
 #include <pthread.h>
 #include <sched.h>
 
 #include "qkl/lr_buff.h"
+
 
 #include <stdio.h>
 
@@ -143,30 +144,30 @@ pthread_t thd_a;
 pthread_t thd_b;
 pthread_t server;
 
-qkl_prod prod_a;
-qkl_prod prod_b;
+qkl_client client_a;
+qkl_client client_b;
 
 
 
 
-void * prod_process(void *arg){
-    qkl_prod *prod = (qkl_prod*) arg;
+void * client_process(void *arg){
+    qkl_client *client = (qkl_client*) arg;
 
     const int ent_count = 32;
 
     void * data = malloc(sizeof(qkl_entry) * ent_count);
 
-    qkl_prod_init(prod,data, sizeof(qkl_entry)*ent_count, ent_count);
+    qkl_client_init(client,data, sizeof(qkl_entry)*ent_count, ent_count);
 
-    qkl_reg(prod, "");
+    qkl_reg(client, "");
 
     for(int i =0; i<100; i++){
-        QKLOG(*prod, "prod_process: %s, %d\n", prod==&prod_a ? "A" : "\tB", i);
+        QKLOG(*client, "client_process: %s, %d\n", client==&client_a ? "A" : "\tB", i);
         if(i%10 == 0){
             m_sleep(i/1);
         }
     }
-    qkl_unreg(prod);
+    qkl_unreg(client);
 
     free(data);
     return NULL;
@@ -185,11 +186,11 @@ void integ_test(){
     qkl_init();
 
     // char buff[4 * sizeof(qkl_entry)];
-    // qkl_prod prod;
-    // qkl_prod_init(&prod, buff, sizeof(buff), 4);
-    // qkl_reg(&prod, "");
+    // qkl_client client;
+    // qkl_client_init(&client, buff, sizeof(buff), 4);
+    // qkl_reg(&client, "");
 
-    QKL_PROD(prod, "first prod", 4);
+    QKL_CLIENT_DEFINE_INIT(client, "first client", 4);
 
     qkl_process();
 
@@ -197,59 +198,59 @@ void integ_test(){
 
 
     qkl_process();
-    QKLOG(prod, "fmt string %s %s \n", "abc", s);
-    QKLOG(prod, "fmt string %c %d %d, %ld %lld\n", (char) 'a', (short) 23, 24, -3453534L, -43435ll);
-    QKLOG(prod, "fmt string %u , %lu %llu\n", 1234567890, 1234567890, 12345678901234567890llu);
-    QKLOG(prod, "fmt string %g\n", 123.456);
-    QKLOG(prod, "fmt string %f\n", 123.456f);
+    QKLOG(client, "fmt string %s %s \n", "abc", s);
+    QKLOG(client, "fmt string %c %d %d, %ld %lld\n", (char) 'a', (short) 23, 24, -3453534L, -43435ll);
+    QKLOG(client, "fmt string %u , %lu %llu\n", 1234567890, 1234567890, 12345678901234567890llu);
+    QKLOG(client, "fmt string %g\n", 123.456);
+    QKLOG(client, "fmt string %f\n", 123.456f);
     qkl_process();
-    QKLOG(prod, "fmt string %s %s \n", "abc", s);
-    QKLOG(prod, "fmt string %c %d %d, %ld %lld\n", (char) 'a', (short) 23, 24, -3453534L, -43435ll);
-    QKLOG(prod, "fmt string %u , %lu %llu\n", 1234567890, 1234567890, 12345678901234567890llu);
-    QKLOG(prod, "fmt string %g\n", 123.456);
-    QKLOG(prod, "fmt string %f\n", 123.456f);
-    QKLOG(prod, "fmt string %f\n", 123.456f);
-    QKLOG(prod, "fmt string %f\n", 123.456f);
-    QKLOG(prod, "fmt string %f\n", 123.456f);
+    QKLOG(client, "fmt string %s %s \n", "abc", s);
+    QKLOG(client, "fmt string %c %d %d, %ld %lld\n", (char) 'a', (short) 23, 24, -3453534L, -43435ll);
+    QKLOG(client, "fmt string %u , %lu %llu\n", 1234567890, 1234567890, 12345678901234567890llu);
+    QKLOG(client, "fmt string %g\n", 123.456);
+    QKLOG(client, "fmt string %f\n", 123.456f);
+    QKLOG(client, "fmt string %f\n", 123.456f);
+    QKLOG(client, "fmt string %f\n", 123.456f);
+    QKLOG(client, "fmt string %f\n", 123.456f);
     qkl_process();
-    QKLOG(prod, "fmt string %f\n", 123.456f);
+    QKLOG(client, "fmt string %f\n", 123.456f);
     qkl_process();
 
-    pthread_create(&thd_a, NULL, prod_process, &prod_a);
-    pthread_create(&thd_b, NULL, prod_process, &prod_b);
+    pthread_create(&thd_a, NULL, client_process, &client_a);
+    pthread_create(&thd_b, NULL, client_process, &client_b);
     pthread_create(&server, NULL, server_process, NULL);
 
 
     pthread_join(thd_a, NULL);
     pthread_join(thd_b, NULL);
 
-    qkl_unreg(&prod);
+    qkl_unreg(&client);
 
     // reg/unreg
 
 
     const char *spell[] = {"zero", "one", "two", "three"};
     #define  buff_cnt  16
-    #define n_prods 4
+    #define n_clients 4
     {
-        qkl_prod prods[n_prods];
-        char buff[n_prods][buff_cnt * sizeof(qkl_entry)];
-        for(int i=0; i<n_prods; i++){
-            qkl_prod_init(&prods[i], buff[i], sizeof(buff[0]), buff_cnt);
-            qkl_reg(&prods[i], spell[i]);
+        qkl_client clients[n_clients];
+        char buff[n_clients][buff_cnt * sizeof(qkl_entry)];
+        for(int i=0; i<n_clients; i++){
+            qkl_client_init(&clients[i], buff[i], sizeof(buff[0]), buff_cnt);
+            qkl_reg(&clients[i], spell[i]);
 
 
         }
         for(int i=0; i<2; i++){
-            qkl_unreg(&prods[i]);
+            qkl_unreg(&clients[i]);
         }
-        for(int i=2; i<n_prods; i++){
+        for(int i=2; i<n_clients; i++){
             for(int j = 0; j < 50; j++) {
-                QKLOG(prods[i], "reg unreg %d %d\n", i, j);
+                QKLOG(clients[i], "reg unreg %d %d\n", i, j);
             }
         }
-        for(int i=2; i<n_prods; i++){
-            qkl_unreg(&prods[i]);
+        for(int i=2; i<n_clients; i++){
+            qkl_unreg(&clients[i]);
         }
     }
 }

@@ -92,7 +92,6 @@ get_negsign(int negative, int plus, int space) {
     return 0;
 }
 
-#define PRINT_DEC_BUFSZ 32 /* 20 is enough for 64 bit decimals */
 /** print decimal into buffer, returns length */
 static int
 print_dec(char *buf, int max, unsigned int value) {
