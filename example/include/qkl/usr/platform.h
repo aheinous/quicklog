@@ -12,6 +12,8 @@ extern "C" {
 #include <pthread.h> // for usr impl
 
 #define QKL_MEMBAR() __asm__ volatile ("" : : : "memory")
+#define FALLTHROUGH() __attribute__((fallthrough))
+#define ALWAYS_INLINE() __attribute__((always_inline))
 
 #define QKL_USR_SYNC_PRIMITIVES_PROVIDED 1
 

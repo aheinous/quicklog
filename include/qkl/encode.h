@@ -4,22 +4,10 @@
 #include "qkl/usr/platform.h"
 #include "qkl/usr/config.h"
 
-#ifdef __cplusplus
-    #define QKL_TYPEOF decltype
-#else
-    #define QKL_TYPEOF __typeof__
-#endif
-
-
 
 #if  defined(QKL_INCLUDE_TESTS) && defined(__cplusplus)
     #include "doctest.h"
 #endif
-
-
-
-
-
 
 
 
@@ -37,16 +25,11 @@ typedef long long unsigned ql_llu;
 
 
 
-#define QKL_TO_BYTE_REP1(fmt)
-#define QKL_TO_BYTE_REP2(fmt, ...) QKL_GET_BYTES(t1)
-#define QKL_TO_BYTE_REP3(fmt, ...) QKL_GET_BYTES(t1), QKL_GET_BYTES(t2)
-#define QKL_TO_BYTE_REP4(fmt, ...) QKL_GET_BYTES(t1), QKL_GET_BYTES(t2), QKL_GET_BYTES(t3)
-#define QKL_TO_BYTE_REP5(fmt, ...) QKL_GET_BYTES(t1), QKL_GET_BYTES(t2), QKL_GET_BYTES(t3), QKL_GET_BYTES(t4)
-#define QKL_TO_BYTE_REP6(fmt, ...) QKL_GET_BYTES(t1), QKL_GET_BYTES(t2), QKL_GET_BYTES(t3), QKL_GET_BYTES(t4), QKL_GET_BYTES(t5)
-#define QKL_TO_BYTE_REP7(fmt, ...) QKL_GET_BYTES(t1), QKL_GET_BYTES(t2), QKL_GET_BYTES(t3), QKL_GET_BYTES(t4), QKL_GET_BYTES(t5), QKL_GET_BYTES(t6)
-#define QKL_TO_BYTE_REP8(fmt, ...) QKL_GET_BYTES(t1), QKL_GET_BYTES(t2), QKL_GET_BYTES(t3), QKL_GET_BYTES(t4), QKL_GET_BYTES(t5), QKL_GET_BYTES(t6), QKL_GET_BYTES(t7)
-#define QKL_TO_BYTE_REP9(fmt, ...) QKL_GET_BYTES(t1), QKL_GET_BYTES(t2), QKL_GET_BYTES(t3), QKL_GET_BYTES(t4), QKL_GET_BYTES(t5), QKL_GET_BYTES(t6), QKL_GET_BYTES(t7), QKL_GET_BYTES(t8)
-
+#ifdef __cplusplus
+    #define QKL_TYPEOF decltype
+#else
+    #define QKL_TYPEOF __typeof__
+#endif
 
 #define QKL_MAKE_TMPS1(fmt)
 #define QKL_MAKE_TMPS2(fmt, a1) QKL_TYPEOF(a1) t1 = (a1);
@@ -57,6 +40,19 @@ typedef long long unsigned ql_llu;
 #define QKL_MAKE_TMPS7(fmt, a1, a2, a3, a4, a5, a6) QKL_TYPEOF(a1) t1 = (a1); QKL_TYPEOF(a2) t2 = (a2); QKL_TYPEOF(a3) t3 = (a3); QKL_TYPEOF(a4) t4 = (a4); QKL_TYPEOF(a5) t5 = (a5); QKL_TYPEOF(a6) t6 = (a6);
 #define QKL_MAKE_TMPS8(fmt, a1, a2, a3, a4, a5, a6, a7) QKL_TYPEOF(a1) t1 = (a1); QKL_TYPEOF(a2) t2 = (a2); QKL_TYPEOF(a3) t3 = (a3); QKL_TYPEOF(a4) t4 = (a4); QKL_TYPEOF(a5) t5 = (a5); QKL_TYPEOF(a6) t6 = (a6); QKL_TYPEOF(a7) t7 = (a7);
 #define QKL_MAKE_TMPS9(fmt, a1, a2, a3, a4, a5, a6, a7, a8) QKL_TYPEOF(a1) t1 = (a1); QKL_TYPEOF(a2) t2 = (a2); QKL_TYPEOF(a3) t3 = (a3); QKL_TYPEOF(a4) t4 = (a4); QKL_TYPEOF(a5) t5 = (a5); QKL_TYPEOF(a6) t6 = (a6); QKL_TYPEOF(a7) t7 = (a7); QKL_TYPEOF(a8) t8 = (a8);
+
+
+#define QKL_TO_BYTE_REP1(fmt)
+#define QKL_TO_BYTE_REP2(fmt, ...) QKL_GET_BYTES(t1)
+#define QKL_TO_BYTE_REP3(fmt, ...) QKL_GET_BYTES(t1), QKL_GET_BYTES(t2)
+#define QKL_TO_BYTE_REP4(fmt, ...) QKL_GET_BYTES(t1), QKL_GET_BYTES(t2), QKL_GET_BYTES(t3)
+#define QKL_TO_BYTE_REP5(fmt, ...) QKL_GET_BYTES(t1), QKL_GET_BYTES(t2), QKL_GET_BYTES(t3), QKL_GET_BYTES(t4)
+#define QKL_TO_BYTE_REP6(fmt, ...) QKL_GET_BYTES(t1), QKL_GET_BYTES(t2), QKL_GET_BYTES(t3), QKL_GET_BYTES(t4), QKL_GET_BYTES(t5)
+#define QKL_TO_BYTE_REP7(fmt, ...) QKL_GET_BYTES(t1), QKL_GET_BYTES(t2), QKL_GET_BYTES(t3), QKL_GET_BYTES(t4), QKL_GET_BYTES(t5), QKL_GET_BYTES(t6)
+#define QKL_TO_BYTE_REP8(fmt, ...) QKL_GET_BYTES(t1), QKL_GET_BYTES(t2), QKL_GET_BYTES(t3), QKL_GET_BYTES(t4), QKL_GET_BYTES(t5), QKL_GET_BYTES(t6), QKL_GET_BYTES(t7)
+#define QKL_TO_BYTE_REP9(fmt, ...) QKL_GET_BYTES(t1), QKL_GET_BYTES(t2), QKL_GET_BYTES(t3), QKL_GET_BYTES(t4), QKL_GET_BYTES(t5), QKL_GET_BYTES(t6), QKL_GET_BYTES(t7), QKL_GET_BYTES(t8)
+
+#define QKL_GET_BYTES(v) QKL_GET_BYTE_N(0, v),QKL_GET_BYTE_N(1, v),QKL_GET_BYTE_N(2, v),QKL_GET_BYTE_N(3, v),QKL_GET_BYTE_N(4, v),QKL_GET_BYTE_N(5, v),QKL_GET_BYTE_N(6, v),QKL_GET_BYTE_N(7, v)
 
 
 #if defined(QKL_INCLUDE_TESTS) && defined(__cplusplus)
@@ -122,7 +118,7 @@ TEST_CASE("QKL_IS_ARRAY") {
 
     #define QKL_GET_BYTE_N(n, v) qkl_get_byte_n(n, (void*)&v, QKL_TYPE_ID(v) )
 
-    static inline uint8_t qkl_get_byte_n(int n, const void *v, int ql_type_id) __attribute__((always_inline)); // Critical
+    static inline uint8_t qkl_get_byte_n(int n, const void *v, int ql_type_id) ALWAYS_INLINE(); // Critical
     static inline uint8_t qkl_get_byte_n(int n, const void *v, int ql_type_id) {
         uint8_t buff[8] = {};
         const void *v2 = v;
@@ -186,7 +182,7 @@ TEST_CASE("QKL_IS_ARRAY") {
             }
             case t_array:
                 v2 = (void *) &v;
-                // fall through
+                FALLTHROUGH();
             case t_pointer:
             {
                 *((ql_llu *) buff) = *((ql_llu *) v2);
@@ -207,18 +203,10 @@ TEST_CASE("QKL_IS_ARRAY") {
 #ifdef   __cplusplus
     extern "C++" {
 
-
-        #include <iostream>
-        #include <memory>
-        #include <string>
-        #include <typeinfo>
-        #include <cxxabi.h>
-
-
         #define QKL_GET_BYTE_N(n, v) qkl_get_byte_n(n, v)
 
         template<typename T>
-        static inline uint8_t qkl_get_byte_n(int n, T v) __attribute__((always_inline));
+        static inline uint8_t qkl_get_byte_n(int n, T v) ALWAYS_INLINE();
 
 
         template<typename T>
@@ -284,8 +272,6 @@ TEST_CASE("QKL_IS_ARRAY") {
 
 
 
-
-#define QKL_GET_BYTES(v) QKL_GET_BYTE_N(0, v),QKL_GET_BYTE_N(1, v),QKL_GET_BYTE_N(2, v),QKL_GET_BYTE_N(3, v),QKL_GET_BYTE_N(4, v),QKL_GET_BYTE_N(5, v),QKL_GET_BYTE_N(6, v),QKL_GET_BYTE_N(7, v)
 
 
 

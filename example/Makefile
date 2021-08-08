@@ -1,49 +1,63 @@
-TARGET_EXEC := bad_tests
+.DELETE_ON_ERROR:
+
+TARGET_EXEC := tests
+
+BUILD_DIR := ./build
+
+QKL_DIR := $(shell realpath ..)
 
 
-BUILD_DIR_ROOT := ./build
-# account for ..
-BUILD_DIR := $(BUILD_DIR_ROOT)/$(TARGET_EXEC)
+WARNINGS := -Wall -Wextra
 
 
-CC := gcc-11
-
-
-
-
-# SRCS:= src/main.c src/qkl/decode.c src/qkl/sem.c src/qkl/lr_buff.c \
-# 		src/qkl/usr/platform.c src/qkl/client.c src/qkl/server.c \
-# 		src/qkl/usr/config.c
-
-
-SRCS := $(shell find ../src -name "*.c" )
+SRCS := $(shell find $(QKL_DIR)/src -name "*.c" )
 SRCS += $(shell find src -name "*.c" )
 
+CXX_SRCS += $(shell find src -name "*.cpp" )
 
 OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
+OBJS += $(CXX_SRCS:%=$(BUILD_DIR)/%.o)
 DEPS := $(OBJS:.o=.d)
 
-INC_DIRS = include ../include
+# putting include before $(QKL_DIR)/include means our versions of
+# qkl/usr/*.h will be used in place of the default ones
+# from the library
+INC_DIRS = include $(QKL_DIR)/include
 INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
 CPPFLAGS := $(INC_FLAGS)  -MMD -MP
-CFLAGS := -save-temps=obj  -fdiagnostics-color=always -g
+CFLAGS := -save-temps=obj  -fdiagnostics-color=always -g $(WARNINGS)
+CXXFLAGS := -save-temps=obj  -fdiagnostics-color=always -g $(WARNINGS)
 LDFLAGS := -pthread -g
 
 
 # The final build step.
 $(BUILD_DIR)/$(TARGET_EXEC): $(OBJS)
-	$(CC) $(OBJS) -o $@ $(LDFLAGS)
+	$(CXX) $(OBJS) -o $@ $(LDFLAGS)
 
 
 # Build step for C source
 $(BUILD_DIR)/%.c.o: %.c
-	mkdir -p $(dir $@)
+	@mkdir -p $(dir $@)
 	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
 
-.PHONY: clean
+
+$(BUILD_DIR)/%.cpp.o: %.cpp
+	mkdir -p $(dir $@)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
+
+
+
+.PHONY: clean rebuild run
 clean:
-	rm -r $(BUILD_DIR_ROOT)
+	-rm -r $(BUILD_DIR)
+
+
+rebuild: clean $(BUILD_DIR)/$(TARGET_EXEC)
+
+
+run: $(BUILD_DIR)/$(TARGET_EXEC)
+	./$(BUILD_DIR)/$(TARGET_EXEC)
 
 
 
@@ -51,3 +65,6 @@ print:
 	@echo $(SRCS)
 	@echo $(CXX_SRCS)
 	@echo $(OBJS)
+	@echo $(QKL_DIR)
+
+-include $(DEPS)

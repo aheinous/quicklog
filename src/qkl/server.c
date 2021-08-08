@@ -9,9 +9,10 @@ static const char *client_names[QKL_MAX_CLIENTS];
 static int num_clients = 0;
 
 
-
+#if QKL_USR_SYNC_PRIMITIVES_PROVIDED
 static qkl_usr_mutex mutex;
 static qkl_usr_cond cycle_cond;
+#endif
 
 void qkl_init(){
     qkl_usr_mutex_init(&mutex);
@@ -47,6 +48,7 @@ static inline void _flush(qkl_client *client){
             }
         }
     #else
+        (void) client;
         qkl_process();
     #endif
 }

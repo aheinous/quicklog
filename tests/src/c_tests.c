@@ -8,6 +8,8 @@
 static char buff[128] = { 0 };
 
 static inline void decode_wrapper(int dummy, const char *fmt, uint8_t *bytes, int len) {
+    (void) dummy;
+    (void) len;
     qkl_printf_decode(buff, sizeof(buff), fmt, bytes);
 }
 
