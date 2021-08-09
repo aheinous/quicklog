@@ -1,14 +1,10 @@
 .DELETE_ON_ERROR:
 
-TARGET_EXEC := tests
+TARGET_EXEC := example
 
 BUILD_DIR := ./build
 
 QKL_DIR := $(shell realpath ..)
-
-
-WARNINGS := -Wall -Wextra
-
 
 SRCS := $(shell find $(QKL_DIR)/src -name "*.c" )
 SRCS += $(shell find src -name "*.c" )
@@ -26,8 +22,8 @@ INC_DIRS = include $(QKL_DIR)/include
 INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
 CPPFLAGS := $(INC_FLAGS)  -MMD -MP
-CFLAGS := -save-temps=obj  -fdiagnostics-color=always -g $(WARNINGS)
-CXXFLAGS := -save-temps=obj  -fdiagnostics-color=always -g $(WARNINGS)
+CFLAGS := -save-temps=obj  -fdiagnostics-color=always -g -Wall -Wextra
+CXXFLAGS := -save-temps=obj  -fdiagnostics-color=always -g -Wall -Wextra
 LDFLAGS := -pthread -g
 
 
@@ -42,6 +38,7 @@ $(BUILD_DIR)/%.c.o: %.c
 	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
 
 
+# Build step for C++ source
 $(BUILD_DIR)/%.cpp.o: %.cpp
 	mkdir -p $(dir $@)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
