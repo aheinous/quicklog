@@ -10,13 +10,13 @@ typedef struct {
     qkl_sem_t left_avail;
     qkl_sem_t right_avail;
 
-    uint8_t left_idx;
-    uint8_t right_idx;
+    qkl_atomic_index_t left_idx;
+    qkl_atomic_index_t right_idx;
 
     uint8_t *data;
 
     int elem_size;
-    uint8_t num_elems; // pow2
+    size_t num_elems; // pow2
 
 
 } qkl_lr_buff;

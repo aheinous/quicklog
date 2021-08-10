@@ -6,7 +6,7 @@ extern "C" {
 #include "qkl/encode.h"
 #include "qkl/lr_buff.h"
 #include "qkl/entry.h"
-#include "qkl/usr/config.h"
+#include "qkl/config.h"
 #include "qkl/client_t.h"
 #include "qkl/server.h"
 

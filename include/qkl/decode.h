@@ -12,7 +12,7 @@ extern "C" {
 #endif
 
 
-#include "qkl/usr/config.h"
+#include "qkl/config.h"
 
 int qkl_snprintf(char *str, size_t size, const char *format, ...);
 int qkl_vsnprintf(char *str, size_t size, const char *format, va_list arg);

@@ -1,7 +1,7 @@
 
 #include "qkl/sem.h"
-#include "qkl/usr/platform.h"
-#include "qkl/usr/config.h"
+#include <qkl/usr/platform.h>
+#include "qkl/config.h"
 
 void qkl_sem_init(qkl_sem_t *sem){
     sem->num_puts = 0;
@@ -13,7 +13,7 @@ void qkl_sem_put(qkl_sem_t *sem){
     sem->num_puts++;
 }
 
-uint8_t qkl_sem_peek(qkl_sem_t *sem){
+int qkl_sem_peek(qkl_sem_t *sem) {
     QKL_MEMBAR();
     return sem->num_puts - sem->num_gets;
 }

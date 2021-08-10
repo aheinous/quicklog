@@ -115,6 +115,62 @@
             ],
 			"group": "build",
         },
+        {
+            "type": "shell",
+            "label": "clean run speed_test",
+            "command": "make clean run",
+            "args": [],
+            "options": {
+                "cwd": "${workspaceFolder}/speed_test"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+			"group": "build",
+        },
+
+        {
+            "type": "shell",
+            "label": "clean speed_test",
+            "command": "make clean",
+            "args": [],
+            "options": {
+                "cwd": "${workspaceFolder}/speed_test"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+			"group": "build",
+        },
+
+        {
+            "type": "shell",
+            "label": "run speed_test",
+            "command": "make run",
+            "args": [],
+            "options": {
+                "cwd": "${workspaceFolder}/speed_test"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+			"group": "build",
+        },
+
+
+        {
+            "type": "shell",
+            "label": "make speed_test",
+            "command": "make",
+            "args": [],
+            "options": {
+                "cwd": "${workspaceFolder}/speed_test"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+			"group": "build",
+        },
 
 
 

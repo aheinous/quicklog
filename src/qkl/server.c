@@ -1,6 +1,6 @@
 #include "qkl/server.h"
 #include "qkl/decode.h"
-#include "qkl/usr/platform.h"
+#include <qkl/usr/platform.h>
 #include "qkl/entry.h"
 #include "qkl/client.h"
 
@@ -94,7 +94,7 @@ void qkl_process(){
             int written = qkl_snprintf(s, sizeof(s), "[%s]: ", client_names[i], s);
             qkl_printf_decode(s+written, sizeof(s)-written, ent->fmt, ent->data);
             qkl_lr_buff_right_put(&clients[i]->buff);
-            QKL_USR_LOG_OUT(s);
+            qkl_usr_log_out(s);
         }
     }
     qkl_usr_cond_broadcast(&cycle_cond);

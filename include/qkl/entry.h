@@ -4,7 +4,7 @@ extern "C" {
 #endif
 
 
-#include "qkl/usr/config.h"
+#include "qkl/config.h"
 
 
 typedef struct {

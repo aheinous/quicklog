@@ -1,6 +1,6 @@
 #include "qkl/lr_buff.h"
-#include "qkl/usr/platform.h"
-#include "qkl/usr/config.h"
+#include <qkl/usr/platform.h>
+#include "qkl/config.h"
 
 
 void qkl_lr_buff_init(qkl_lr_buff *buff, void *data, int data_size, int elem_size, int num_elems){
@@ -9,6 +9,9 @@ void qkl_lr_buff_init(qkl_lr_buff *buff, void *data, int data_size, int elem_siz
 
     QKL_ASSERT(! (num_elems & (num_elems-1) ) ); // pow2
     QKL_ASSERT(num_elems * elem_size == data_size);
+    // make sure num_elems fits into qkl_atomic_index_t.
+    // casts is to suppress comparison-always-true warning
+    QKL_ASSERT((long long unsigned) num_elems <= (1LL << (sizeof(qkl_atomic_index_t)*8 - 1)));
 
     buff->data = data;
     buff->num_elems = num_elems;

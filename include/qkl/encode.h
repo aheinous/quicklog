@@ -1,8 +1,8 @@
 
 #pragma once
 
-#include "qkl/usr/platform.h"
-#include "qkl/usr/config.h"
+#include <qkl/usr/platform.h>
+#include "qkl/config.h"
 
 
 #if  defined(QKL_INCLUDE_TESTS) && defined(__cplusplus)
