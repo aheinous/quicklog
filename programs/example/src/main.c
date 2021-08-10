@@ -62,6 +62,7 @@ int main(int argc, char **argv) {
 
     QKLOG(static_client, "Hello World\n");
     QKLOG(static_client, "%s %d\n", "abc", 123);
+    QKLOG(static_client, "%d %d\n", 1, 2);
 
     qkl_unreg(&static_client);
 

@@ -118,7 +118,7 @@ TEST_CASE("QKL_IS_ARRAY") {
 
     #define QKL_GET_BYTE_N(n, v) qkl_get_byte_n(n, (void*)&v, QKL_TYPE_ID(v) )
 
-    static inline uint8_t qkl_get_byte_n(int n, const void *v, int ql_type_id) ALWAYS_INLINE(); // Critical
+    static ALWAYS_INLINE( uint8_t qkl_get_byte_n(int n, const void *v, int ql_type_id) ); // Inline Critical
     static inline uint8_t qkl_get_byte_n(int n, const void *v, int ql_type_id) {
         uint8_t buff[8] = {};
         const void *v2 = v;
@@ -206,7 +206,7 @@ TEST_CASE("QKL_IS_ARRAY") {
         #define QKL_GET_BYTE_N(n, v) qkl_get_byte_n(n, v)
 
         template<typename T>
-        static inline uint8_t qkl_get_byte_n(int n, T v) ALWAYS_INLINE();
+        static ALWAYS_INLINE( uint8_t qkl_get_byte_n(int n, T v));
 
 
         template<typename T>
@@ -274,14 +274,12 @@ TEST_CASE("QKL_IS_ARRAY") {
 
 
 
-
-
-
 #define QKL_PRINTF_ENCODE(func, usr_data, ...) do {                               \
     QKL_MAKE_TMPS(__VA_ARGS__)    /*make tmps so we can use args as l-values */       \
     uint8_t byte_rep[] = {                                                        \
         QKL_TO_BYTE_REP(__VA_ARGS__)                                                  \
     };                                                                            \
+    VALIDATE_PRINTF_ARGS(__VA_ARGS__);                                              \
     func( usr_data, QKL_FIRST_ARG(__VA_ARGS__), byte_rep, sizeof(byte_rep));          \
 }while(0)
 

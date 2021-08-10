@@ -4,11 +4,11 @@
 
         {
             "type": "shell",
-            "label": "clean run tests",
+            "label": "clean run unittests",
             "command": "make clean run",
             "args": [],
             "options": {
-                "cwd": "${workspaceFolder}/tests"
+                "cwd": "${workspaceFolder}/programs/unittests"
             },
             "problemMatcher": [
                 "$gcc"
@@ -18,11 +18,11 @@
 
         {
             "type": "shell",
-            "label": "clean tests",
+            "label": "clean unittests",
             "command": "make clean",
             "args": [],
             "options": {
-                "cwd": "${workspaceFolder}/tests"
+                "cwd": "${workspaceFolder}/programs/unittests"
             },
             "problemMatcher": [
                 "$gcc"
@@ -32,11 +32,11 @@
 
         {
             "type": "shell",
-            "label": "run tests",
+            "label": "run unittests",
             "command": "make run",
             "args": [],
             "options": {
-                "cwd": "${workspaceFolder}/tests"
+                "cwd": "${workspaceFolder}/programs/unittests"
             },
             "problemMatcher": [
                 "$gcc"
@@ -47,11 +47,11 @@
 
         {
             "type": "shell",
-            "label": "make tests",
+            "label": "make unittests",
             "command": "make",
             "args": [],
             "options": {
-                "cwd": "${workspaceFolder}/tests"
+                "cwd": "${workspaceFolder}/programs/unittests"
             },
             "problemMatcher": [
                 "$gcc"
@@ -65,7 +65,7 @@
             "command": "make clean run",
             "args": [],
             "options": {
-                "cwd": "${workspaceFolder}/example"
+                "cwd": "${workspaceFolder}/programs/example"
             },
             "problemMatcher": [
                 "$gcc"
@@ -79,7 +79,7 @@
             "command": "make clean",
             "args": [],
             "options": {
-                "cwd": "${workspaceFolder}/example"
+                "cwd": "${workspaceFolder}/programs/example"
             },
             "problemMatcher": [
                 "$gcc"
@@ -93,7 +93,7 @@
             "command": "make run",
             "args": [],
             "options": {
-                "cwd": "${workspaceFolder}/example"
+                "cwd": "${workspaceFolder}/programs/example"
             },
             "problemMatcher": [
                 "$gcc"
@@ -108,7 +108,7 @@
             "command": "make",
             "args": [],
             "options": {
-                "cwd": "${workspaceFolder}/example"
+                "cwd": "${workspaceFolder}/programs/example"
             },
             "problemMatcher": [
                 "$gcc"
@@ -121,7 +121,7 @@
             "command": "make clean run",
             "args": [],
             "options": {
-                "cwd": "${workspaceFolder}/speed_test"
+                "cwd": "${workspaceFolder}/programs/speed_test"
             },
             "problemMatcher": [
                 "$gcc"
@@ -135,7 +135,7 @@
             "command": "make clean",
             "args": [],
             "options": {
-                "cwd": "${workspaceFolder}/speed_test"
+                "cwd": "${workspaceFolder}/programs/speed_test"
             },
             "problemMatcher": [
                 "$gcc"
@@ -149,7 +149,7 @@
             "command": "make run",
             "args": [],
             "options": {
-                "cwd": "${workspaceFolder}/speed_test"
+                "cwd": "${workspaceFolder}/programs/speed_test"
             },
             "problemMatcher": [
                 "$gcc"
@@ -164,7 +164,7 @@
             "command": "make",
             "args": [],
             "options": {
-                "cwd": "${workspaceFolder}/speed_test"
+                "cwd": "${workspaceFolder}/programs/speed_test"
             },
             "problemMatcher": [
                 "$gcc"

@@ -35,7 +35,7 @@ int run_c_tests(){
     // }
 
     // TEST_CASE("unsigned int types") {
-        QKL_PRINTF_ENCODE(decode_wrapper, 0, "fmt string %u %lu %llu", 1234567890, 1234567890, 12345678901234567890llu);
+        QKL_PRINTF_ENCODE(decode_wrapper, 0, "fmt string %u %lu %llu", 1234567890, 1234567890lu, 12345678901234567890llu);
         C_CHECK(strncmp(buff, "fmt string 1234567890 1234567890 12345678901234567890", sizeof(buff)) == 0);
     // }
 
