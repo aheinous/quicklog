@@ -5,6 +5,24 @@ extern "C" {
 
 #include "qkl/sem.h"
 
+#define QKL_VALUE_REPRESENTABLE(value, type)  ( (long long unsigned) value <= ((( (1LLU << ( sizeof(type)*8 - 1)) - 1) << 1) + 1 ) )
+#if defined(QKL_INCLUDE_TESTS) && defined(__cplusplus)
+
+TEST_CASE("QKL_VALUE_REPRESENTABLE") {
+    CHECK(QKL_VALUE_REPRESENTABLE(255, uint8_t));
+    CHECK(!QKL_VALUE_REPRESENTABLE(256, uint8_t));
+
+    CHECK(QKL_VALUE_REPRESENTABLE(65535, uint16_t));
+    CHECK(!QKL_VALUE_REPRESENTABLE(65536, uint16_t));
+
+    CHECK(QKL_VALUE_REPRESENTABLE(4294967295LU, uint32_t));
+    CHECK(!QKL_VALUE_REPRESENTABLE(4294967296LU, uint32_t));
+
+    CHECK(QKL_VALUE_REPRESENTABLE(0xFFFFFFFFFFFFFFFFLLU, uint64_t));
+}
+#endif
+
+
 
 typedef struct {
     qkl_sem_t left_avail;
@@ -35,8 +53,6 @@ int qkl_lr_buff_right_avail(qkl_lr_buff *buff);
 
 
 
-
-
 #ifdef __cplusplus
 }
 #endif
@@ -44,10 +60,26 @@ int qkl_lr_buff_right_avail(qkl_lr_buff *buff);
 
 #if defined(QKL_INCLUDE_TESTS) && defined(__cplusplus)
 
+TEST_CASE("value representable") {
+    CHECK(QKL_VALUE_REPRESENTABLE(255, uint8_t));
+    CHECK(!QKL_VALUE_REPRESENTABLE(256, uint8_t));
+
+    CHECK(QKL_VALUE_REPRESENTABLE(65535, uint16_t));
+    CHECK(!QKL_VALUE_REPRESENTABLE(65536, uint16_t));
+
+    CHECK(QKL_VALUE_REPRESENTABLE(4294967295LU, uint32_t));
+    CHECK(!QKL_VALUE_REPRESENTABLE(4294967296LU, uint32_t));
+
+    CHECK(QKL_VALUE_REPRESENTABLE(0xFFFFFFFFFFFFFFFFLLU, uint64_t));
+}
+
+
     #include <pthread.h>
     #include <sched.h>
 
     #define NUM_ELMS 4
+
+
 
 
     TEST_SUITE("lr_buff"){

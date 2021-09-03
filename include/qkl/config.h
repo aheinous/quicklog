@@ -3,7 +3,7 @@
 extern "C" {
 #endif
 
-#include <qkl/usr/config.h>
+#include <qkl_usr_config.h>
 
 #define QKL_ASSERT(cond, ...) do{												\
 	if(!(cond)){															\

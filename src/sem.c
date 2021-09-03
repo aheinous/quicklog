@@ -1,6 +1,6 @@
 
 #include "qkl/sem.h"
-#include <qkl/usr/platform.h>
+#include <qkl_usr_platform.h>
 #include "qkl/config.h"
 
 void qkl_sem_init(qkl_sem_t *sem){

@@ -5,11 +5,15 @@
             "includePath": [
                 "${workspaceFolder}/**"
             ],
-            "defines": ["QKL_INCLUDE_TESTS", "__cplusplus"],
+            "defines": [
+                "QKL_INCLUDE_TESTS",
+                "__cplusplus"
+            ],
             "compilerPath": "/usr/bin/g++-11",
             "cStandard": "c11",
             "cppStandard": "c++14",
-            "intelliSenseMode": "linux-clang-x64"
+            "intelliSenseMode": "linux-clang-x64",
+            "compileCommands": "${workspaceFolder}/programs/example/build/compile_commands.json"
         }
     ],
     "version": 4

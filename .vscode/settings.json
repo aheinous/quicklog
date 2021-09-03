@@ -3,7 +3,10 @@
         "ctype.h": "c",
         "stdio.h": "c",
         "time.h": "c",
-        "features.h": "c"
+        "features.h": "c",
+        "config.h": "c",
+        "platform.h": "c"
     },
-    "C_Cpp.errorSquiggles": "Disabled"
+    "C_Cpp.errorSquiggles": "Disabled",
+    "cmake.configureOnOpen": true
 }

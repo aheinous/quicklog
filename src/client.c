@@ -1,5 +1,5 @@
 #include "qkl/client.h"
-#include <qkl/usr/platform.h>
+#include <qkl_usr_platform.h>
 #include "qkl/encode.h"
 
 void qkl_client_init(qkl_client *client, void *data, int data_size, int num_elems){

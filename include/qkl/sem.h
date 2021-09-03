@@ -3,7 +3,7 @@
 extern "C" {
 #endif
 
-#include <qkl/usr/platform.h>
+#include <qkl_usr_platform.h>
 #include "qkl/config.h"
 
 typedef struct {

@@ -1,4 +1,4 @@
-#include <qkl/usr/platform.h>
+#include <qkl_usr_platform.h>
 
 #include <stdio.h>
 #include <stdlib.h>
