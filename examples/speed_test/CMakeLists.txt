@@ -32,6 +32,8 @@ add_subdirectory(${quicklog_dir}/platforms/pthreads ${CMAKE_CURRENT_BINARY_DIR}/
 
 add_executable(speed_test)
 target_link_libraries(speed_test PUBLIC quicklog)
+target_link_libraries(speed_test PUBLIC basic_desktop_config)
+target_link_libraries(speed_test PUBLIC pthreads_platform)
 target_sources(speed_test PUBLIC
 	./src/main.cpp
 )

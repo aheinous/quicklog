@@ -23,6 +23,8 @@ add_subdirectory(${quicklog_dir}/platforms/pthreads ${CMAKE_CURRENT_BINARY_DIR}/
 
 add_executable(basic_example)
 target_link_libraries(basic_example PUBLIC quicklog)
+target_link_libraries(basic_example PUBLIC basic_desktop_config)
+target_link_libraries(basic_example PUBLIC pthreads_platform)
 target_sources(basic_example PUBLIC
 	./src/main.c
 )
