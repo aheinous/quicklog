@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.17)
+cmake_minimum_required(VERSION 3.20)
 
 project(QuicklogExample)
 
@@ -14,10 +14,10 @@ set(quicklog_dir "../..")
 add_subdirectory(${quicklog_dir} ${CMAKE_CURRENT_BINARY_DIR}/quicklog_lib)
 
 # add config
-add_subdirectory(${quicklog_dir}/configs/basic_desktop ${CMAKE_CURRENT_BINARY_DIR}/quicklog_config)
+add_subdirectory_once(${quicklog_dir}/configs/basic_desktop ${CMAKE_CURRENT_BINARY_DIR}/quicklog_config)
 
 # add platform implementation
-add_subdirectory(${quicklog_dir}/platforms/pthreads ${CMAKE_CURRENT_BINARY_DIR}/quicklog_platform)
+add_subdirectory_once(${quicklog_dir}/platforms/pthreads ${CMAKE_CURRENT_BINARY_DIR}/quicklog_platform)
 
 
 

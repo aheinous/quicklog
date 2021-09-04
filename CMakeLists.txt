@@ -1,6 +1,7 @@
-cmake_minimum_required(VERSION 3.17)
+cmake_minimum_required(VERSION 3.20)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
+include(Once)
 include(CMakeDependentOption)
 
 project(Quicklog
@@ -46,4 +47,21 @@ if(${BUILD_QUICKLOG_TESTS})
 	message("including CTest")
     include(CTest)
 	add_subdirectory("tests/unittests")
+	add_subdirectory("tests/speed_test")
+
+	add_test(NAME qkl-unittests COMMAND unittests)
+	add_test(NAME qkl-unittests-build
+		COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR} --target unittests)
+	set_tests_properties(qkl-unittests
+		PROPERTIES
+			DEPENDS qkl-unittests-build
+	)
+	add_custom_target(run-qkl-unittests
+		COMMAND unittests --force-colors=1
+	)
+	add_custom_target(run-speed-test
+		COMMAND speed_test | grep -A 5 times
+	)
+
+
 endif()

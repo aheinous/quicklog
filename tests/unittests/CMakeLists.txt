@@ -4,10 +4,10 @@ cmake_minimum_required(VERSION 3.17)
 set(quicklog_dir "../..")
 
 # add config
-add_subdirectory(${quicklog_dir}/configs/unittest ${CMAKE_CURRENT_BINARY_DIR}/quicklog_config)
+add_subdirectory_once(${quicklog_dir}/configs/unittest ${CMAKE_CURRENT_BINARY_DIR}/quicklog_config)
 
 # add platform implementation
-add_subdirectory(${quicklog_dir}/platforms/pthreads ${CMAKE_CURRENT_BINARY_DIR}/quicklog_platform)
+add_subdirectory_once(${quicklog_dir}/platforms/pthreads ${CMAKE_CURRENT_BINARY_DIR}/quicklog_platform)
 
 
 
