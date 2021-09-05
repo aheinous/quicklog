@@ -3,7 +3,7 @@
 
 
 #if  defined(QKL_INCLUDE_TESTS) && defined(__cplusplus)
-    #include "doctest.h"
+    #include "doctest/doctest.h"
 #endif
 
 

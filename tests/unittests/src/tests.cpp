@@ -11,7 +11,7 @@
 // run tests written in C
 
 
-#include <doctest.h>
+#include <doctest/doctest.h>
 
 #include "c_tests.h"
 

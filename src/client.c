@@ -10,14 +10,12 @@ void qkl_client_init(qkl_client *client, void *data, int data_size, int num_elem
 
 
 
-
 void qkl_client_new_entry(qkl_client *client, const char *fmt, uint8_t *data, int len){
 
     if(client->dropped && qkl_lr_buff_left_avail(&client->buff)){
         int dropped = client->dropped;
         client->dropped = 0;
-        QKL_PRINTF_ENCODE(qkl_client_new_entry, client,
-            "<%d msg%s dropped>\n", dropped, dropped==1? "":"s");
+        QKL_PRINTF_ENCODE(qkl_client_new_entry, client, "<%d msg%s dropped>\n", dropped, dropped==1? "":"s");
     }
 
 

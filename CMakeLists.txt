@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.20)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake/modules")
 include(Once)
 include(CMakeDependentOption)
 
@@ -9,6 +10,18 @@ project(Quicklog
 	DESCRIPTION "A logging library for realtime and timing critical applications."
 	LANGUAGES C CXX)
 
+
+set(quicklog_dir ${CMAKE_CURRENT_LIST_DIR})
+
+include (cmake/BuildOptions.cmake)
+
+
+
+
+if(ENABLE_COVERAGE)
+	include(CodeCoverage)
+	append_coverage_compiler_flags()
+endif()
 
 add_library(quicklog INTERFACE)
 
@@ -24,27 +37,9 @@ target_sources(quicklog INTERFACE
 
 
 
-if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
-	# we are the 'root' project
-	set(BUILD_QUICKLOG_TESTS_DEFAULT ON)
-	add_compile_options("-fdiagnostics-color=always")
-	set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-	set(CMAKE_C_STANDARD 11)
-	set(CMAKE_CXX_STANDARD 11)
-else()
-	# we are a subproject
-	set(BUILD_QUICKLOG_TESTS_DEFAULT OFF)
-endif()
 
-
-
-cmake_dependent_option(BUILD_QUICKLOG_TESTS
-	"Build quicklog tests."
-	${BUILD_QUICKLOG_TESTS_DEFAULT}
-	"NOT CMAKE_CROSSCOMPILING" OFF)
 
 if(${BUILD_QUICKLOG_TESTS})
-	message("including CTest")
     include(CTest)
 	add_subdirectory("tests/unittests")
 	add_subdirectory("tests/speed_test")
@@ -62,6 +57,40 @@ if(${BUILD_QUICKLOG_TESTS})
 	add_custom_target(run-speed-test
 		COMMAND speed_test | grep -A 5 times
 	)
+	add_custom_target(run-speed-test-verbose
+		COMMAND speed_test
+	)
+endif()
+
+if(ENABLE_COVERAGE)
+	add_custom_target(coverage-xml
+		# DEPENDS libc_tests printf_tests
+		COMMAND ctest
+		COMMAND gcovr --xml
+		-r ${CMAKE_SOURCE_DIR} --object-directory=${CMAKE_BINARY_DIR}
+		-o ${CMAKE_BINARY_DIR}/coverage.xml
+		BYPRODUCTS ${CMAKE_BINARY_DIR}/coverage.xml
+	)
+
+	add_custom_target(coverage-html
+		# DEPENDS libc_tests printf_tests
+		COMMAND ctest
+		COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/coverage
+		COMMAND gcovr --html --html-details
+		-r ${CMAKE_SOURCE_DIR} --object-directory=${CMAKE_BINARY_DIR}
+		-o ${CMAKE_BINARY_DIR}/coverage/index.html
+	)
+	# Remove coverage directory on `clean`
+	set_target_properties(coverage-html PROPERTIES
+		ADDITIONAL_CLEAN_FILES ${CMAKE_BINARY_DIR}/coverage
+	)
+
+	add_custom_target(coverage
+		DEPENDS coverage-xml coverage-html
+	)
+endif()
 
 
+if(BUILD_WITH_STATIC_ANALYSIS)
+	include(StaticAnalysis)
 endif()

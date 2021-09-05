@@ -6,7 +6,7 @@
 
 
 #if  defined(QKL_INCLUDE_TESTS) && defined(__cplusplus)
-    #include "doctest.h"
+    #include "doctest/doctest.h"
 #endif
 
 
@@ -96,7 +96,6 @@ TEST_CASE("QKL_IS_ARRAY") {
 
 
 
-
     #define QKL_TYPE_ID(v) \
         _Generic( v,            \
                     char:        t_c,                      \
@@ -169,6 +168,7 @@ TEST_CASE("QKL_IS_ARRAY") {
             case t_float:
             {
                 float c = *((float *) v);
+                // cppcheck-suppress invalidPointerCast
                 *((double *) buff) = (double) c;
                 v2 = buff;
                 break;
@@ -176,6 +176,7 @@ TEST_CASE("QKL_IS_ARRAY") {
             case t_double:
             {
                 double c = *((double *) v);
+                // cppcheck-suppress invalidPointerCast
                 *((double *) buff) = (double) c;
                 v2 = buff;
                 break;

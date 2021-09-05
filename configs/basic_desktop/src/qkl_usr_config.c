@@ -11,7 +11,6 @@ void qkl_usr_log_out(char *s){
     printf("%s", s);
 }
 
-
 void qkl_on_failed_assert(const char *cond, const char *file, int line, ...) {
     va_list vargs;
     va_start(vargs, line);

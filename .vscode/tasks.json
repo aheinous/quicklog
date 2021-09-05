@@ -2,41 +2,32 @@
     "version": "2.0.0",
     "tasks": [
 
+
         {
             "type": "shell",
-            "label": "clean run unittests",
-            "command": "make clean run",
+            "label": "build tests",
+            "command": "ninja",
             "args": [],
             "options": {
-                "cwd": "${workspaceFolder}/programs/unittests"
+                "cwd": "${workspaceFolder}/build"
             },
             "problemMatcher": [
                 "$gcc"
             ],
 			"group": "build",
+            "dependsOn":[
+                "cppcheck",
+                "lizard"
+            ]
         },
 
         {
             "type": "shell",
-            "label": "clean unittests",
-            "command": "make clean",
-            "args": [],
+            "label": "cppcheck",
+            "command": "ninja",
+            "args": ["cppcheck"],
             "options": {
-                "cwd": "${workspaceFolder}/programs/unittests"
-            },
-            "problemMatcher": [
-                "$gcc"
-            ],
-			"group": "build",
-        },
-
-        {
-            "type": "shell",
-            "label": "run unittests",
-            "command": "make run",
-            "args": [],
-            "options": {
-                "cwd": "${workspaceFolder}/programs/unittests"
+                "cwd": "${workspaceFolder}/build"
             },
             "problemMatcher": [
                 "$gcc"
@@ -45,132 +36,200 @@
         },
 
 
-        {
-            "type": "shell",
-            "label": "make unittests",
-            "command": "make",
-            "args": [],
-            "options": {
-                "cwd": "${workspaceFolder}/programs/unittests"
-            },
-            "problemMatcher": [
-                "$gcc"
-            ],
-			"group": "build",
-        },
 
         {
             "type": "shell",
-            "label": "clean run example",
-            "command": "make clean run",
-            "args": [],
+            "label": "lizard",
+            "command": "ninja",
+            "args": ["complexity"],
             "options": {
-                "cwd": "${workspaceFolder}/programs/example"
+                "cwd": "${workspaceFolder}/build"
             },
-            "problemMatcher": [
-                "$gcc"
-            ],
-			"group": "build",
-        },
-
-        {
-            "type": "shell",
-            "label": "clean example",
-            "command": "make clean",
-            "args": [],
-            "options": {
-                "cwd": "${workspaceFolder}/programs/example"
+            "problemMatcher": {
+                "fileLocation": "absolute",
+                "severity": "warning",
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):\\s+(warning|error):\\s+(.*)$",
+                    "file": 1,
+                    "location": 2,
+                    "severity": 3,
+                    "message": 4
+                }
             },
-            "problemMatcher": [
-                "$gcc"
-            ],
-			"group": "build",
-        },
-
-        {
-            "type": "shell",
-            "label": "run example",
-            "command": "make run",
-            "args": [],
-            "options": {
-                "cwd": "${workspaceFolder}/programs/example"
-            },
-            "problemMatcher": [
-                "$gcc"
-            ],
 			"group": "build",
         },
 
 
-        {
-            "type": "shell",
-            "label": "make example",
-            "command": "make",
-            "args": [],
-            "options": {
-                "cwd": "${workspaceFolder}/programs/example"
-            },
-            "problemMatcher": [
-                "$gcc"
-            ],
-			"group": "build",
-        },
-        {
-            "type": "shell",
-            "label": "clean run speed_test",
-            "command": "make clean run",
-            "args": [],
-            "options": {
-                "cwd": "${workspaceFolder}/programs/speed_test"
-            },
-            "problemMatcher": [
-                "$gcc"
-            ],
-			"group": "build",
-        },
 
-        {
-            "type": "shell",
-            "label": "clean speed_test",
-            "command": "make clean",
-            "args": [],
-            "options": {
-                "cwd": "${workspaceFolder}/programs/speed_test"
-            },
-            "problemMatcher": [
-                "$gcc"
-            ],
-			"group": "build",
-        },
+        // {
+        //     "type": "shell",
+        //     "label": "clean run unittests",
+        //     "command": "make clean run",
+        //     "args": [],
+        //     "options": {
+        //         "cwd": "${workspaceFolder}/programs/unittests"
+        //     },
+        //     "problemMatcher": [
+        //         "$gcc"
+        //     ],
+		// 	"group": "build",
+        // },
 
-        {
-            "type": "shell",
-            "label": "run speed_test",
-            "command": "make run",
-            "args": [],
-            "options": {
-                "cwd": "${workspaceFolder}/programs/speed_test"
-            },
-            "problemMatcher": [
-                "$gcc"
-            ],
-			"group": "build",
-        },
+        // {
+        //     "type": "shell",
+        //     "label": "clean unittests",
+        //     "command": "make clean",
+        //     "args": [],
+        //     "options": {
+        //         "cwd": "${workspaceFolder}/programs/unittests"
+        //     },
+        //     "problemMatcher": [
+        //         "$gcc"
+        //     ],
+		// 	"group": "build",
+        // },
+
+        // {
+        //     "type": "shell",
+        //     "label": "run unittests",
+        //     "command": "make run",
+        //     "args": [],
+        //     "options": {
+        //         "cwd": "${workspaceFolder}/programs/unittests"
+        //     },
+        //     "problemMatcher": [
+        //         "$gcc"
+        //     ],
+		// 	"group": "build",
+        // },
 
 
-        {
-            "type": "shell",
-            "label": "make speed_test",
-            "command": "make",
-            "args": [],
-            "options": {
-                "cwd": "${workspaceFolder}/programs/speed_test"
-            },
-            "problemMatcher": [
-                "$gcc"
-            ],
-			"group": "build",
-        },
+        // {
+        //     "type": "shell",
+        //     "label": "make unittests",
+        //     "command": "make",
+        //     "args": [],
+        //     "options": {
+        //         "cwd": "${workspaceFolder}/programs/unittests"
+        //     },
+        //     "problemMatcher": [
+        //         "$gcc"
+        //     ],
+		// 	"group": "build",
+        // },
+
+        // {
+        //     "type": "shell",
+        //     "label": "clean run example",
+        //     "command": "make clean run",
+        //     "args": [],
+        //     "options": {
+        //         "cwd": "${workspaceFolder}/programs/example"
+        //     },
+        //     "problemMatcher": [
+        //         "$gcc"
+        //     ],
+		// 	"group": "build",
+        // },
+
+        // {
+        //     "type": "shell",
+        //     "label": "clean example",
+        //     "command": "make clean",
+        //     "args": [],
+        //     "options": {
+        //         "cwd": "${workspaceFolder}/programs/example"
+        //     },
+        //     "problemMatcher": [
+        //         "$gcc"
+        //     ],
+		// 	"group": "build",
+        // },
+
+        // {
+        //     "type": "shell",
+        //     "label": "run example",
+        //     "command": "make run",
+        //     "args": [],
+        //     "options": {
+        //         "cwd": "${workspaceFolder}/programs/example"
+        //     },
+        //     "problemMatcher": [
+        //         "$gcc"
+        //     ],
+		// 	"group": "build",
+        // },
+
+
+        // {
+        //     "type": "shell",
+        //     "label": "make example",
+        //     "command": "make",
+        //     "args": [],
+        //     "options": {
+        //         "cwd": "${workspaceFolder}/programs/example"
+        //     },
+        //     "problemMatcher": [
+        //         "$gcc"
+        //     ],
+		// 	"group": "build",
+        // },
+        // {
+        //     "type": "shell",
+        //     "label": "clean run speed_test",
+        //     "command": "make clean run",
+        //     "args": [],
+        //     "options": {
+        //         "cwd": "${workspaceFolder}/programs/speed_test"
+        //     },
+        //     "problemMatcher": [
+        //         "$gcc"
+        //     ],
+		// 	"group": "build",
+        // },
+
+        // {
+        //     "type": "shell",
+        //     "label": "clean speed_test",
+        //     "command": "make clean",
+        //     "args": [],
+        //     "options": {
+        //         "cwd": "${workspaceFolder}/programs/speed_test"
+        //     },
+        //     "problemMatcher": [
+        //         "$gcc"
+        //     ],
+		// 	"group": "build",
+        // },
+
+        // {
+        //     "type": "shell",
+        //     "label": "run speed_test",
+        //     "command": "make run",
+        //     "args": [],
+        //     "options": {
+        //         "cwd": "${workspaceFolder}/programs/speed_test"
+        //     },
+        //     "problemMatcher": [
+        //         "$gcc"
+        //     ],
+		// 	"group": "build",
+        // },
+
+
+        // {
+        //     "type": "shell",
+        //     "label": "make speed_test",
+        //     "command": "make",
+        //     "args": [],
+        //     "options": {
+        //         "cwd": "${workspaceFolder}/programs/speed_test"
+        //     },
+        //     "problemMatcher": [
+        //         "$gcc"
+        //     ],
+		// 	"group": "build",
+        // },
 
 
 

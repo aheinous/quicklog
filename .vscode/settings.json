@@ -5,7 +5,8 @@
         "time.h": "c",
         "features.h": "c",
         "config.h": "c",
-        "platform.h": "c"
+        "platform.h": "c",
+        "client.h": "c"
     },
     "C_Cpp.errorSquiggles": "Disabled",
     "cmake.configureOnOpen": true
