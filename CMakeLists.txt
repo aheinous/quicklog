@@ -15,7 +15,18 @@ set(quicklog_dir ${CMAKE_CURRENT_LIST_DIR})
 
 include (cmake/BuildOptions.cmake)
 
+find_program(CLANG_FORMAT clang-format)
+if(CLANG_FORMAT)
+	add_custom_target(format
+		COMMAND tools/format.sh
+		WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
+	)
 
+	add_custom_target(format-patch
+		COMMAND tools/format-patch.sh
+		WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
+	)
+endif()
 
 if(ENABLE_COVERAGE)
 	include(CodeCoverage)

@@ -6,10 +6,9 @@ extern "C" {
 #include "qkl/lr_buff.h"
 
 typedef struct {
-    qkl_lr_buff buff;
-    int dropped;
+	qkl_lr_buff buff;
+	int dropped;
 } qkl_client;
-
 
 
 #ifdef __cplusplus

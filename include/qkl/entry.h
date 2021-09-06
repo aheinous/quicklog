@@ -8,10 +8,9 @@ extern "C" {
 
 
 typedef struct {
-    const char *fmt;
-    uint8_t data[64];
+	const char *fmt;
+	uint8_t data[64];
 } qkl_entry;
-
 
 
 #ifdef __cplusplus
