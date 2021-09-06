@@ -17,13 +17,39 @@ include (cmake/BuildOptions.cmake)
 
 
 
-
 if(ENABLE_COVERAGE)
 	include(CodeCoverage)
 	append_coverage_compiler_flags()
 endif()
 
 add_library(quicklog INTERFACE)
+
+
+
+if(USE_SANITIZER MATCHES "([Aa]ddress)")
+	target_compile_options(quicklog INTERFACE -fsanitize=address)
+	target_link_options(quicklog INTERFACE -fsanitize=address)
+elseif(USE_SANITIZER MATCHES "([Tt]hread)")
+	target_compile_options(quicklog INTERFACE -fsanitize=thread)
+	target_link_options(quicklog INTERFACE -fsanitize=thread)
+elseif(USE_SANITIZER MATCHES "([Uu]ndefined)")
+	target_compile_options(quicklog INTERFACE -fsanitize=undefined)
+	target_link_options(quicklog INTERFACE -fsanitize=undefined)
+elseif(USE_SANITIZER MATCHES "([Ll]eak)")
+	message("lead sanitizer")
+	target_compile_options(quicklog INTERFACE -fsanitize=leak)
+	target_link_options(quicklog INTERFACE -fsanitize=leak)
+elseif(USE_SANITIZER MATCHES "([Mm]emory)")
+	target_compile_options(quicklog INTERFACE -fsanitize=memory)
+	target_link_options(quicklog INTERFACE -fsanitize=memory)
+elseif(USE_SANITIZER MATCHES "([Aa]ddress);([Uu]ndefined)")
+	target_compile_options(quicklog INTERFACE -fsanitize=address,undefined)
+	target_link_options(quicklog INTERFACE -fsanitize=address,undefined)
+elseif(NOT "${USE_SANITIZER}" STREQUAL "")
+	message(FATAL_ERROR "Unsupported value of USE_SANITIZER: ${USE_SANITIZER}")
+endif()
+
+
 
 
 target_include_directories(quicklog INTERFACE "${CMAKE_CURRENT_LIST_DIR}/include")
