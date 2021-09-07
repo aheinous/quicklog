@@ -60,6 +60,103 @@
         },
 
 
+        {
+            "type": "shell",
+            "label": "tests",
+            "command": "ctest",
+            "args": [],
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "problemMatcher": {
+                "fileLocation": "absolute",
+                "severity": "warning",
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):\\s+(warning|error):\\s+(.*)$",
+                    "file": 1,
+                    "location": 2,
+                    "severity": 3,
+                    "message": 4
+                }
+            },
+			"group": "build",
+        },
+
+        {
+            "type": "shell",
+            "label": "uinttests",
+            "command": "./unittests",
+            "args": [],
+            "options": {
+                "cwd": "${workspaceFolder}/build/tests/unittests"
+            },
+            "dependsOn": "build tests",
+            "problemMatcher": {
+                "fileLocation": "absolute",
+                "severity": "warning",
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):\\s+(warning|error):\\s+(.*)$",
+                    "file": 1,
+                    "location": 2,
+                    "severity": 3,
+                    "message": 4
+                }
+            },
+			"group": "build",
+        },
+
+
+
+
+        {
+            "type": "shell",
+            "label": "coverage",
+            "command": "ninja",
+            "args": ["coverage-html"],
+            "options": {
+                "cwd": "${workspaceFolder}/build/"
+            },
+            "problemMatcher": {
+                "fileLocation": "absolute",
+                "severity": "warning",
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):\\s+(warning|error):\\s+(.*)$",
+                    "file": 1,
+                    "location": 2,
+                    "severity": 3,
+                    "message": 4
+                }
+            },
+			"group": "build",
+        },
+
+        {
+            "type": "shell",
+            "label": "show coverage",
+            "command": "xdg-open",
+            "args": ["coverage/index.html"],
+            "options": {
+                "cwd": "${workspaceFolder}/build/"
+            },
+            "dependsOn":["coverage"],
+            "problemMatcher": {
+                "fileLocation": "absolute",
+                "severity": "warning",
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):\\s+(warning|error):\\s+(.*)$",
+                    "file": 1,
+                    "location": 2,
+                    "severity": 3,
+                    "message": 4
+                }
+            },
+			"group": "build",
+        },
+
+
+
+
+
 
         // {
         //     "type": "shell",

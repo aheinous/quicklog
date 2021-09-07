@@ -47,7 +47,6 @@ elseif(USE_SANITIZER MATCHES "([Uu]ndefined)")
 	target_compile_options(quicklog INTERFACE -fsanitize=undefined)
 	target_link_options(quicklog INTERFACE -fsanitize=undefined)
 elseif(USE_SANITIZER MATCHES "([Ll]eak)")
-	message("lead sanitizer")
 	target_compile_options(quicklog INTERFACE -fsanitize=leak)
 	target_link_options(quicklog INTERFACE -fsanitize=leak)
 elseif(USE_SANITIZER MATCHES "([Mm]emory)")
@@ -113,10 +112,12 @@ if(ENABLE_COVERAGE)
 		# DEPENDS libc_tests printf_tests
 		COMMAND ctest
 		COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/coverage
-		COMMAND gcovr --html --html-details
+		COMMAND gcovr --html --html-details --exclude='.*doctest.*'
 		-r ${CMAKE_SOURCE_DIR} --object-directory=${CMAKE_BINARY_DIR}
 		-o ${CMAKE_BINARY_DIR}/coverage/index.html
 	)
+
+
 	# Remove coverage directory on `clean`
 	set_target_properties(coverage-html PROPERTIES
 		ADDITIONAL_CLEAN_FILES ${CMAKE_BINARY_DIR}/coverage

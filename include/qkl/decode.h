@@ -68,6 +68,48 @@ TEST_SUITE("encode/decode") {
 		QKL_PRINTF_ENCODE(decode_wrapper, 0, "fmt string %f", 123.456f);
 		CHECK(strncmp(buff, "fmt string 123.456001", sizeof(buff)) == 0);
 	}
+
+
+	TEST_CASE("pointer") {
+		QKL_PRINTF_ENCODE(decode_wrapper, 0, "fmt string %p", (void*)0x12340000);
+		CHECK(strncmp(buff, "fmt string 0x12340000", sizeof(buff)) == 0);
+	}
+	TEST_CASE("hex int") {
+		QKL_PRINTF_ENCODE(decode_wrapper, 0, "fmt string %x", 0x12340000);
+		CHECK(std::string(buff) ==  std::string("fmt string 12340000"));
+	}
+
+	TEST_CASE("hex long int") {
+		QKL_PRINTF_ENCODE(decode_wrapper, 0, "fmt string %lx", 0x12340000aaaal);
+		CHECK(std::string(buff) ==  std::string("fmt string 12340000aaaa"));
+	}
+
+	TEST_CASE("hex long long int") {
+		QKL_PRINTF_ENCODE(decode_wrapper, 0, "fmt string %llx", 0x12340000aaaall);
+		CHECK(std::string(buff) ==  std::string("fmt string 12340000aaaa"));
+	}
+
+
+	TEST_CASE("%% ") {
+		QKL_PRINTF_ENCODE(decode_wrapper, 0, "fmt string %% ");
+		CHECK(std::string(buff) ==  std::string("fmt string % "));
+	}
+
+	TEST_CASE("* width" ) {
+		QKL_PRINTF_ENCODE(decode_wrapper, 0, "fmt string %*s", 5, "abc");
+		CHECK(std::string(buff) ==  std::string("fmt string   abc"));
+	}
+
+
+	TEST_CASE("* precsion" ) {
+		QKL_PRINTF_ENCODE(decode_wrapper, 0, "fmt string %0+.*d", 5, 12);
+		CHECK(std::string(buff) ==  std::string("fmt string +00012"));
+	}
+
+
+
+
+
 }
 
 #endif

@@ -12,16 +12,16 @@ extern "C" {
 		}                                                                    \
 	} while(0)
 
-
+/* clang-format off */
 #ifndef __cplusplus
-typedef volatile _Atomic qkl_index_t qkl_atomic_index_t;
+	typedef volatile _Atomic qkl_index_t qkl_atomic_index_t;
 #else
 extern "C++" {
 	#include <atomic>
-typedef volatile std::atomic<qkl_index_t> qkl_atomic_index_t;
+	typedef volatile std::atomic<qkl_index_t> qkl_atomic_index_t;
 }
 #endif
-
+/* clang-format on */
 
 #ifdef __cplusplus
 }

@@ -33,20 +33,24 @@ void qkl_reg(qkl_client *client, const char *name) {
 }
 
 
+static inline void _wait_one_process_cycle() {
+	qkl_usr_cond_wait(&cycle_cond, &mutex);
+}
+
+static inline void _flush_client_buffer(qkl_client *client) {
+	while(qkl_lr_buff_right_avail(&client->buff)) {
+		_wait_one_process_cycle();
+	}
+}
+
 // called while already holding mutex
 static inline void _flush(qkl_client *client) {
 #if QKL_USR_SYNC_PRIMITIVES_PROVIDED
-	while(qkl_lr_buff_right_avail(&client->buff)) {
-		qkl_usr_cond_wait(&cycle_cond, &mutex);
-	}
-
+	_flush_client_buffer(client);
 	if(client->dropped) {
 		// dummy msg to make dropped msgs notifications go through
 		qkl_client_new_entry(client, "", NULL, 0);
-
-		while(qkl_lr_buff_right_avail(&client->buff)) {
-			qkl_usr_cond_wait(&cycle_cond, &mutex);
-		}
+		_flush_client_buffer(client);
 	}
 #else
 	(void)client;

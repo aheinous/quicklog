@@ -5,17 +5,17 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "debug qkl",
+            "name": "debug unittests",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/qkl",
+            "program": "${workspaceFolder}/build/tests/unittests/unittests",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
-            "preLaunchTask": "build qkl",
+            "preLaunchTask": "build tests",
             "setupCommands": [
                 {
                     "description": "Enable pretty-printing for gdb",

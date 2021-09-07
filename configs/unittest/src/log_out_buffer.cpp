@@ -8,6 +8,11 @@ extern "C" void qkl_usr_log_out(char *s) {
 	log_buffer.push_back(s);
 }
 
+
+void clear_log_buffer(){
+	log_buffer.clear();
+}
+
 std::string get_usr_log(int i) {
 	if(i >= 0) {
 		return log_buffer[i];

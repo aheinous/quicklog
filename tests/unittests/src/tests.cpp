@@ -10,7 +10,6 @@
 
 // run tests written in C
 
-
 #include "c_tests.h"
 #include <doctest/doctest.h>
 
