@@ -9,5 +9,18 @@
         "client.h": "c"
     },
     "C_Cpp.errorSquiggles": "Disabled",
-    "cmake.configureOnOpen": true
+    "cmake.configureOnOpen": true,
+    "spellright.language": [
+        "English_American",
+        "en_US"
+    ],
+    "spellright.documentTypes": [
+        "markdown",
+        "latex",
+        "plaintext"
+    ],
+    "cSpell.words": [
+        "cmake"
+    ],
+    "cSpell.language": "en,en-US"
 }

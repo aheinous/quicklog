@@ -90,6 +90,11 @@ if(${BUILD_QUICKLOG_TESTS})
 	add_custom_target(run-qkl-unittests
 		COMMAND unittests --force-colors=1
 	)
+
+	add_custom_target(qkl-unittests-xml
+		COMMAND unittests --reporters=xml --out=${CMAKE_BINARY_DIR}/unittests.xml
+	)
+
 	add_custom_target(run-speed-test
 		COMMAND speed_test | grep -A 5 times
 	)

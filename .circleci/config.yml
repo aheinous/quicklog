@@ -5,7 +5,9 @@ version: 2.1
 jobs:
     build:
         docker:
-            - image: debian:stretch
+            - image: aheinous/quicklog-build
         steps:
             - run:
-                command: make
+                command: cd quicklog
+            - run:
+                command: make qkl-unittests xml
