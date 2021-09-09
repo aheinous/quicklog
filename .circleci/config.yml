@@ -11,4 +11,4 @@ jobs:
             - run: |
                 make qkl-unittests-xml
             - store_test_results:
-                path: buildresults/unittests.xml
+                path: buildresults/testresults

@@ -92,7 +92,8 @@ if(${BUILD_QUICKLOG_TESTS})
 	)
 
 	add_custom_target(qkl-unittests-xml
-		COMMAND unittests --reporters=xml --out=${CMAKE_BINARY_DIR}/unittests.xml
+        COMMAND mkdir -p ${CMAKE_BINARY_DIR}/testresults/
+		COMMAND unittests --reporters=xml --out=${CMAKE_BINARY_DIR}/testresults/unittests.xml
 	)
 
 	add_custom_target(run-speed-test
