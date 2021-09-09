@@ -1,4 +1,4 @@
-FROM debian
+FROM debian:11.0
 
 RUN apt-get update
 RUN apt-get -y install make
@@ -14,6 +14,8 @@ RUN chmod +x cmake-3.21.2-linux-x86_64.sh
 RUN ./cmake-3.21.2-linux-x86_64.sh --skip-license
 RUN apt-get -y install ninja-build
 RUN apt-get -y install clang-11
+RUN apt-get -y install gcovr
+
 
 ENV CC=/usr/bin/gcc-10
 ENV CXX=/usr/bin/g++-10
@@ -21,6 +23,6 @@ ENV CXX=/usr/bin/g++-10
 # RUN cd /
 # RUN mkdir /quicklog
 
-# COPY . /quicklog/
+COPY . /quicklog/
 
 # ENTRYPOINT touch entrypointwashere

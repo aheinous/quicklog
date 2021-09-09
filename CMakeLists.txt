@@ -108,9 +108,10 @@ if(ENABLE_COVERAGE)
 	add_custom_target(coverage-xml
 		# DEPENDS libc_tests printf_tests
 		COMMAND ctest
+        COMMAND mkdir -p ${CMAKE_BINARY_DIR}/testresults
 		COMMAND gcovr --xml
 		-r ${CMAKE_SOURCE_DIR} --object-directory=${CMAKE_BINARY_DIR}
-		-o ${CMAKE_BINARY_DIR}/coverage.xml
+		-o ${CMAKE_BINARY_DIR}/testresults/coverage.xml
 		BYPRODUCTS ${CMAKE_BINARY_DIR}/coverage.xml
 	)
 

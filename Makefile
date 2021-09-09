@@ -12,7 +12,7 @@ endif
 # This skeleton is built for CMake's Ninja generator
 export CMAKE_GENERATOR=Ninja
 
-OPTIONS ?= -DCMAKE_BUILD_TYPE=Release -DENABLE_COVERAGE=Yes
+OPTIONS ?= -DCMAKE_BUILD_TYPE=Debug -DENABLE_COVERAGE=Yes
 
 all: default
 
@@ -34,13 +34,13 @@ clean:
 	$(Q) if [ -d "$(BUILDRESULTS)" ]; then ninja -C $(BUILDRESULTS) clean; fi
 
 .PHONY: pristine
-pristene:
+pristine:
 	$(Q) rm -rf $(BUILDRESULTS)
 
 
 CALL_NINJA_TARGETS := cppcheck cppcheck-xml test docs complexity
 CALL_NINJA_TARGETS += complexity-xml complexity-full tidy format format-patch
-CALL_NINJA_TARGETS += qkl-unittests-xml
+CALL_NINJA_TARGETS += qkl-unittests-xml coverage-xml
 
 define CALL_NINJA
 .PHONY: $(1)
