@@ -12,5 +12,4 @@ jobs:
                 pwd
                 apt install tree
                 tree
-                cd quicklog
                 make qkl-unittests xml
