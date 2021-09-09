@@ -7,7 +7,7 @@ jobs:
         docker:
             - image: aheinous/quicklog-build
         steps:
-            - run:
-                command: cd quicklog
-            - run:
-                command: make qkl-unittests xml
+            - run: |
+                pwd
+                cd quicklog
+                make qkl-unittests xml
