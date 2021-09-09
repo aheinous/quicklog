@@ -10,5 +10,8 @@ jobs:
             - checkout
             - run: |
                 make qkl-unittests-xml
+            - store_artifacts:
+                path: buildresults/testresults
+                destination: tr1
             - store_test_results:
                 path: buildresults/testresults
