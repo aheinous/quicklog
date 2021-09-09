@@ -12,4 +12,6 @@ jobs:
                 pwd
                 apt install tree
                 tree
-                make qkl-unittests xml
+                cat Makefile
+                git log | head
+                make qkl-unittests-xml
