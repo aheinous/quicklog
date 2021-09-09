@@ -90,18 +90,18 @@ TEST_SUITE("encode/decode") {
 	}
 
 
-	TEST_CASE("%% ") {
+	TEST_CASE("double percent") {
 		QKL_PRINTF_ENCODE(decode_wrapper, 0, "fmt string %% ");
 		CHECK(std::string(buff) ==  std::string("fmt string % "));
 	}
 
-	TEST_CASE("* width" ) {
+    TEST_CASE("asterisks width") {
 		QKL_PRINTF_ENCODE(decode_wrapper, 0, "fmt string %*s", 5, "abc");
 		CHECK(std::string(buff) ==  std::string("fmt string   abc"));
 	}
 
 
-	TEST_CASE("* precsion" ) {
+	TEST_CASE("asterisks precision" ) {
 		QKL_PRINTF_ENCODE(decode_wrapper, 0, "fmt string %0+.*d", 5, 12);
 		CHECK(std::string(buff) ==  std::string("fmt string +00012"));
 	}
