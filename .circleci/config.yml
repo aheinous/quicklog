@@ -13,5 +13,5 @@ jobs:
                 apt install tree
                 tree
                 cat Makefile
-                git log | head
+                # git log | head
                 make qkl-unittests-xml
