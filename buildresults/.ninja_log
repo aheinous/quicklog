@@ -1,0 +1,22 @@
+# ninja log v5
+10	91	1631173986	tests/unittests/CMakeFiles/unittests.dir/__/__/configs/unittest/src/qkl_assert.c.o	fc891339ce49b773
+1	97	1631173986	tests/unittests/CMakeFiles/unittests.dir/src/c_tests.c.o	fb94e19294d47a19
+8	114	1631173986	tests/unittests/CMakeFiles/unittests.dir/__/__/src/server.c.o	c13220a10bfffc34
+1	117	1631173986	tests/unittests/CMakeFiles/unittests.dir/__/__/src/lr_buff.c.o	241103a7af8f8a52
+3	138	1631173986	tests/unittests/CMakeFiles/unittests.dir/__/__/src/sem.c.o	9358f9b46713dc5a
+7	152	1631173986	tests/unittests/CMakeFiles/unittests.dir/__/__/src/client.c.o	66edf990b4311dbd
+91	154	1631173986	tests/unittests/CMakeFiles/unittests.dir/__/__/platforms/pthreads/src/qkl_usr_platform.c.o	9abe343ba8325937
+138	258	1631173986	tests/speed_test/CMakeFiles/speed_test.dir/__/__/src/sem.c.o	1b9a81a02ad8d2b9
+117	288	1631173986	tests/speed_test/CMakeFiles/speed_test.dir/__/__/src/lr_buff.c.o	f308c1346bc2b0f1
+154	303	1631173986	tests/speed_test/CMakeFiles/speed_test.dir/__/__/src/server.c.o	26ea4cf54493fb4f
+152	341	1631173986	tests/speed_test/CMakeFiles/speed_test.dir/__/__/src/client.c.o	7354c2e3f2df09f9
+97	377	1631173986	tests/speed_test/CMakeFiles/speed_test.dir/src/main.cpp.o	765e440215c14413
+289	394	1631173986	tests/speed_test/CMakeFiles/speed_test.dir/__/__/platforms/pthreads/src/qkl_usr_platform.c.o	65417ec12baab9a2
+258	404	1631173986	tests/speed_test/CMakeFiles/speed_test.dir/__/__/configs/basic_desktop/src/qkl_usr_config.c.o	5d2116f215b85065
+1	434	1631173986	tests/unittests/CMakeFiles/unittests.dir/__/__/src/decode.c.o	1a8af991d7a86591
+10	466	1631173986	tests/unittests/CMakeFiles/unittests.dir/__/__/configs/unittest/src/log_out_buffer.cpp.o	8e496208e735ec78
+114	502	1631173986	tests/speed_test/CMakeFiles/speed_test.dir/__/__/src/decode.c.o	40653ccd955e0f39
+502	571	1631173986	tests/speed_test/speed_test	bd05824949c2d2bc
+0	1250	1631173987	tests/unittests/CMakeFiles/unittests.dir/src/tests.cpp.o	60accb6c3e6f7665
+0	4250	1631173990	tests/unittests/CMakeFiles/unittests.dir/src/main.cpp.o	a23f7651b70f2158
+4250	4331	1631173990	tests/unittests/unittests	bab6b28b66f3f7fc

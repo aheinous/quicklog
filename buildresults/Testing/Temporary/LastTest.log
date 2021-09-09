@@ -1,0 +1,40 @@
+Start testing: Sep 09 00:55 PDT
+----------------------------------------------------------
+2/2 Testing: qkl-unittests-build
+2/2 Test: qkl-unittests-build
+Command: "/home/alex/opt/cmake-3.21.1-linux-x86_64/bin/cmake" "--build" "/home/alex/Projects/quicklog/buildresults" "--target" "unittests"
+Directory: /home/alex/Projects/quicklog/buildresults
+"qkl-unittests-build" start time: Sep 09 00:55 PDT
+Output:
+----------------------------------------------------------
+ninja: no work to do.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"qkl-unittests-build" end time: Sep 09 00:55 PDT
+"qkl-unittests-build" time elapsed: 00:00:00
+----------------------------------------------------------
+
+1/2 Testing: qkl-unittests
+1/2 Test: qkl-unittests
+Command: "/home/alex/Projects/quicklog/buildresults/tests/unittests/unittests"
+Directory: /home/alex/Projects/quicklog/buildresults
+"qkl-unittests" start time: Sep 09 00:55 PDT
+Output:
+----------------------------------------------------------
+[doctest] doctest version is "2.4.6"
+[doctest] run with "--help" for options
+===============================================================================
+[doctest] test cases:   21 |   21 passed | 0 failed | 0 skipped
+[doctest] assertions: 1055 | 1055 passed | 0 failed |
+[doctest] Status: SUCCESS!
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"qkl-unittests" end time: Sep 09 00:55 PDT
+"qkl-unittests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Sep 09 00:55 PDT

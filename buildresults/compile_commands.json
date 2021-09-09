@@ -1,0 +1,97 @@
+[
+{
+  "directory": "/home/alex/Projects/quicklog/buildresults",
+  "command": "/usr/bin/c++ -DQKL_INCLUDE_TESTS -I/home/alex/Projects/quicklog/tests/unittests/include -I/home/alex/Projects/quicklog/include -I/home/alex/Projects/quicklog/configs/unittest/include -I/home/alex/Projects/quicklog/platforms/pthreads/include -O2 -g -DNDEBUG -fdiagnostics-color=always -pthread -std=gnu++11 -o tests/unittests/CMakeFiles/unittests.dir/src/main.cpp.o -c /home/alex/Projects/quicklog/tests/unittests/src/main.cpp",
+  "file": "/home/alex/Projects/quicklog/tests/unittests/src/main.cpp"
+},
+{
+  "directory": "/home/alex/Projects/quicklog/buildresults",
+  "command": "/usr/bin/c++ -DQKL_INCLUDE_TESTS -I/home/alex/Projects/quicklog/tests/unittests/include -I/home/alex/Projects/quicklog/include -I/home/alex/Projects/quicklog/configs/unittest/include -I/home/alex/Projects/quicklog/platforms/pthreads/include -O2 -g -DNDEBUG -fdiagnostics-color=always -pthread -std=gnu++11 -o tests/unittests/CMakeFiles/unittests.dir/src/tests.cpp.o -c /home/alex/Projects/quicklog/tests/unittests/src/tests.cpp",
+  "file": "/home/alex/Projects/quicklog/tests/unittests/src/tests.cpp"
+},
+{
+  "directory": "/home/alex/Projects/quicklog/buildresults",
+  "command": "/usr/bin/cc -DQKL_INCLUDE_TESTS -I/home/alex/Projects/quicklog/tests/unittests/include -I/home/alex/Projects/quicklog/include -I/home/alex/Projects/quicklog/configs/unittest/include -I/home/alex/Projects/quicklog/platforms/pthreads/include -O2 -g -DNDEBUG -fdiagnostics-color=always -pthread -std=gnu11 -o tests/unittests/CMakeFiles/unittests.dir/src/c_tests.c.o -c /home/alex/Projects/quicklog/tests/unittests/src/c_tests.c",
+  "file": "/home/alex/Projects/quicklog/tests/unittests/src/c_tests.c"
+},
+{
+  "directory": "/home/alex/Projects/quicklog/buildresults",
+  "command": "/usr/bin/cc -DQKL_INCLUDE_TESTS -I/home/alex/Projects/quicklog/tests/unittests/include -I/home/alex/Projects/quicklog/include -I/home/alex/Projects/quicklog/configs/unittest/include -I/home/alex/Projects/quicklog/platforms/pthreads/include -O2 -g -DNDEBUG -fdiagnostics-color=always -pthread -std=gnu11 -o tests/unittests/CMakeFiles/unittests.dir/__/__/src/decode.c.o -c /home/alex/Projects/quicklog/src/decode.c",
+  "file": "/home/alex/Projects/quicklog/src/decode.c"
+},
+{
+  "directory": "/home/alex/Projects/quicklog/buildresults",
+  "command": "/usr/bin/cc -DQKL_INCLUDE_TESTS -I/home/alex/Projects/quicklog/tests/unittests/include -I/home/alex/Projects/quicklog/include -I/home/alex/Projects/quicklog/configs/unittest/include -I/home/alex/Projects/quicklog/platforms/pthreads/include -O2 -g -DNDEBUG -fdiagnostics-color=always -pthread -std=gnu11 -o tests/unittests/CMakeFiles/unittests.dir/__/__/src/lr_buff.c.o -c /home/alex/Projects/quicklog/src/lr_buff.c",
+  "file": "/home/alex/Projects/quicklog/src/lr_buff.c"
+},
+{
+  "directory": "/home/alex/Projects/quicklog/buildresults",
+  "command": "/usr/bin/cc -DQKL_INCLUDE_TESTS -I/home/alex/Projects/quicklog/tests/unittests/include -I/home/alex/Projects/quicklog/include -I/home/alex/Projects/quicklog/configs/unittest/include -I/home/alex/Projects/quicklog/platforms/pthreads/include -O2 -g -DNDEBUG -fdiagnostics-color=always -pthread -std=gnu11 -o tests/unittests/CMakeFiles/unittests.dir/__/__/src/sem.c.o -c /home/alex/Projects/quicklog/src/sem.c",
+  "file": "/home/alex/Projects/quicklog/src/sem.c"
+},
+{
+  "directory": "/home/alex/Projects/quicklog/buildresults",
+  "command": "/usr/bin/cc -DQKL_INCLUDE_TESTS -I/home/alex/Projects/quicklog/tests/unittests/include -I/home/alex/Projects/quicklog/include -I/home/alex/Projects/quicklog/configs/unittest/include -I/home/alex/Projects/quicklog/platforms/pthreads/include -O2 -g -DNDEBUG -fdiagnostics-color=always -pthread -std=gnu11 -o tests/unittests/CMakeFiles/unittests.dir/__/__/src/client.c.o -c /home/alex/Projects/quicklog/src/client.c",
+  "file": "/home/alex/Projects/quicklog/src/client.c"
+},
+{
+  "directory": "/home/alex/Projects/quicklog/buildresults",
+  "command": "/usr/bin/cc -DQKL_INCLUDE_TESTS -I/home/alex/Projects/quicklog/tests/unittests/include -I/home/alex/Projects/quicklog/include -I/home/alex/Projects/quicklog/configs/unittest/include -I/home/alex/Projects/quicklog/platforms/pthreads/include -O2 -g -DNDEBUG -fdiagnostics-color=always -pthread -std=gnu11 -o tests/unittests/CMakeFiles/unittests.dir/__/__/src/server.c.o -c /home/alex/Projects/quicklog/src/server.c",
+  "file": "/home/alex/Projects/quicklog/src/server.c"
+},
+{
+  "directory": "/home/alex/Projects/quicklog/buildresults",
+  "command": "/usr/bin/cc -DQKL_INCLUDE_TESTS -I/home/alex/Projects/quicklog/tests/unittests/include -I/home/alex/Projects/quicklog/include -I/home/alex/Projects/quicklog/configs/unittest/include -I/home/alex/Projects/quicklog/platforms/pthreads/include -O2 -g -DNDEBUG -fdiagnostics-color=always -pthread -std=gnu11 -o tests/unittests/CMakeFiles/unittests.dir/__/__/configs/unittest/src/qkl_assert.c.o -c /home/alex/Projects/quicklog/configs/unittest/src/qkl_assert.c",
+  "file": "/home/alex/Projects/quicklog/configs/unittest/src/qkl_assert.c"
+},
+{
+  "directory": "/home/alex/Projects/quicklog/buildresults",
+  "command": "/usr/bin/c++ -DQKL_INCLUDE_TESTS -I/home/alex/Projects/quicklog/tests/unittests/include -I/home/alex/Projects/quicklog/include -I/home/alex/Projects/quicklog/configs/unittest/include -I/home/alex/Projects/quicklog/platforms/pthreads/include -O2 -g -DNDEBUG -fdiagnostics-color=always -pthread -std=gnu++11 -o tests/unittests/CMakeFiles/unittests.dir/__/__/configs/unittest/src/log_out_buffer.cpp.o -c /home/alex/Projects/quicklog/configs/unittest/src/log_out_buffer.cpp",
+  "file": "/home/alex/Projects/quicklog/configs/unittest/src/log_out_buffer.cpp"
+},
+{
+  "directory": "/home/alex/Projects/quicklog/buildresults",
+  "command": "/usr/bin/cc -DQKL_INCLUDE_TESTS -I/home/alex/Projects/quicklog/tests/unittests/include -I/home/alex/Projects/quicklog/include -I/home/alex/Projects/quicklog/configs/unittest/include -I/home/alex/Projects/quicklog/platforms/pthreads/include -O2 -g -DNDEBUG -fdiagnostics-color=always -pthread -std=gnu11 -o tests/unittests/CMakeFiles/unittests.dir/__/__/platforms/pthreads/src/qkl_usr_platform.c.o -c /home/alex/Projects/quicklog/platforms/pthreads/src/qkl_usr_platform.c",
+  "file": "/home/alex/Projects/quicklog/platforms/pthreads/src/qkl_usr_platform.c"
+},
+{
+  "directory": "/home/alex/Projects/quicklog/buildresults",
+  "command": "/usr/bin/c++ -I/home/alex/Projects/quicklog/include -I/home/alex/Projects/quicklog/configs/basic_desktop/include -I/home/alex/Projects/quicklog/platforms/pthreads/include -O2 -g -DNDEBUG -fdiagnostics-color=always -pthread -std=gnu++11 -o tests/speed_test/CMakeFiles/speed_test.dir/src/main.cpp.o -c /home/alex/Projects/quicklog/tests/speed_test/src/main.cpp",
+  "file": "/home/alex/Projects/quicklog/tests/speed_test/src/main.cpp"
+},
+{
+  "directory": "/home/alex/Projects/quicklog/buildresults",
+  "command": "/usr/bin/cc -I/home/alex/Projects/quicklog/include -I/home/alex/Projects/quicklog/configs/basic_desktop/include -I/home/alex/Projects/quicklog/platforms/pthreads/include -O2 -g -DNDEBUG -fdiagnostics-color=always -pthread -std=gnu11 -o tests/speed_test/CMakeFiles/speed_test.dir/__/__/src/decode.c.o -c /home/alex/Projects/quicklog/src/decode.c",
+  "file": "/home/alex/Projects/quicklog/src/decode.c"
+},
+{
+  "directory": "/home/alex/Projects/quicklog/buildresults",
+  "command": "/usr/bin/cc -I/home/alex/Projects/quicklog/include -I/home/alex/Projects/quicklog/configs/basic_desktop/include -I/home/alex/Projects/quicklog/platforms/pthreads/include -O2 -g -DNDEBUG -fdiagnostics-color=always -pthread -std=gnu11 -o tests/speed_test/CMakeFiles/speed_test.dir/__/__/src/lr_buff.c.o -c /home/alex/Projects/quicklog/src/lr_buff.c",
+  "file": "/home/alex/Projects/quicklog/src/lr_buff.c"
+},
+{
+  "directory": "/home/alex/Projects/quicklog/buildresults",
+  "command": "/usr/bin/cc -I/home/alex/Projects/quicklog/include -I/home/alex/Projects/quicklog/configs/basic_desktop/include -I/home/alex/Projects/quicklog/platforms/pthreads/include -O2 -g -DNDEBUG -fdiagnostics-color=always -pthread -std=gnu11 -o tests/speed_test/CMakeFiles/speed_test.dir/__/__/src/sem.c.o -c /home/alex/Projects/quicklog/src/sem.c",
+  "file": "/home/alex/Projects/quicklog/src/sem.c"
+},
+{
+  "directory": "/home/alex/Projects/quicklog/buildresults",
+  "command": "/usr/bin/cc -I/home/alex/Projects/quicklog/include -I/home/alex/Projects/quicklog/configs/basic_desktop/include -I/home/alex/Projects/quicklog/platforms/pthreads/include -O2 -g -DNDEBUG -fdiagnostics-color=always -pthread -std=gnu11 -o tests/speed_test/CMakeFiles/speed_test.dir/__/__/src/client.c.o -c /home/alex/Projects/quicklog/src/client.c",
+  "file": "/home/alex/Projects/quicklog/src/client.c"
+},
+{
+  "directory": "/home/alex/Projects/quicklog/buildresults",
+  "command": "/usr/bin/cc -I/home/alex/Projects/quicklog/include -I/home/alex/Projects/quicklog/configs/basic_desktop/include -I/home/alex/Projects/quicklog/platforms/pthreads/include -O2 -g -DNDEBUG -fdiagnostics-color=always -pthread -std=gnu11 -o tests/speed_test/CMakeFiles/speed_test.dir/__/__/src/server.c.o -c /home/alex/Projects/quicklog/src/server.c",
+  "file": "/home/alex/Projects/quicklog/src/server.c"
+},
+{
+  "directory": "/home/alex/Projects/quicklog/buildresults",
+  "command": "/usr/bin/cc -I/home/alex/Projects/quicklog/include -I/home/alex/Projects/quicklog/configs/basic_desktop/include -I/home/alex/Projects/quicklog/platforms/pthreads/include -O2 -g -DNDEBUG -fdiagnostics-color=always -pthread -std=gnu11 -o tests/speed_test/CMakeFiles/speed_test.dir/__/__/configs/basic_desktop/src/qkl_usr_config.c.o -c /home/alex/Projects/quicklog/configs/basic_desktop/src/qkl_usr_config.c",
+  "file": "/home/alex/Projects/quicklog/configs/basic_desktop/src/qkl_usr_config.c"
+},
+{
+  "directory": "/home/alex/Projects/quicklog/buildresults",
+  "command": "/usr/bin/cc -I/home/alex/Projects/quicklog/include -I/home/alex/Projects/quicklog/configs/basic_desktop/include -I/home/alex/Projects/quicklog/platforms/pthreads/include -O2 -g -DNDEBUG -fdiagnostics-color=always -pthread -std=gnu11 -o tests/speed_test/CMakeFiles/speed_test.dir/__/__/platforms/pthreads/src/qkl_usr_platform.c.o -c /home/alex/Projects/quicklog/platforms/pthreads/src/qkl_usr_platform.c",
+  "file": "/home/alex/Projects/quicklog/platforms/pthreads/src/qkl_usr_platform.c"
+}
+]

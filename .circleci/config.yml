@@ -8,4 +8,4 @@ jobs:
             - image: debian:stretch
         steps:
             - run:
-                command: echo build job
+                command: make
