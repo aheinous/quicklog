@@ -21,6 +21,6 @@ ENV CXX=/usr/bin/g++-10
 # RUN cd /
 # RUN mkdir /quicklog
 
-COPY . /quicklog/
+# COPY . /quicklog/
 
 # ENTRYPOINT touch entrypointwashere

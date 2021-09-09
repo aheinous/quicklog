@@ -9,9 +9,6 @@ jobs:
         steps:
             - checkout
             - run: |
-                pwd
-                apt install tree
-                tree
-                cat Makefile
-                # git log | head
                 make qkl-unittests-xml
+            - store_test_results:
+                path: buildresults/unittests.xml
