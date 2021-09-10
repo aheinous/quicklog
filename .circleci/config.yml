@@ -13,6 +13,7 @@ jobs:
             - run: make complexity-html
             - run: make cppcheck
             - run: make tidy
+            - run: make ctest-xml
 
             - store_test_results:
                 path: buildresults/testresults
