@@ -8,12 +8,11 @@ jobs:
             - image: aheinous/quicklog-build:0.3
         steps:
             - checkout
-            - run: |
-                make qkl-unittests-xml
-                make coverage-html
-                make complexity-html
-                make cppcheck
-                make tidy
+            - run: make qkl-unittests-xml
+            - run: make coverage-html
+            - run: make complexity-html
+            - run: make cppcheck
+            - run: make tidy
 
             - store_test_results:
                 path: buildresults/testresults
