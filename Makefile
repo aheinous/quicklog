@@ -9,6 +9,8 @@ export Q := @
 export VERBOSE := 0
 endif
 
+# trivial change
+
 # This skeleton is built for CMake's Ninja generator
 export CMAKE_GENERATOR=Ninja
 
