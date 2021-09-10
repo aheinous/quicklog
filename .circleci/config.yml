@@ -10,7 +10,7 @@ jobs:
             - checkout
             - run: |
                 make qkl-unittests-xml
-                make coverage-xml
+                make coverage-html
             - store_artifacts:
                 path: buildresults/testresults
                 destination: test-results
