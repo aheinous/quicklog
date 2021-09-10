@@ -102,6 +102,14 @@ if(${BUILD_QUICKLOG_TESTS})
 	add_custom_target(run-speed-test-verbose
 		COMMAND speed_test
 	)
+
+	add_custom_target(ctest-xml
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+        COMMAND mkdir -p ${CMAKE_BINARY_DIR}/testresults
+        COMMAND ctest -T Test --output-on-failure
+		COMMAND
+            ${CMAKE_SOURCE_DIR}/tools/ctest2junit.sh ${CMAKE_BINARY_DIR} ${CMAKE_BINARY_DIR}/testresults
+	)
 endif()
 
 if(ENABLE_COVERAGE)

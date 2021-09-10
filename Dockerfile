@@ -22,6 +22,7 @@ RUN apt-get -y install python3-pip
 RUN pip3 install lizard
 
 
+
 ENV CC=/usr/bin/gcc-10
 ENV CXX=/usr/bin/g++-10
 ENV CLANG_TIDY=/usr/bin/clang-tidy-11
@@ -29,6 +30,6 @@ ENV CLANG_TIDY=/usr/bin/clang-tidy-11
 # RUN cd /
 # RUN mkdir /quicklog
 
-COPY . /quicklog/
+# COPY . /quicklog/
 
 # ENTRYPOINT touch entrypointwashere
