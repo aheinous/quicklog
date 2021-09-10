@@ -16,6 +16,6 @@ jobs:
                 destination: test-results
             - store_artifacts:
                 path: buildresults/coverage
-                destination:coverage
+                destination: coverage
             - store_test_results:
                 path: buildresults/testresults
