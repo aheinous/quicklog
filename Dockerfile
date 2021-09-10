@@ -20,6 +20,7 @@ RUN apt-get -y install cppcheck
 RUN apt-get -y install clang-format-11
 RUN apt-get -y install python3-pip
 RUN pip3 install lizard
+RUN apt-get -y install xsltproc
 
 
 
@@ -30,6 +31,6 @@ ENV CLANG_TIDY=/usr/bin/clang-tidy-11
 # RUN cd /
 # RUN mkdir /quicklog
 
-# COPY . /quicklog/
+COPY . /quicklog/
 
 # ENTRYPOINT touch entrypointwashere
