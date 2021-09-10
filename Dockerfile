@@ -15,10 +15,16 @@ RUN ./cmake-3.21.2-linux-x86_64.sh --skip-license
 RUN apt-get -y install ninja-build
 RUN apt-get -y install clang-11
 RUN apt-get -y install gcovr
+RUN apt-get -y install clang-tidy-11
+RUN apt-get -y install cppcheck
+RUN apt-get -y install clang-format-11
+RUN apt-get -y install python3-pip
+RUN pip3 install lizard
 
 
 ENV CC=/usr/bin/gcc-10
 ENV CXX=/usr/bin/g++-10
+ENV CLANG_TIDY=/usr/bin/clang-tidy-11
 
 # RUN cd /
 # RUN mkdir /quicklog

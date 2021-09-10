@@ -1,7 +1,10 @@
 #!/bin/bash
 
-# Argument 1 is the path to the directory containing the compile_commands.json file
-BUILD_OUTPUT_FOLDER=${1:-buildresults}
+cd $(dirname "$0")/..
 
-find arch src test include -iname *.c -o -iname *.cpp \
-	| xargs clang-tidy -p $BUILD_OUTPUT_FOLDER
+# Argument 1 is the path to the directory containing the compile_commands.json file
+CLANG_TIDY=${1:-clang-tidy}
+BUILD_OUTPUT_FOLDER=${2:-buildresults}
+
+./tools/sources.sh \
+	| xargs "${CLANG_TIDY}" --header-filter='.*' -p $BUILD_OUTPUT_FOLDER

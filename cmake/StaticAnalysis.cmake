@@ -3,7 +3,7 @@ find_program(CPPCHECK cppcheck)
 
 if(CPPCHECK)
 	set(CPPCHECK_DEFAULT_ARGS
-		${CPPCHECK} --quiet --enable=style,warning,performance,portability --force
+		${CPPCHECK}  --quiet --enable=style,warning,performance,portability --force
 		--std=c11
 		--config-exclude=include/doctest
 		-i decode.c
@@ -16,25 +16,30 @@ if(CPPCHECK)
 	set(CMAKE_C_CPPCHECK ${CPPCHECK_DEFAULT_ARGS})
 
 	add_custom_target(cppcheck
+        COMMAND mkdir -p ${CMAKE_BINARY_DIR}/cppcheck/cppcheck.xml
 		COMMAND ${CPPCHECK_DEFAULT_ARGS}
-		--template=gcc
-		# Source directories
-		${quicklog_dir}/src/
+            --template=gcc
+            # Source directories
+            ${quicklog_dir}/src/ | tee ${CMAKE_BINARY_DIR}/cppcheck/cppcheck
 	)
 
 	add_custom_target(cppcheck-xml
+        COMMAND mkdir -p ${CMAKE_BINARY_DIR}/cppcheck/cppcheck.xml
 		COMMAND ${CPPCHECK_DEFAULT_ARGS}
-		# enable XML output
-		--xml --xml-version=2
-		# Source directories
-		${quicklog_dir}/src/
-		# Redirect to file
-		2>${CMAKE_BINARY_DIR}/cppcheck.xml
+            # enable XML output
+            --xml --xml-version=2
+            # Source directories
+            ${quicklog_dir}/src/
+            # Redirect to file
+            2>${CMAKE_BINARY_DIR}/cppcheck/cppcheck.xml
 	)
 endif()
 
-
-find_program(CLANG_TIDY clang-tidy)
+if(DEFINED ENV{CLANG_TIDY})
+    set(CLANG_TIDY $ENV{CLANG_TIDY})
+else()
+    find_program(CLANG_TIDY clang-tidy)
+endif()
 message("clang tidy: ${CLANG_TIDY}")
 if(CLANG_TIDY)
 	if(BUILD_WITH_STATIC_ANALYSIS)
@@ -42,8 +47,9 @@ if(CLANG_TIDY)
 	endif()
 
 	add_custom_target(tidy
-		COMMAND tools/clang-tidy.sh ${CMAKE_BINARY_DIR}
-		WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
+        COMMAND mkdir -p ${CMAKE_BINARY_DIR}/tidy
+		COMMAND tools/clang-tidy.sh  ${CLANG_TIDY} ${CMAKE_BINARY_DIR} | tee ${CMAKE_BINARY_DIR}/tidy/tidy
+		WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/..
 	)
 endif()
 
@@ -68,7 +74,7 @@ if(LIZARD)
 	endforeach()
 
 
-	add_custom_target(complexity
+	add_custom_target(complexity-concise
 		COMMAND
 			${LIZARD_BASE_ARGS}
 			-w # Only show warnings
@@ -76,18 +82,20 @@ if(LIZARD)
 	)
 
 	add_custom_target(complexity-full
-	COMMAND
-		${LIZARD_BASE_ARGS}
-		${LIZARD_PATHS}
+        COMMAND
+            ${LIZARD_BASE_ARGS}
+            ${LIZARD_PATHS}
 	)
 	add_custom_target(complexity-html
+        COMMAND
+            mkdir -p ${CMAKE_BINARY_DIR}/complexity
 		COMMAND
 			${LIZARD_BASE_ARGS}
 			${LIZARD_PATHS}
 			--html
-			> ${CMAKE_BINARY_DIR}/complexity.html
+			> ${CMAKE_BINARY_DIR}/complexity/complexity.html
 		BYPRODUCTS
-			${CMAKE_BINARY_DIR}/complexity.html
+			${CMAKE_BINARY_DIR}/complexity/complexity.html
 	)
 	add_custom_target(complexity-xml
 		COMMAND

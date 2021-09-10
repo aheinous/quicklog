@@ -5,17 +5,32 @@ version: 2.1
 jobs:
     build:
         docker:
-            - image: aheinous/quicklog-build:0.1
+            - image: aheinous/quicklog-build:0.3
         steps:
             - checkout
             - run: |
                 make qkl-unittests-xml
                 make coverage-html
+                make complexity-html
+                make cppcheck
+                make tidy
+
+            - store_test_results:
+                path: buildresults/testresults
             - store_artifacts:
                 path: buildresults/testresults
                 destination: test-results
             - store_artifacts:
                 path: buildresults/coverage
                 destination: coverage
-            - store_test_results:
-                path: buildresults/testresults
+            - store_artifacts:
+                path: buildresults/complexity
+                destination: complexity
+            - store_artifacts:
+                path: buildresults/cppcheck
+                destination: cppcheck
+            - store_artifacts:
+                path: buildresults/tidy
+                destination: tidy
+
+

@@ -40,9 +40,9 @@ pristine:
 	$(Q) rm -rf $(BUILDRESULTS)
 
 
-CALL_NINJA_TARGETS := cppcheck cppcheck-xml test docs complexity
+CALL_NINJA_TARGETS := cppcheck cppcheck-xml test docs complexity-html complexity-concise
 CALL_NINJA_TARGETS += complexity-xml complexity-full tidy format format-patch
-CALL_NINJA_TARGETS += qkl-unittests-xml coverage-xml coverage-html coverage
+CALL_NINJA_TARGETS += qkl-unittests-xml coverage-xml coverage-html coverage-full
 
 define CALL_NINJA
 .PHONY: $(1)

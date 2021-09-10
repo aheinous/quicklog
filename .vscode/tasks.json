@@ -17,15 +17,59 @@
 			"group": "build",
             "dependsOn":[
                 "cppcheck",
-                "lizard"
+                "lizard",
+                // "clang-tidy"
             ]
         },
+        {
+            "type": "shell",
+            "label": "rebuild tests",
+            "command": "ninja",
+            "problemMatcher": [
+                "$gcc"
+            ],
+			"group": "build",
+            "dependsOn": ["clean", "build tests"],
+            "dependsOrder": "sequence"
+
+        },
+
+
 
         {
             "type": "shell",
             "label": "cppcheck",
             "command": "ninja",
             "args": ["cppcheck"],
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+			"group": "build",
+        },
+        {
+            "type": "shell",
+            "label": "clean",
+            "command": "ninja",
+            "args": ["clean"],
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+			"group": "build",
+        },
+
+
+
+        {
+            "type": "shell",
+            "label": "clang-tidy",
+            "command": "ninja",
+            "args": ["tidy"],
             "options": {
                 "cwd": "${workspaceFolder}/build"
             },
@@ -41,7 +85,7 @@
             "type": "shell",
             "label": "lizard",
             "command": "ninja",
-            "args": ["complexity"],
+            "args": ["complexity-concise"],
             "options": {
                 "cwd": "${workspaceFolder}/build"
             },

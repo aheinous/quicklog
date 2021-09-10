@@ -130,7 +130,7 @@ if(ENABLE_COVERAGE)
 		ADDITIONAL_CLEAN_FILES ${CMAKE_BINARY_DIR}/coverage
 	)
 
-	add_custom_target(coverage
+	add_custom_target(coverage-full
 		DEPENDS coverage-xml coverage-html
 	)
 endif()
