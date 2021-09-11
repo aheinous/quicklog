@@ -72,7 +72,9 @@ target_sources(quicklog INTERFACE
 )
 
 
-
+if(BUILD_WITH_STATIC_ANALYSIS)
+	include(StaticAnalysis)
+endif()
 
 
 if(${BUILD_QUICKLOG_TESTS})
@@ -148,6 +150,3 @@ if(ENABLE_COVERAGE)
 endif()
 
 
-if(BUILD_WITH_STATIC_ANALYSIS)
-	include(StaticAnalysis)
-endif()
