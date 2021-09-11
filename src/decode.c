@@ -242,6 +242,7 @@ static void print_num(char **at,
 			numw++;
 
 		/* sign */
+        // cppcheck-suppress duplicateCondition
 		if(s)
 			print_pad(at, left, ret, s, 1);
 
@@ -585,6 +586,7 @@ static int print_float_g(char *buf, int max, double value, int prec) {
 		/* see if the last decimals are zero, if so, skip them */
 		len = print_remainder(buf, max, remain, prec - before);
 		while(len > 0 && buf[0] == '0') {
+            // NOLINTNEXTLINE(clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling)
 			memmove(buf, buf + 1, --len);
 		}
 	}
@@ -677,6 +679,7 @@ int qkl_vsnprintf(char *str, size_t size, const char *format, va_list arg) {
 	size_t left = size;
 	int ret = 0;
 	const char *fmt = format;
+    // cppcheck-suppress variableScope
 	int conv, minw, precision, prgiven, zeropad, minus, plus, space, length;
 	while(*fmt) {
 		/* copy string before % */
@@ -996,6 +999,7 @@ int qkl_printf_decode(char *str, size_t size, const char *format, uint8_t *bytes
 	size_t left = size;
 	int ret = 0;
 	const char *fmt = format;
+    // cppcheck-suppress variableScope
 	int conv, minw, precision, prgiven, zeropad, minus, plus, space, length;
 	while(*fmt) {
 		/* copy string before % */
@@ -1289,6 +1293,7 @@ int qkl_printf_decode(char *str, size_t size, const char *format, uint8_t *bytes
 				print_num_f(&at,
 				            &left,
 				            &ret,
+                            // cppcheck-suppress invalidPointerCast
 				            BYTE_VA_ARGS(bytes, &byte_idx, num_bytes, double),
 				            minw,
 				            precision,
@@ -1303,6 +1308,7 @@ int qkl_printf_decode(char *str, size_t size, const char *format, uint8_t *bytes
 				print_num_g(&at,
 				            &left,
 				            &ret,
+                            // cppcheck-suppress invalidPointerCast
 				            BYTE_VA_ARGS(bytes, &byte_idx, num_bytes, double),
 				            minw,
 				            precision,

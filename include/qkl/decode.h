@@ -102,7 +102,7 @@ TEST_SUITE("encode/decode") {
 
 
 	TEST_CASE("asterisks precision" ) {
-		QKL_PRINTF_ENCODE(decode_wrapper, 0, "fmt string %0+.*d", 5, 12);
+		QKL_PRINTF_ENCODE(decode_wrapper, 0, "fmt string %+.*d", 5, 12);
 		CHECK(std::string(buff) ==  std::string("fmt string +00012"));
 	}
 

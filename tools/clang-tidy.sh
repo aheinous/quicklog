@@ -2,12 +2,12 @@
 
 cd $(dirname "$0")/..
 
-if [[ "$1" == "--early-exit" ]]; then
-    early_exit=1
-    shift
-else
-    early_exit=0
-fi
+# if [[ "$1" == "--early-exit" ]]; then
+#     early_exit=1
+#     shift
+# else
+#     early_exit=0
+# fi
 
 
 CLANG_TIDY=${1:-clang-tidy}
@@ -20,9 +20,7 @@ BUILD_OUTPUT_FOLDER=${2:-buildresults}
 
 if [[ $3 ]]; then
     outfile="$3"
-    rm "$outfile" || true
-# else
-#     outfile="/dev/null"
+    rm "$outfile" 2>/dev/null
 fi
 
 error_code=0
@@ -33,19 +31,23 @@ for src in $(./tools/sources.sh); do
         "${CLANG_TIDY}" --header-filter='.*' -p $BUILD_OUTPUT_FOLDER $src >> $outfile
         res="$?"
     else
-        "${CLANG_TIDY}" --header-filter='.*' -p $BUILD_OUTPUT_FOLDER $src
+        "${CLANG_TIDY}" --use-color --header-filter='.*' -p $BUILD_OUTPUT_FOLDER $src
         res="$?"
     fi
 
     # echo "res: $res"
     if [[ "$res" -ne "0" ]]; then
         # echo "fail $early_exit"
-        if [[ "$early_exit" == "1" ]]; then
-            # echo "early exit"
-            exit 1
-        fi
+        # if [[ "$early_exit" == "1" ]]; then
+        #     # echo "early exit"
+        #     exit 1
+        # fi
         error_code=1
     fi
 done
+
+if [[ $outfile ]]; then
+    cat $outfile
+fi
 
 exit "$error_code"

@@ -2,31 +2,34 @@
 find_program(CPPCHECK cppcheck)
 
 if(CPPCHECK)
+    message("cppcheck found -----")
 	set(CPPCHECK_DEFAULT_ARGS
 		${CPPCHECK}  --quiet --enable=style,warning,performance,portability --force
 		--std=c11
 		--config-exclude=include/doctest
-		-i decode.c
+		# -i decode.c
 		--inline-suppr
 		--suppress=internalAstError
 		# Include directories
 		-I ${quicklog_dir}/include
 	)
 
-	set(CMAKE_C_CPPCHECK ${CPPCHECK_DEFAULT_ARGS})
+    set(CMAKE_C_CPPCHECK "${CPPCHECK_DEFAULT_ARGS}")
+	# unset(CMAKE_C_CPPCHECK CACHE)
+    # unset(CPPCHECK CACHE)
 
 	add_custom_target(cppcheck
-        COMMAND mkdir -p ${CMAKE_BINARY_DIR}/cppcheck/cppcheck.xml
+        COMMAND mkdir -p ${CMAKE_BINARY_DIR}/cppcheck/
 		COMMAND ${CPPCHECK_DEFAULT_ARGS}
-            --template=gcc
-            # Source directories
-            ${quicklog_dir}/src/ | tee ${CMAKE_BINARY_DIR}/cppcheck/cppcheck
-	)
+        --template=gcc
+        # Source directories
+        ${quicklog_dir}/src/ | tee ${CMAKE_BINARY_DIR}/cppcheck/cppcheck
+        )
 
-	add_custom_target(cppcheck-xml
-        COMMAND mkdir -p ${CMAKE_BINARY_DIR}/cppcheck/cppcheck.xml
+        add_custom_target(cppcheck-xml
+        COMMAND mkdir -p ${CMAKE_BINARY_DIR}/cppcheck/
 		COMMAND ${CPPCHECK_DEFAULT_ARGS}
-            # enable XML output
+        # enable XML output
             --xml --xml-version=2
             # Source directories
             ${quicklog_dir}/src/
@@ -51,6 +54,9 @@ if(CLANG_TIDY)
 		COMMAND tools/clang-tidy.sh  ${CLANG_TIDY} ${CMAKE_BINARY_DIR} ${CMAKE_BINARY_DIR}/tidy/tidy
 		WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/..
 	)
+
+
+
 endif()
 
 

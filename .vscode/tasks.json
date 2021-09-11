@@ -11,12 +11,21 @@
             "options": {
                 "cwd": "${workspaceFolder}/build"
             },
-            "problemMatcher": [
-                "$gcc"
-            ],
+
+            "problemMatcher": {
+                "fileLocation": "absolute",
+                "severity": "warning",
+                "pattern": {
+                    "regexp": "^(.*?):(\\d+?):(\\d+?:)?\\s+(warning|error|style|portability|performance):\\s+(.*)$",
+                    "file": 1,
+                    "location": 2,
+                    "severity": 4,
+                    "message": 5
+                }
+            },
 			"group": "build",
             "dependsOn":[
-                "cppcheck",
+                // "cppcheck",
                 "lizard",
                 // "clang-tidy"
             ]
