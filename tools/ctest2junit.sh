@@ -25,10 +25,10 @@ fi
 tag=$(head -n 1 $tests_dir/Testing/TAG)
 xsltproc --output $results_dir/ctest.xml $ctest2junit_xsl $tests_dir/Testing/$tag/Test.xml
 # xmllint --schema $junit_xsd $results_dir/ctest.xml --noout
-xsltproc --output $results_dir/ctest.txt $junit2txt_xsl $results_dir/ctest.xml
+# xsltproc --output $results_dir/ctest.txt $junit2txt_xsl $results_dir/ctest.xml
 
-echo ""
-cat $results_dir/ctest.txt
-echo ""
+# echo ""
+# cat $results_dir/ctest.txt
+# echo ""
 
-echo "Test report generated successfully"
+# echo "Test report generated successfully"
