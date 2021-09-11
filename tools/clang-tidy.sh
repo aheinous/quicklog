@@ -23,6 +23,8 @@ if [[ $3 ]]; then
     rm "$outfile" 2>/dev/null
 fi
 
+mkdir -p $(dirname ${outfile})
+
 error_code=0
 
 for src in $(./tools/sources.sh); do

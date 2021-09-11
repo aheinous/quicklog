@@ -115,9 +115,7 @@ if(${BUILD_QUICKLOG_TESTS})
 	add_custom_target(ctest-xml
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
         COMMAND mkdir -p ${CMAKE_BINARY_DIR}/testresults
-        COMMAND ctest -T Test --output-on-failure || true
-		COMMAND
-            ${CMAKE_SOURCE_DIR}/tools/ctest2junit.sh ${CMAKE_BINARY_DIR} ${CMAKE_BINARY_DIR}/testresults
+        COMMAND ctest --output-on-failure --output-junit ${CMAKE_BINARY_DIR}/testresults/ctest.xml || true
 	)
 endif()
 
