@@ -48,7 +48,7 @@ if(CLANG_TIDY)
 
 	add_custom_target(tidy
         COMMAND mkdir -p ${CMAKE_BINARY_DIR}/tidy
-		COMMAND tools/clang-tidy.sh  ${CLANG_TIDY} ${CMAKE_BINARY_DIR} | tee ${CMAKE_BINARY_DIR}/tidy/tidy
+		COMMAND tools/clang-tidy.sh  ${CLANG_TIDY} ${CMAKE_BINARY_DIR} ${CMAKE_BINARY_DIR}/tidy/tidy
 		WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/..
 	)
 endif()

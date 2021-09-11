@@ -18,12 +18,25 @@ BUILD_OUTPUT_FOLDER=${2:-buildresults}
 # 	| xargs "${CLANG_TIDY}" --header-filter='.*' -p $BUILD_OUTPUT_FOLDER
 
 
+if [[ $3 ]]; then
+    outfile="$3"
+    rm "$outfile" || true
+# else
+#     outfile="/dev/null"
+fi
+
 error_code=0
 
 for src in $(./tools/sources.sh); do
     # echo "--------------- $src"
-    "${CLANG_TIDY}" --header-filter='.*' -p $BUILD_OUTPUT_FOLDER $src
-    res="$?"
+    if [[ $outfile ]]; then
+        "${CLANG_TIDY}" --header-filter='.*' -p $BUILD_OUTPUT_FOLDER $src >> $outfile
+        res="$?"
+    else
+        "${CLANG_TIDY}" --header-filter='.*' -p $BUILD_OUTPUT_FOLDER $src
+        res="$?"
+    fi
+
     # echo "res: $res"
     if [[ "$res" -ne "0" ]]; then
         # echo "fail $early_exit"

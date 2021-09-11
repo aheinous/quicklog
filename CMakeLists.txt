@@ -83,8 +83,8 @@ if(${BUILD_QUICKLOG_TESTS})
 	add_subdirectory("tests/speed_test")
 
 	add_test(NAME clang-tidy-test
-        COMMAND
-            ${CMAKE_SOURCE_DIR}/tools/clang-tidy.sh --early-exit ${CLANG_TIDY} ${CMAKE_BINARY_DIR}
+		COMMAND ${CMAKE_SOURCE_DIR}/tools/clang-tidy.sh  ${CLANG_TIDY} ${CMAKE_BINARY_DIR} ${CMAKE_BINARY_DIR}/tidy/tidy
+
     )
     add_test(NAME qkl-unittests COMMAND unittests)
 	add_test(NAME qkl-unittests-build
@@ -120,8 +120,8 @@ endif()
 
 if(ENABLE_COVERAGE)
 	add_custom_target(coverage-xml
-		# DEPENDS libc_tests printf_tests
-		COMMAND ctest || true
+		DEPENDS run-qkl-unittests
+		COMMAND ${CMAKE_BINARY_DIR}
         COMMAND mkdir -p ${CMAKE_BINARY_DIR}/testresults
 		COMMAND gcovr --xml
 		-r ${CMAKE_SOURCE_DIR} --object-directory=${CMAKE_BINARY_DIR}
@@ -130,8 +130,7 @@ if(ENABLE_COVERAGE)
 	)
 
 	add_custom_target(coverage-html
-		# DEPENDS libc_tests printf_tests
-		COMMAND ctest || true
+		DEPENDS run-qkl-unittests
 		COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/coverage
 		COMMAND gcovr --html --html-details --exclude='.*doctest.*'
 		-r ${CMAKE_SOURCE_DIR} --object-directory=${CMAKE_BINARY_DIR}
