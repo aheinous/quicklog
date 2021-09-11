@@ -110,7 +110,7 @@ if(${BUILD_QUICKLOG_TESTS})
 	add_custom_target(ctest-xml
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
         COMMAND mkdir -p ${CMAKE_BINARY_DIR}/testresults
-        COMMAND ctest -T Test --output-on-failure
+        COMMAND ctest -T Test --output-on-failure || true
 		COMMAND
             ${CMAKE_SOURCE_DIR}/tools/ctest2junit.sh ${CMAKE_BINARY_DIR} ${CMAKE_BINARY_DIR}/testresults
 	)
@@ -119,7 +119,7 @@ endif()
 if(ENABLE_COVERAGE)
 	add_custom_target(coverage-xml
 		# DEPENDS libc_tests printf_tests
-		COMMAND ctest
+		COMMAND ctest || true
         COMMAND mkdir -p ${CMAKE_BINARY_DIR}/testresults
 		COMMAND gcovr --xml
 		-r ${CMAKE_SOURCE_DIR} --object-directory=${CMAKE_BINARY_DIR}
@@ -129,7 +129,7 @@ if(ENABLE_COVERAGE)
 
 	add_custom_target(coverage-html
 		# DEPENDS libc_tests printf_tests
-		COMMAND ctest
+		COMMAND ctest || true
 		COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR}/coverage
 		COMMAND gcovr --html --html-details --exclude='.*doctest.*'
 		-r ${CMAKE_SOURCE_DIR} --object-directory=${CMAKE_BINARY_DIR}
