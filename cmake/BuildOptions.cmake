@@ -36,6 +36,6 @@ option(BUILD_WITH_STATIC_ANALYSIS
 
 set(USE_SANITIZER
     "" CACHE STRING
-    "Compile with a sanitizer. Options are: Address, Memory, Leak, Undefined, Thread, 'Address;Undefined'"
+    "Compile with a sanitizer. Options are: Address, Leak, Undefined, Thread"
 )
 

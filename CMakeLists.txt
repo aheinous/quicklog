@@ -44,17 +44,11 @@ elseif(USE_SANITIZER MATCHES "([Tt]hread)")
 	target_compile_options(quicklog INTERFACE -fsanitize=thread)
 	target_link_options(quicklog INTERFACE -fsanitize=thread)
 elseif(USE_SANITIZER MATCHES "([Uu]ndefined)")
-	target_compile_options(quicklog INTERFACE -fsanitize=undefined)
-	target_link_options(quicklog INTERFACE -fsanitize=undefined)
+	target_compile_options(quicklog INTERFACE -fsanitize=undefined,shift,shift-exponent,shift-base,integer-divide-by-zero,unreachable,vla-bound,null,return,signed-integer-overflow,bounds,alignment,object-size,float-divide-by-zero,nonnull-attribute,returns-nonnull-attribute,bool,enum,vptr,pointer-overflow,builtin)
+	target_link_options(quicklog INTERFACE -fsanitize=undefined,shift,shift-exponent,shift-base,integer-divide-by-zero,unreachable,vla-bound,null,return,signed-integer-overflow,bounds,alignment,object-size,float-divide-by-zero,nonnull-attribute,returns-nonnull-attribute,bool,enum,vptr,pointer-overflow,builtin)
 elseif(USE_SANITIZER MATCHES "([Ll]eak)")
 	target_compile_options(quicklog INTERFACE -fsanitize=leak)
 	target_link_options(quicklog INTERFACE -fsanitize=leak)
-elseif(USE_SANITIZER MATCHES "([Mm]emory)")
-	target_compile_options(quicklog INTERFACE -fsanitize=memory)
-	target_link_options(quicklog INTERFACE -fsanitize=memory)
-elseif(USE_SANITIZER MATCHES "([Aa]ddress);([Uu]ndefined)")
-	target_compile_options(quicklog INTERFACE -fsanitize=address,undefined)
-	target_link_options(quicklog INTERFACE -fsanitize=address,undefined)
 elseif(NOT "${USE_SANITIZER}" STREQUAL "")
 	message(FATAL_ERROR "Unsupported value of USE_SANITIZER: ${USE_SANITIZER}")
 endif()
@@ -82,10 +76,8 @@ if(${BUILD_QUICKLOG_TESTS})
 	add_subdirectory("tests/unittests")
 	add_subdirectory("tests/speed_test")
 
-	add_test(NAME clang-tidy-test
-		COMMAND ${CMAKE_SOURCE_DIR}/tools/clang-tidy.sh  ${CLANG_TIDY} ${CMAKE_BINARY_DIR} ${CMAKE_BINARY_DIR}/tidy/tidy
 
-    )
+
     add_test(NAME qkl-unittests COMMAND unittests)
 	add_test(NAME qkl-unittests-build
 		COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR} --target unittests)
@@ -93,6 +85,17 @@ if(${BUILD_QUICKLOG_TESTS})
 		PROPERTIES
 			DEPENDS qkl-unittests-build
 	)
+	add_test(NAME clang-tidy-test
+		COMMAND ${CMAKE_SOURCE_DIR}/tools/clang-tidy.sh  ${CLANG_TIDY} ${CMAKE_BINARY_DIR} ${CMAKE_BINARY_DIR}/tidy/tidy
+    )
+
+
+	add_test(NAME address-sanitizer-test COMMAND ${CMAKE_SOURCE_DIR}/tools/sanitizer-test.sh address)
+	add_test(NAME thread-sanitizer-test COMMAND ${CMAKE_SOURCE_DIR}/tools/sanitizer-test.sh thread)
+	add_test(NAME undefined-sanitizer-test COMMAND ${CMAKE_SOURCE_DIR}/tools/sanitizer-test.sh undefined)
+	add_test(NAME leak-sanitizer-test COMMAND ${CMAKE_SOURCE_DIR}/tools/sanitizer-test.sh leak)
+
+
 	add_custom_target(run-qkl-unittests
 		COMMAND unittests --force-colors=1
 	)

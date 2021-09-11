@@ -38,6 +38,7 @@ clean:
 .PHONY: pristine
 pristine:
 	$(Q) rm -rf $(BUILDRESULTS)
+	$(Q) rm -rf sanitizer_builds
 
 
 CALL_NINJA_TARGETS := cppcheck cppcheck-xml test docs complexity-html complexity-concise

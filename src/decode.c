@@ -756,7 +756,7 @@ int qkl_vsnprintf(char *str, size_t size, const char *format, va_list arg) {
 		/* field width */
 		if(*fmt == '*') {
 			fmt++; /* skip char */
-			minw = va_arg(arg, int);
+            minw = va_arg(arg, int); // NOLINT(clang-analyzer-valist.Uninitialized)
 			if(minw < 0) {
 				minus = 1;
 				minw = -minw;
@@ -773,7 +773,7 @@ int qkl_vsnprintf(char *str, size_t size, const char *format, va_list arg) {
 			precision = 0;
 			if(*fmt == '*') {
 				fmt++; /* skip char */
-				precision = va_arg(arg, int);
+                precision = va_arg(arg, int); // NOLINT(clang-analyzer-valist.Uninitialized)
 				if(precision < 0)
 					precision = 0;
 			} else
@@ -808,7 +808,7 @@ int qkl_vsnprintf(char *str, size_t size, const char *format, va_list arg) {
 					print_num_d(&at,
 					            &left,
 					            &ret,
-					            va_arg(arg, int),
+                                va_arg(arg, int), // NOLINT(clang-analyzer-valist.Uninitialized)
 					            minw,
 					            precision,
 					            prgiven,
@@ -820,7 +820,7 @@ int qkl_vsnprintf(char *str, size_t size, const char *format, va_list arg) {
 					print_num_ld(&at,
 					             &left,
 					             &ret,
-					             va_arg(arg, long),
+                                 va_arg(arg, long),  // NOLINT(clang-analyzer-valist.Uninitialized)
 					             minw,
 					             precision,
 					             prgiven,
@@ -832,7 +832,7 @@ int qkl_vsnprintf(char *str, size_t size, const char *format, va_list arg) {
 					print_num_lld(&at,
 					              &left,
 					              &ret,
-					              va_arg(arg, long long),
+                                  va_arg(arg, long long),  // NOLINT(clang-analyzer-valist.Uninitialized)
 					              minw,
 					              precision,
 					              prgiven,
@@ -846,7 +846,7 @@ int qkl_vsnprintf(char *str, size_t size, const char *format, va_list arg) {
 					print_num_u(&at,
 					            &left,
 					            &ret,
-					            va_arg(arg, unsigned int),
+                                va_arg(arg, unsigned int), // NOLINT(clang-analyzer-valist.Uninitialized)
 					            minw,
 					            precision,
 					            prgiven,
@@ -858,7 +858,7 @@ int qkl_vsnprintf(char *str, size_t size, const char *format, va_list arg) {
 					print_num_lu(&at,
 					             &left,
 					             &ret,
-					             va_arg(arg, unsigned long),
+                                 va_arg(arg, unsigned long), // NOLINT(clang-analyzer-valist.Uninitialized)
 					             minw,
 					             precision,
 					             prgiven,
@@ -870,7 +870,7 @@ int qkl_vsnprintf(char *str, size_t size, const char *format, va_list arg) {
 					print_num_llu(&at,
 					              &left,
 					              &ret,
-					              va_arg(arg, unsigned long long),
+                                  va_arg(arg, unsigned long long), // NOLINT(clang-analyzer-valist.Uninitialized)
 					              minw,
 					              precision,
 					              prgiven,
@@ -884,7 +884,7 @@ int qkl_vsnprintf(char *str, size_t size, const char *format, va_list arg) {
 					print_num_x(&at,
 					            &left,
 					            &ret,
-					            va_arg(arg, unsigned int),
+                                va_arg(arg, unsigned int), // NOLINT(clang-analyzer-valist.Uninitialized)
 					            minw,
 					            precision,
 					            prgiven,
@@ -896,7 +896,7 @@ int qkl_vsnprintf(char *str, size_t size, const char *format, va_list arg) {
 					print_num_lx(&at,
 					             &left,
 					             &ret,
-					             va_arg(arg, unsigned long),
+                                 va_arg(arg, unsigned long), // NOLINT(clang-analyzer-valist.Uninitialized)
 					             minw,
 					             precision,
 					             prgiven,
@@ -908,7 +908,7 @@ int qkl_vsnprintf(char *str, size_t size, const char *format, va_list arg) {
 					print_num_llx(&at,
 					              &left,
 					              &ret,
-					              va_arg(arg, unsigned long long),
+                                  va_arg(arg, unsigned long long), // NOLINT(clang-analyzer-valist.Uninitialized)
 					              minw,
 					              precision,
 					              prgiven,
@@ -918,13 +918,13 @@ int qkl_vsnprintf(char *str, size_t size, const char *format, va_list arg) {
 					              space);
 				break;
 			case 's':
-				print_str(&at, &left, &ret, va_arg(arg, char *), minw, precision, prgiven, minus);
+                print_str(&at, &left, &ret, va_arg(arg, char *), minw, precision, prgiven, minus); // NOLINT(clang-analyzer-valist.Uninitialized)
 				break;
 			case 'c':
-				print_char(&at, &left, &ret, va_arg(arg, int), minw, minus);
+                print_char(&at, &left, &ret, va_arg(arg, int), minw, minus); // NOLINT(clang-analyzer-valist.Uninitialized)
 				break;
 			case 'n':
-				*va_arg(arg, int *) = ret;
+                *va_arg(arg, int *) = ret; // NOLINT(clang-analyzer-valist.Uninitialized)
 				break;
 			// case 'm':
 			//     print_str(&at, &left, &ret, strerror(errno),
@@ -934,7 +934,7 @@ int qkl_vsnprintf(char *str, size_t size, const char *format, va_list arg) {
 				print_num_llp(&at,
 				              &left,
 				              &ret,
-				              va_arg(arg, void *),
+                              va_arg(arg, void *), // NOLINT(clang-analyzer-valist.Uninitialized)
 				              minw,
 				              precision,
 				              prgiven,
@@ -950,7 +950,7 @@ int qkl_vsnprintf(char *str, size_t size, const char *format, va_list arg) {
 				print_num_f(&at,
 				            &left,
 				            &ret,
-				            va_arg(arg, double),
+                            va_arg(arg, double), // NOLINT(clang-analyzer-valist.Uninitialized)
 				            minw,
 				            precision,
 				            prgiven,
@@ -963,7 +963,7 @@ int qkl_vsnprintf(char *str, size_t size, const char *format, va_list arg) {
 				print_num_g(&at,
 				            &left,
 				            &ret,
-				            va_arg(arg, double),
+                            va_arg(arg, double), // NOLINT(clang-analyzer-valist.Uninitialized)
 				            minw,
 				            precision,
 				            prgiven,
