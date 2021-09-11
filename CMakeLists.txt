@@ -80,7 +80,11 @@ if(${BUILD_QUICKLOG_TESTS})
 	add_subdirectory("tests/unittests")
 	add_subdirectory("tests/speed_test")
 
-	add_test(NAME qkl-unittests COMMAND unittests)
+	add_test(NAME clang-tidy-test
+        COMMAND
+            ${CMAKE_SOURCE_DIR}/tools/clang-tidy.sh --early-exit ${CLANG_TIDY} ${CMAKE_BINARY_DIR}
+    )
+    add_test(NAME qkl-unittests COMMAND unittests)
 	add_test(NAME qkl-unittests-build
 		COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR} --target unittests)
 	set_tests_properties(qkl-unittests

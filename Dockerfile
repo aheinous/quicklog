@@ -21,6 +21,8 @@ RUN apt-get -y install clang-format-11
 RUN apt-get -y install python3-pip
 RUN pip3 install lizard
 RUN apt-get -y install xsltproc
+RUN apt-get -y install git
+RUN apt-get -y install ssh
 
 
 
