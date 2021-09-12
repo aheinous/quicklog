@@ -5,6 +5,7 @@ extern "C" {
 
 
 #include "qkl/config.h"
+#include "qkl/platform.h"
 
 
 typedef struct {

@@ -44,6 +44,7 @@ pristine:
 CALL_NINJA_TARGETS := cppcheck cppcheck-xml test docs complexity-html complexity-concise
 CALL_NINJA_TARGETS += complexity-xml complexity-full tidy format format-patch
 CALL_NINJA_TARGETS += qkl-unittests-xml coverage-xml coverage-html coverage-full ctest-xml
+CALL_NINJA_TARGETS += run-speed-test run-speed-test-verbose
 
 define CALL_NINJA
 .PHONY: $(1)

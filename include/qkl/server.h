@@ -22,7 +22,6 @@ void qkl_unreg(qkl_client *client);
 	#include "qkl/client.h"
 
 
-
 int m_sleep(ssize_t msec) {
 	if(msec < 0) {
 		return -EINVAL;
@@ -33,13 +32,24 @@ int m_sleep(ssize_t msec) {
 	return nanosleep(&ts, &ts);
 }
 
-volatile bool unreg_complete = false;
+volatile bool _unreg_complete = false;
 pthread_t unreg_thd;
 
+bool is_unreg_complete() __attribute__((no_sanitize("thread")));
+bool is_unreg_complete() {
+	return _unreg_complete;
+}
+
+void set_unreg_complete() __attribute__((no_sanitize("thread")));
+void set_unreg_complete() {
+	_unreg_complete = true;
+}
+
+
 void *unreg_main(void *arg) {
-	qkl_client* client = (qkl_client*) arg;
+	qkl_client *client = (qkl_client *)arg;
 	qkl_unreg(client);
-	unreg_complete = true;
+	set_unreg_complete();
 	return NULL;
 }
 
@@ -94,7 +104,7 @@ TEST_CASE("client server") {
 		qkl_unreg(&client);
 	}
 
-	SUBCASE("_flush flushes msgs on qkl_unreg()"){
+	SUBCASE("_flush flushes msgs on qkl_unreg()") {
 		for(int i = 0; i < 6; i++) {
 			QKLOG(client, "%d\n", i);
 		}
@@ -109,13 +119,12 @@ TEST_CASE("client server") {
 		CHECK(get_usr_log(-3) == "[first client]: 1\n");
 		CHECK(get_usr_log(-2) == "[first client]: 2\n");
 		CHECK(get_usr_log(-1) == "[first client]: 3\n");
-		while(!unreg_complete){
+		while(!is_unreg_complete()) {
 			qkl_process();
 			pthread_yield();
 		}
 		pthread_join(unreg_thd, NULL);
 		CHECK(get_usr_log(-1) == "[first client]: <2 msgs dropped>\n");
-
 	}
 }
 #endif

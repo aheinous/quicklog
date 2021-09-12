@@ -9,7 +9,7 @@ extern "C" void qkl_usr_log_out(char *s) {
 }
 
 
-void clear_log_buffer(){
+void clear_log_buffer() {
 	log_buffer.clear();
 }
 

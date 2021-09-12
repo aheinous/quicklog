@@ -106,7 +106,7 @@ if(${BUILD_QUICKLOG_TESTS})
 	)
 
 	add_custom_target(run-speed-test
-		COMMAND speed_test | grep -A 5 times
+		COMMAND speed_test | grep -A 1000 times
 	)
 	add_custom_target(run-speed-test-verbose
 		COMMAND speed_test

@@ -4,7 +4,7 @@ extern "C" {
 #endif
 
 
-#include <log_out_buffer.h>
+#include "log_out_buffer.h"
 // Modify this file, or provide your own version elsewhere
 // to configure Quicklog
 

@@ -139,23 +139,25 @@ enum ql_type_id {
 };
 
 
-	#define QKL_TYPE_ID(v)                     \
-		_Generic(v, char                       \
-		         : t_c, signed char            \
-		         : t_sc, unsigned char         \
-		         : t_uc, short                 \
-		         : t_sint, unsigned short      \
-		         : t_suint, int                \
-		         : t_int, unsigned int         \
-		         : t_uint, long                \
-		         : t_lint, unsigned long       \
-		         : t_luint, long long          \
-		         : t_llint, unsigned long long \
-		         : t_lluint, float             \
-		         : t_float, double             \
-		         : t_double, long double       \
-		         : t_ldouble, default          \
-		         : QKL_IS_ARRAY(v) ? t_array : t_pointer)
+    // clang-format off
+    #define QKL_TYPE_ID(v)                                     \
+        _Generic(v,                                            \
+            char : t_c,                                        \
+            signed char : t_sc,                                \
+            unsigned char : t_uc,                              \
+            short : t_sint,                                    \
+            unsigned short : t_suint,                          \
+            int : t_int,                                       \
+            unsigned int : t_uint,                             \
+            long : t_lint,                                     \
+            unsigned long : t_luint,                           \
+            long long : t_llint,                               \
+            unsigned long long : t_lluint,                     \
+            float : t_float,                                   \
+            double : t_double,                                 \
+            long double : t_ldouble,                           \
+            default : QKL_IS_ARRAY(v) ? t_array : t_pointer)
+// clang-format on
 
 
 	#define QKL_GET_BYTE_N(n, v) qkl_get_byte_n(n, (void *)&v, QKL_TYPE_ID(v))

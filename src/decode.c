@@ -242,7 +242,7 @@ static void print_num(char **at,
 			numw++;
 
 		/* sign */
-        // cppcheck-suppress duplicateCondition
+		// cppcheck-suppress duplicateCondition
 		if(s)
 			print_pad(at, left, ret, s, 1);
 
@@ -586,7 +586,7 @@ static int print_float_g(char *buf, int max, double value, int prec) {
 		/* see if the last decimals are zero, if so, skip them */
 		len = print_remainder(buf, max, remain, prec - before);
 		while(len > 0 && buf[0] == '0') {
-            // NOLINTNEXTLINE(clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling)
+			// NOLINTNEXTLINE(clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling)
 			memmove(buf, buf + 1, --len);
 		}
 	}
@@ -679,7 +679,7 @@ int qkl_vsnprintf(char *str, size_t size, const char *format, va_list arg) {
 	size_t left = size;
 	int ret = 0;
 	const char *fmt = format;
-    // cppcheck-suppress variableScope
+	// cppcheck-suppress variableScope
 	int conv, minw, precision, prgiven, zeropad, minus, plus, space, length;
 	while(*fmt) {
 		/* copy string before % */
@@ -755,8 +755,8 @@ int qkl_vsnprintf(char *str, size_t size, const char *format, va_list arg) {
 
 		/* field width */
 		if(*fmt == '*') {
-			fmt++; /* skip char */
-            minw = va_arg(arg, int); // NOLINT(clang-analyzer-valist.Uninitialized)
+			fmt++;                   /* skip char */
+			minw = va_arg(arg, int); // NOLINT(clang-analyzer-valist.Uninitialized)
 			if(minw < 0) {
 				minus = 1;
 				minw = -minw;
@@ -772,8 +772,8 @@ int qkl_vsnprintf(char *str, size_t size, const char *format, va_list arg) {
 			prgiven = 1;
 			precision = 0;
 			if(*fmt == '*') {
-				fmt++; /* skip char */
-                precision = va_arg(arg, int); // NOLINT(clang-analyzer-valist.Uninitialized)
+				fmt++;                        /* skip char */
+				precision = va_arg(arg, int); // NOLINT(clang-analyzer-valist.Uninitialized)
 				if(precision < 0)
 					precision = 0;
 			} else
@@ -808,7 +808,7 @@ int qkl_vsnprintf(char *str, size_t size, const char *format, va_list arg) {
 					print_num_d(&at,
 					            &left,
 					            &ret,
-                                va_arg(arg, int), // NOLINT(clang-analyzer-valist.Uninitialized)
+					            va_arg(arg, int), // NOLINT(clang-analyzer-valist.Uninitialized)
 					            minw,
 					            precision,
 					            prgiven,
@@ -820,7 +820,7 @@ int qkl_vsnprintf(char *str, size_t size, const char *format, va_list arg) {
 					print_num_ld(&at,
 					             &left,
 					             &ret,
-                                 va_arg(arg, long),  // NOLINT(clang-analyzer-valist.Uninitialized)
+					             va_arg(arg, long), // NOLINT(clang-analyzer-valist.Uninitialized)
 					             minw,
 					             precision,
 					             prgiven,
@@ -832,7 +832,7 @@ int qkl_vsnprintf(char *str, size_t size, const char *format, va_list arg) {
 					print_num_lld(&at,
 					              &left,
 					              &ret,
-                                  va_arg(arg, long long),  // NOLINT(clang-analyzer-valist.Uninitialized)
+					              va_arg(arg, long long), // NOLINT(clang-analyzer-valist.Uninitialized)
 					              minw,
 					              precision,
 					              prgiven,
@@ -846,7 +846,7 @@ int qkl_vsnprintf(char *str, size_t size, const char *format, va_list arg) {
 					print_num_u(&at,
 					            &left,
 					            &ret,
-                                va_arg(arg, unsigned int), // NOLINT(clang-analyzer-valist.Uninitialized)
+					            va_arg(arg, unsigned int), // NOLINT(clang-analyzer-valist.Uninitialized)
 					            minw,
 					            precision,
 					            prgiven,
@@ -858,7 +858,7 @@ int qkl_vsnprintf(char *str, size_t size, const char *format, va_list arg) {
 					print_num_lu(&at,
 					             &left,
 					             &ret,
-                                 va_arg(arg, unsigned long), // NOLINT(clang-analyzer-valist.Uninitialized)
+					             va_arg(arg, unsigned long), // NOLINT(clang-analyzer-valist.Uninitialized)
 					             minw,
 					             precision,
 					             prgiven,
@@ -867,24 +867,25 @@ int qkl_vsnprintf(char *str, size_t size, const char *format, va_list arg) {
 					             plus,
 					             space);
 				else if(length == 2)
-					print_num_llu(&at,
-					              &left,
-					              &ret,
-                                  va_arg(arg, unsigned long long), // NOLINT(clang-analyzer-valist.Uninitialized)
-					              minw,
-					              precision,
-					              prgiven,
-					              zeropad,
-					              minus,
-					              plus,
-					              space);
+					print_num_llu(
+					    &at,
+					    &left,
+					    &ret,
+					    va_arg(arg, unsigned long long), // NOLINT(clang-analyzer-valist.Uninitialized)
+					    minw,
+					    precision,
+					    prgiven,
+					    zeropad,
+					    minus,
+					    plus,
+					    space);
 				break;
 			case 'x':
 				if(length == 0)
 					print_num_x(&at,
 					            &left,
 					            &ret,
-                                va_arg(arg, unsigned int), // NOLINT(clang-analyzer-valist.Uninitialized)
+					            va_arg(arg, unsigned int), // NOLINT(clang-analyzer-valist.Uninitialized)
 					            minw,
 					            precision,
 					            prgiven,
@@ -896,7 +897,7 @@ int qkl_vsnprintf(char *str, size_t size, const char *format, va_list arg) {
 					print_num_lx(&at,
 					             &left,
 					             &ret,
-                                 va_arg(arg, unsigned long), // NOLINT(clang-analyzer-valist.Uninitialized)
+					             va_arg(arg, unsigned long), // NOLINT(clang-analyzer-valist.Uninitialized)
 					             minw,
 					             precision,
 					             prgiven,
@@ -905,26 +906,39 @@ int qkl_vsnprintf(char *str, size_t size, const char *format, va_list arg) {
 					             plus,
 					             space);
 				else if(length == 2)
-					print_num_llx(&at,
-					              &left,
-					              &ret,
-                                  va_arg(arg, unsigned long long), // NOLINT(clang-analyzer-valist.Uninitialized)
-					              minw,
-					              precision,
-					              prgiven,
-					              zeropad,
-					              minus,
-					              plus,
-					              space);
+					print_num_llx(
+					    &at,
+					    &left,
+					    &ret,
+					    va_arg(arg, unsigned long long), // NOLINT(clang-analyzer-valist.Uninitialized)
+					    minw,
+					    precision,
+					    prgiven,
+					    zeropad,
+					    minus,
+					    plus,
+					    space);
 				break;
 			case 's':
-                print_str(&at, &left, &ret, va_arg(arg, char *), minw, precision, prgiven, minus); // NOLINT(clang-analyzer-valist.Uninitialized)
+				print_str(&at,
+				          &left,
+				          &ret,
+				          va_arg(arg, char *),
+				          minw,
+				          precision,
+				          prgiven,
+				          minus); // NOLINT(clang-analyzer-valist.Uninitialized)
 				break;
 			case 'c':
-                print_char(&at, &left, &ret, va_arg(arg, int), minw, minus); // NOLINT(clang-analyzer-valist.Uninitialized)
+				print_char(&at,
+				           &left,
+				           &ret,
+				           va_arg(arg, int),
+				           minw,
+				           minus); // NOLINT(clang-analyzer-valist.Uninitialized)
 				break;
 			case 'n':
-                *va_arg(arg, int *) = ret; // NOLINT(clang-analyzer-valist.Uninitialized)
+				*va_arg(arg, int *) = ret; // NOLINT(clang-analyzer-valist.Uninitialized)
 				break;
 			// case 'm':
 			//     print_str(&at, &left, &ret, strerror(errno),
@@ -934,7 +948,7 @@ int qkl_vsnprintf(char *str, size_t size, const char *format, va_list arg) {
 				print_num_llp(&at,
 				              &left,
 				              &ret,
-                              va_arg(arg, void *), // NOLINT(clang-analyzer-valist.Uninitialized)
+				              va_arg(arg, void *), // NOLINT(clang-analyzer-valist.Uninitialized)
 				              minw,
 				              precision,
 				              prgiven,
@@ -950,7 +964,7 @@ int qkl_vsnprintf(char *str, size_t size, const char *format, va_list arg) {
 				print_num_f(&at,
 				            &left,
 				            &ret,
-                            va_arg(arg, double), // NOLINT(clang-analyzer-valist.Uninitialized)
+				            va_arg(arg, double), // NOLINT(clang-analyzer-valist.Uninitialized)
 				            minw,
 				            precision,
 				            prgiven,
@@ -963,7 +977,7 @@ int qkl_vsnprintf(char *str, size_t size, const char *format, va_list arg) {
 				print_num_g(&at,
 				            &left,
 				            &ret,
-                            va_arg(arg, double), // NOLINT(clang-analyzer-valist.Uninitialized)
+				            va_arg(arg, double), // NOLINT(clang-analyzer-valist.Uninitialized)
 				            minw,
 				            precision,
 				            prgiven,
@@ -999,7 +1013,7 @@ int qkl_printf_decode(char *str, size_t size, const char *format, uint8_t *bytes
 	size_t left = size;
 	int ret = 0;
 	const char *fmt = format;
-    // cppcheck-suppress variableScope
+	// cppcheck-suppress variableScope
 	int conv, minw, precision, prgiven, zeropad, minus, plus, space, length;
 	while(*fmt) {
 		/* copy string before % */
@@ -1293,7 +1307,7 @@ int qkl_printf_decode(char *str, size_t size, const char *format, uint8_t *bytes
 				print_num_f(&at,
 				            &left,
 				            &ret,
-                            // cppcheck-suppress invalidPointerCast
+				            // cppcheck-suppress invalidPointerCast
 				            BYTE_VA_ARGS(bytes, &byte_idx, num_bytes, double),
 				            minw,
 				            precision,
@@ -1308,7 +1322,7 @@ int qkl_printf_decode(char *str, size_t size, const char *format, uint8_t *bytes
 				print_num_g(&at,
 				            &left,
 				            &ret,
-                            // cppcheck-suppress invalidPointerCast
+				            // cppcheck-suppress invalidPointerCast
 				            BYTE_VA_ARGS(bytes, &byte_idx, num_bytes, double),
 				            minw,
 				            precision,
