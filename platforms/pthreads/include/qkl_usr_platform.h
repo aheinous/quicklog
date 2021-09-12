@@ -12,7 +12,7 @@ extern "C" {
 
 #define QKL_MEMBAR() __asm__ volatile("" : : : "memory")
 #define FALLTHROUGH() __attribute__((fallthrough))
-#define ALWAYS_INLINE(func_signature) func_signature __attribute__((always_inline))
+#define QKL_ALWAYS_INLINE(func_signature) func_signature __attribute__((always_inline))
 #define VALIDATE_PRINTF_ARGS(...) validate_printf_args(__VA_ARGS__)
 static inline void validate_printf_args(const char *fmt, ...) __attribute__((format(printf, 1, 2)));
 static inline void validate_printf_args(const char *fmt, ...) {

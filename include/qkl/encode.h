@@ -165,7 +165,7 @@ enum ql_type_id {
 
 	#define QKL_GET_BYTE_N(n, v) qkl_get_byte_n(n, (void *)&v, QKL_TYPE_ID(v))
 
-static ALWAYS_INLINE(uint8_t qkl_get_byte_n(int n, const void *v, int ql_type_id)); // Inline Critical
+static QKL_ALWAYS_INLINE(uint8_t qkl_get_byte_n(int n, const void *v, int ql_type_id)); // Inline Critical
 static inline uint8_t qkl_get_byte_n(int n, const void *v, int ql_type_id) {
 	uint8_t buff[8] = {};
 	const void *v2 = v;
@@ -245,7 +245,7 @@ extern "C++" {
 
 	#define QKL_GET_BYTE_N(n, v) qkl_get_byte_n(n, v)
 
-template<typename T> static ALWAYS_INLINE(uint8_t qkl_get_byte_n(int n, T v));
+template<typename T> static QKL_ALWAYS_INLINE(uint8_t qkl_get_byte_n(int n, T v));
 
 
 template<typename T> static inline uint8_t qkl_get_byte_n(int n, T v) {
