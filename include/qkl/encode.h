@@ -107,7 +107,10 @@ TEST_CASE("QKL_MAKE_TMPS macro") {
 }
 #endif
 
-#define QKL_IS_ARRAY(arg) ((((void *)&arg) == ((void *)(uintptr_t)arg)))
+// clang-format off
+#define QKL_IS_ARRAY(arg) ((((void *)&arg) == ((void *)(uintptr_t)arg))) // NOLINT(clang-diagnostic-string-compare)
+// clang-format on
+
 
 #if defined(QKL_INCLUDE_TESTS) && defined(__cplusplus)
 TEST_CASE("QKL_IS_ARRAY") {

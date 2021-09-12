@@ -1,0 +1,203 @@
+/home/alex/Projects/quicklog/src/decode.c:926:15: warning: va_arg() is called on an uninitialized va_list [clang-analyzer-valist.Uninitialized]
+                                          va_arg(arg, char *),
+                                          ^
+/usr/lib/llvm-10/lib/clang/10.0.0/include/stdarg.h:19:29: note: expanded from macro 'va_arg'
+#define va_arg(ap, type)    __builtin_va_arg(ap, type)
+                            ^
+/home/alex/Projects/quicklog/src/decode.c:62:6: note: Calling 'qkl_vsnprintf'
+        r = qkl_vsnprintf(str, size, format, args);
+            ^
+/home/alex/Projects/quicklog/src/decode.c:684:2: note: Loop condition is true.  Entering loop body
+        while(*fmt) {
+        ^
+/home/alex/Projects/quicklog/src/decode.c:686:9: note: Left side of '&&' is true
+                while(*fmt && *fmt != '%') {
+                      ^
+/home/alex/Projects/quicklog/src/decode.c:686:17: note: Assuming the condition is false
+                while(*fmt && *fmt != '%') {
+                              ^
+/home/alex/Projects/quicklog/src/decode.c:686:3: note: Loop condition is false. Execution continues on line 696
+                while(*fmt && *fmt != '%') {
+                ^
+/home/alex/Projects/quicklog/src/decode.c:696:3: note: Taking false branch
+                if(!*fmt)
+                ^
+/home/alex/Projects/quicklog/src/decode.c:742:3: note: Loop condition is true.  Entering loop body
+                for(;;) {
+                ^
+/home/alex/Projects/quicklog/src/decode.c:743:7: note: Assuming the condition is false
+                        if(*fmt == '0')
+                           ^
+/home/alex/Projects/quicklog/src/decode.c:743:4: note: Taking false branch
+                        if(*fmt == '0')
+                        ^
+/home/alex/Projects/quicklog/src/decode.c:745:12: note: Assuming the condition is false
+                        else if(*fmt == '-')
+                                ^
+/home/alex/Projects/quicklog/src/decode.c:745:9: note: Taking false branch
+                        else if(*fmt == '-')
+                             ^
+/home/alex/Projects/quicklog/src/decode.c:747:12: note: Assuming the condition is false
+                        else if(*fmt == '+')
+                                ^
+/home/alex/Projects/quicklog/src/decode.c:747:9: note: Taking false branch
+                        else if(*fmt == '+')
+                             ^
+/home/alex/Projects/quicklog/src/decode.c:749:12: note: Assuming the condition is false
+                        else if(*fmt == ' ')
+                                ^
+/home/alex/Projects/quicklog/src/decode.c:749:9: note: Taking false branch
+                        else if(*fmt == ' ')
+                             ^
+/home/alex/Projects/quicklog/src/decode.c:752:5: note:  Execution continues on line 757
+                                break;
+                                ^
+/home/alex/Projects/quicklog/src/decode.c:757:6: note: Assuming the condition is false
+                if(*fmt == '*') {
+                   ^
+/home/alex/Projects/quicklog/src/decode.c:757:3: note: Taking false branch
+                if(*fmt == '*') {
+                ^
+/home/alex/Projects/quicklog/src/decode.c:765:10: note: Assuming the condition is true
+                        while(*fmt >= '0' && *fmt <= '9') {
+                              ^
+/home/alex/Projects/quicklog/src/decode.c:765:10: note: Left side of '&&' is true
+/home/alex/Projects/quicklog/src/decode.c:765:25: note: Assuming the condition is false
+                        while(*fmt >= '0' && *fmt <= '9') {
+                                             ^
+/home/alex/Projects/quicklog/src/decode.c:765:4: note: Loop condition is false. Execution continues on line 770
+                        while(*fmt >= '0' && *fmt <= '9') {
+                        ^
+/home/alex/Projects/quicklog/src/decode.c:770:3: note: Taking false branch
+                if(*fmt == '.') {
+                ^
+/home/alex/Projects/quicklog/src/decode.c:786:6: note: Assuming the condition is false
+                if(*fmt == 'l') {
+                   ^
+/home/alex/Projects/quicklog/src/decode.c:786:3: note: Taking false branch
+                if(*fmt == 'l') {
+                ^
+/home/alex/Projects/quicklog/src/decode.c:796:3: note: Taking false branch
+                if(!*fmt)
+                ^
+/home/alex/Projects/quicklog/src/decode.c:804:3: note: Control jumps to 'case 115:'  at line 922
+                switch(conv) {
+                ^
+/home/alex/Projects/quicklog/src/decode.c:926:15: note: va_arg() is called on an uninitialized va_list
+                                          va_arg(arg, char *),
+                                          ^
+/usr/lib/llvm-10/lib/clang/10.0.0/include/stdarg.h:19:29: note: expanded from macro 'va_arg'
+#define va_arg(ap, type)    __builtin_va_arg(ap, type)
+                            ^
+/home/alex/Projects/quicklog/src/decode.c:936:16: warning: va_arg() is called on an uninitialized va_list [clang-analyzer-valist.Uninitialized]
+                                           va_arg(arg, int),
+                                           ^
+/usr/lib/llvm-10/lib/clang/10.0.0/include/stdarg.h:19:29: note: expanded from macro 'va_arg'
+#define va_arg(ap, type)    __builtin_va_arg(ap, type)
+                            ^
+/home/alex/Projects/quicklog/src/decode.c:62:6: note: Calling 'qkl_vsnprintf'
+        r = qkl_vsnprintf(str, size, format, args);
+            ^
+/home/alex/Projects/quicklog/src/decode.c:684:2: note: Loop condition is true.  Entering loop body
+        while(*fmt) {
+        ^
+/home/alex/Projects/quicklog/src/decode.c:686:9: note: Left side of '&&' is true
+                while(*fmt && *fmt != '%') {
+                      ^
+/home/alex/Projects/quicklog/src/decode.c:686:17: note: Assuming the condition is false
+                while(*fmt && *fmt != '%') {
+                              ^
+/home/alex/Projects/quicklog/src/decode.c:686:3: note: Loop condition is false. Execution continues on line 696
+                while(*fmt && *fmt != '%') {
+                ^
+/home/alex/Projects/quicklog/src/decode.c:696:3: note: Taking false branch
+                if(!*fmt)
+                ^
+/home/alex/Projects/quicklog/src/decode.c:742:3: note: Loop condition is true.  Entering loop body
+                for(;;) {
+                ^
+/home/alex/Projects/quicklog/src/decode.c:743:7: note: Assuming the condition is false
+                        if(*fmt == '0')
+                           ^
+/home/alex/Projects/quicklog/src/decode.c:743:4: note: Taking false branch
+                        if(*fmt == '0')
+                        ^
+/home/alex/Projects/quicklog/src/decode.c:745:12: note: Assuming the condition is false
+                        else if(*fmt == '-')
+                                ^
+/home/alex/Projects/quicklog/src/decode.c:745:9: note: Taking false branch
+                        else if(*fmt == '-')
+                             ^
+/home/alex/Projects/quicklog/src/decode.c:747:12: note: Assuming the condition is false
+                        else if(*fmt == '+')
+                                ^
+/home/alex/Projects/quicklog/src/decode.c:747:9: note: Taking false branch
+                        else if(*fmt == '+')
+                             ^
+/home/alex/Projects/quicklog/src/decode.c:749:12: note: Assuming the condition is false
+                        else if(*fmt == ' ')
+                                ^
+/home/alex/Projects/quicklog/src/decode.c:749:9: note: Taking false branch
+                        else if(*fmt == ' ')
+                             ^
+/home/alex/Projects/quicklog/src/decode.c:752:5: note:  Execution continues on line 757
+                                break;
+                                ^
+/home/alex/Projects/quicklog/src/decode.c:757:6: note: Assuming the condition is false
+                if(*fmt == '*') {
+                   ^
+/home/alex/Projects/quicklog/src/decode.c:757:3: note: Taking false branch
+                if(*fmt == '*') {
+                ^
+/home/alex/Projects/quicklog/src/decode.c:765:10: note: Assuming the condition is true
+                        while(*fmt >= '0' && *fmt <= '9') {
+                              ^
+/home/alex/Projects/quicklog/src/decode.c:765:10: note: Left side of '&&' is true
+/home/alex/Projects/quicklog/src/decode.c:765:25: note: Assuming the condition is false
+                        while(*fmt >= '0' && *fmt <= '9') {
+                                             ^
+/home/alex/Projects/quicklog/src/decode.c:765:4: note: Loop condition is false. Execution continues on line 770
+                        while(*fmt >= '0' && *fmt <= '9') {
+                        ^
+/home/alex/Projects/quicklog/src/decode.c:770:3: note: Taking false branch
+                if(*fmt == '.') {
+                ^
+/home/alex/Projects/quicklog/src/decode.c:786:6: note: Assuming the condition is false
+                if(*fmt == 'l') {
+                   ^
+/home/alex/Projects/quicklog/src/decode.c:786:3: note: Taking false branch
+                if(*fmt == 'l') {
+                ^
+/home/alex/Projects/quicklog/src/decode.c:796:3: note: Taking false branch
+                if(!*fmt)
+                ^
+/home/alex/Projects/quicklog/src/decode.c:804:3: note: Control jumps to 'case 99:'  at line 932
+                switch(conv) {
+                ^
+/home/alex/Projects/quicklog/src/decode.c:936:16: note: va_arg() is called on an uninitialized va_list
+                                           va_arg(arg, int),
+                                           ^
+/usr/lib/llvm-10/lib/clang/10.0.0/include/stdarg.h:19:29: note: expanded from macro 'va_arg'
+#define va_arg(ap, type)    __builtin_va_arg(ap, type)
+                            ^
+/home/alex/Projects/quicklog/include/qkl/encode.h:114:8: warning: result of comparison against a string literal is unspecified (use an explicit string comparison function instead) [clang-diagnostic-string-compare]
+        CHECK(QKL_IS_ARRAY("abc"));
+              ^
+/home/alex/Projects/quicklog/include/qkl/encode.h:110:44: note: expanded from macro 'QKL_IS_ARRAY'
+#define QKL_IS_ARRAY(arg) ((((void *)&arg) == ((void *)(uintptr_t)arg)))
+                                           ^
+/home/alex/Projects/quicklog/include/doctest/doctest.h:2537:34: note: expanded from macro 'CHECK'
+#define CHECK(...) DOCTEST_CHECK(__VA_ARGS__)
+                                 ^
+/home/alex/Projects/quicklog/include/doctest/doctest.h:2068:65: note: expanded from macro 'DOCTEST_CHECK'
+#define DOCTEST_CHECK(...) DOCTEST_ASSERT_IMPLEMENT_1(DT_CHECK, __VA_ARGS__)
+                                                                ^
+/home/alex/Projects/quicklog/include/doctest/doctest.h:2050:49: note: expanded from macro 'DOCTEST_ASSERT_IMPLEMENT_1'
+        DOCTEST_ASSERT_IMPLEMENT_2(assert_type, __VA_ARGS__);                                      \
+                                                ^
+/home/alex/Projects/quicklog/include/doctest/doctest.h:2044:16: note: expanded from macro 'DOCTEST_ASSERT_IMPLEMENT_2'
+            << __VA_ARGS__))                                                                       \
+               ^
+/home/alex/Projects/quicklog/include/doctest/doctest.h:1801:9: note: expanded from macro 'DOCTEST_WRAP_IN_TRY'
+        x;                                                                                         \
+        ^

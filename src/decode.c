@@ -923,19 +923,19 @@ int qkl_vsnprintf(char *str, size_t size, const char *format, va_list arg) {
 				print_str(&at,
 				          &left,
 				          &ret,
-				          va_arg(arg, char *),
+				          va_arg(arg, char *), // NOLINT(clang-analyzer-valist.Uninitialized)
 				          minw,
 				          precision,
 				          prgiven,
-				          minus); // NOLINT(clang-analyzer-valist.Uninitialized)
+				          minus);
 				break;
 			case 'c':
 				print_char(&at,
 				           &left,
 				           &ret,
-				           va_arg(arg, int),
+				           va_arg(arg, int), // NOLINT(clang-analyzer-valist.Uninitialized)
 				           minw,
-				           minus); // NOLINT(clang-analyzer-valist.Uninitialized)
+				           minus);
 				break;
 			case 'n':
 				*va_arg(arg, int *) = ret; // NOLINT(clang-analyzer-valist.Uninitialized)

@@ -89,6 +89,10 @@ if(${BUILD_QUICKLOG_TESTS})
 		COMMAND ${CMAKE_SOURCE_DIR}/tools/clang-tidy.sh  ${CLANG_TIDY} ${CMAKE_BINARY_DIR} ${CMAKE_BINARY_DIR}/tidy/tidy
     )
 
+	add_test(NAME complexity-test
+		WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+		COMMAND ninja complexity-concise
+	)
 
 	add_test(NAME address-sanitizer-test COMMAND ${CMAKE_SOURCE_DIR}/tools/sanitizer-test.sh address)
 	add_test(NAME thread-sanitizer-test COMMAND ${CMAKE_SOURCE_DIR}/tools/sanitizer-test.sh thread)
@@ -114,10 +118,20 @@ if(${BUILD_QUICKLOG_TESTS})
 		COMMAND speed_test
 	)
 
+
+
+	add_custom_target(ctest
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+        COMMAND mkdir -p ${CMAKE_BINARY_DIR}/testresults
+        COMMAND ctest --output-on-failure -j8
+	)
+
+
+
 	add_custom_target(ctest-xml
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
         COMMAND mkdir -p ${CMAKE_BINARY_DIR}/testresults
-        COMMAND ctest --output-on-failure --output-junit ${CMAKE_BINARY_DIR}/testresults/ctest.xml || true
+        COMMAND ctest --output-on-failure -j8 --output-junit ${CMAKE_BINARY_DIR}/testresults/ctest.xml || true
 	)
 endif()
 

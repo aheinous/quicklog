@@ -32,6 +32,52 @@
         },
         {
             "type": "shell",
+            "label": "ctest",
+            "command": "ninja",
+            "args": ["ctest"],
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+
+            "problemMatcher": {
+                "fileLocation": "absolute",
+                "severity": "warning",
+                "pattern": {
+                    "regexp": "^(.*?):(\\d+?):(\\d+?:)?\\s+(warning|error|style|portability|performance):\\s+(.*)$",
+                    "file": 1,
+                    "location": 2,
+                    "severity": 4,
+                    "message": 5
+                }
+            },
+			"group": "build",
+        },
+        {
+            "type": "shell",
+            "label": "clang-tidy",
+            "command": "ninja",
+            "args": ["tidy"],
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+
+            "problemMatcher": {
+                "fileLocation": "absolute",
+                "severity": "warning",
+                "pattern": {
+                    "regexp": "^(.*?):(\\d+?):(\\d+?:)?\\s+(warning|error|style|portability|performance):\\s+(.*)$",
+                    "file": 1,
+                    "location": 2,
+                    "severity": 4,
+                    "message": 5
+                }
+            },
+			"group": "build",
+        },
+
+
+        {
+            "type": "shell",
             "label": "rebuild tests",
             "command": "ninja",
             "problemMatcher": [
@@ -41,6 +87,32 @@
             "dependsOn": ["clean", "build tests"],
             "dependsOrder": "sequence"
 
+        },
+
+        {
+            "type": "shell",
+            "label": "format-test",
+            "command": "./tools/format-test.sh",
+            "problemMatcher": [
+                "$gcc"
+            ],
+			"group": "build",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+        },
+
+        {
+            "type": "shell",
+            "label": "format",
+            "command": "./tools/format.sh",
+            "problemMatcher": [
+                "$gcc"
+            ],
+			"group": "build",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
         },
 
 
