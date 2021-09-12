@@ -95,6 +95,8 @@ if(${BUILD_QUICKLOG_TESTS})
 	add_test(NAME undefined-sanitizer-test COMMAND ${CMAKE_SOURCE_DIR}/tools/sanitizer-test.sh undefined)
 	add_test(NAME leak-sanitizer-test COMMAND ${CMAKE_SOURCE_DIR}/tools/sanitizer-test.sh leak)
 
+	add_test(NAME format-test COMMAND ${CMAKE_SOURCE_DIR}/tools/format-test.sh)
+
 
 	add_custom_target(run-qkl-unittests
 		COMMAND unittests --force-colors=1
