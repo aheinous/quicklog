@@ -58,7 +58,7 @@ TEST_CASE("client server") {
 	clear_log_buffer();
 
 	QKL_CLIENT_DEFINE_INIT(client, "first client", 4);
-	SUBCASE("cases where qkl_unreg() called after"){
+	SUBCASE("cases where qkl_unreg() called after") {
 		SUBCASE("no crash on first qkl_process call") {
 			qkl_process();
 		}
