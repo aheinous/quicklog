@@ -29,10 +29,11 @@ RUN apt-get -y install ssh
 ENV CC=/usr/bin/gcc-10
 ENV CXX=/usr/bin/g++-10
 ENV CLANG_TIDY=/usr/bin/clang-tidy-11
+ENV CLANG_FORMAT=/usr/bin/clang-format-11
 
 # RUN cd /
 # RUN mkdir /quicklog
 
-COPY . /quicklog/
+# COPY . /quicklog/
 
 # ENTRYPOINT touch entrypointwashere
