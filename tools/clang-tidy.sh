@@ -20,7 +20,7 @@ error_code=0
 
 tmp_file=$(mktemp /tmp/clang-tidy.XXXXXX)
 
-for src in $(./tools/sources.sh); do
+for src in $(./tools/sources.sh --c --cpp --no-configs --no-platforms); do
     clang_tidy_cmd="${CLANG_TIDY} --quiet --header-filter='.*' -p $BUILD_OUTPUT_FOLDER $src"
 
     eval ${clang_tidy_cmd} > "${tmp_file}"

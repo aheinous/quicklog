@@ -2,4 +2,4 @@
 
 cd $(dirname "$0")/..
 
-./tools/sources.sh | xargs clang-format -style=file -i -fallback-style=none
+./tools/sources.sh --c --cpp --headers | xargs clang-format -style=file -i -fallback-style=none

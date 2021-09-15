@@ -13,7 +13,7 @@ if [[ -z ${CLANG_FORMAT} ]]; then
 fi
 
 
-for src in $(./tools/sources.sh); do
+for src in $(./tools/sources.sh --c --cpp --headers); do
     ${CLANG_FORMAT} -style=file -fallback-style=none $src > clang-format-out.tmp
     diff  $src clang-format-out.tmp >> /dev/null
     res="$?"
