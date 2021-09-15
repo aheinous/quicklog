@@ -3,9 +3,6 @@
 extern "C" {
 #endif
 
-// Provide a modified version of this file to configure Quicklog
-
-
 // usr function called by qkl to outputs logs
 void qkl_usr_log_out(char *s);
 

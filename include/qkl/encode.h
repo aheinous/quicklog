@@ -32,67 +32,69 @@ typedef long long unsigned ql_llu;
 #endif
 
 #define QKL_MAKE_TMPS1(fmt)
-#define QKL_MAKE_TMPS2(fmt, a1) QKL_TYPEOF(a1) t1 = (a1);
+#define QKL_MAKE_TMPS2(fmt, a1) QKL_TYPEOF(a1) _qkl_t1 = (a1);
 #define QKL_MAKE_TMPS3(fmt, a1, a2) \
-	QKL_TYPEOF(a1) t1 = (a1);       \
-	QKL_TYPEOF(a2) t2 = (a2);
+	QKL_TYPEOF(a1) _qkl_t1 = (a1);  \
+	QKL_TYPEOF(a2) _qkl_t2 = (a2);
 #define QKL_MAKE_TMPS4(fmt, a1, a2, a3) \
-	QKL_TYPEOF(a1) t1 = (a1);           \
-	QKL_TYPEOF(a2) t2 = (a2);           \
-	QKL_TYPEOF(a3) t3 = (a3);
+	QKL_TYPEOF(a1) _qkl_t1 = (a1);      \
+	QKL_TYPEOF(a2) _qkl_t2 = (a2);      \
+	QKL_TYPEOF(a3) _qkl_t3 = (a3);
 #define QKL_MAKE_TMPS5(fmt, a1, a2, a3, a4) \
-	QKL_TYPEOF(a1) t1 = (a1);               \
-	QKL_TYPEOF(a2) t2 = (a2);               \
-	QKL_TYPEOF(a3) t3 = (a3);               \
-	QKL_TYPEOF(a4) t4 = (a4);
+	QKL_TYPEOF(a1) _qkl_t1 = (a1);          \
+	QKL_TYPEOF(a2) _qkl_t2 = (a2);          \
+	QKL_TYPEOF(a3) _qkl_t3 = (a3);          \
+	QKL_TYPEOF(a4) _qkl_t4 = (a4);
 #define QKL_MAKE_TMPS6(fmt, a1, a2, a3, a4, a5) \
-	QKL_TYPEOF(a1) t1 = (a1);                   \
-	QKL_TYPEOF(a2) t2 = (a2);                   \
-	QKL_TYPEOF(a3) t3 = (a3);                   \
-	QKL_TYPEOF(a4) t4 = (a4);                   \
-	QKL_TYPEOF(a5) t5 = (a5);
+	QKL_TYPEOF(a1) _qkl_t1 = (a1);              \
+	QKL_TYPEOF(a2) _qkl_t2 = (a2);              \
+	QKL_TYPEOF(a3) _qkl_t3 = (a3);              \
+	QKL_TYPEOF(a4) _qkl_t4 = (a4);              \
+	QKL_TYPEOF(a5) _qkl_t5 = (a5);
 #define QKL_MAKE_TMPS7(fmt, a1, a2, a3, a4, a5, a6) \
-	QKL_TYPEOF(a1) t1 = (a1);                       \
-	QKL_TYPEOF(a2) t2 = (a2);                       \
-	QKL_TYPEOF(a3) t3 = (a3);                       \
-	QKL_TYPEOF(a4) t4 = (a4);                       \
-	QKL_TYPEOF(a5) t5 = (a5);                       \
-	QKL_TYPEOF(a6) t6 = (a6);
+	QKL_TYPEOF(a1) _qkl_t1 = (a1);                  \
+	QKL_TYPEOF(a2) _qkl_t2 = (a2);                  \
+	QKL_TYPEOF(a3) _qkl_t3 = (a3);                  \
+	QKL_TYPEOF(a4) _qkl_t4 = (a4);                  \
+	QKL_TYPEOF(a5) _qkl_t5 = (a5);                  \
+	QKL_TYPEOF(a6) _qkl_t6 = (a6);
 #define QKL_MAKE_TMPS8(fmt, a1, a2, a3, a4, a5, a6, a7) \
-	QKL_TYPEOF(a1) t1 = (a1);                           \
-	QKL_TYPEOF(a2) t2 = (a2);                           \
-	QKL_TYPEOF(a3) t3 = (a3);                           \
-	QKL_TYPEOF(a4) t4 = (a4);                           \
-	QKL_TYPEOF(a5) t5 = (a5);                           \
-	QKL_TYPEOF(a6) t6 = (a6);                           \
-	QKL_TYPEOF(a7) t7 = (a7);
+	QKL_TYPEOF(a1) _qkl_t1 = (a1);                      \
+	QKL_TYPEOF(a2) _qkl_t2 = (a2);                      \
+	QKL_TYPEOF(a3) _qkl_t3 = (a3);                      \
+	QKL_TYPEOF(a4) _qkl_t4 = (a4);                      \
+	QKL_TYPEOF(a5) _qkl_t5 = (a5);                      \
+	QKL_TYPEOF(a6) _qkl_t6 = (a6);                      \
+	QKL_TYPEOF(a7) _qkl_t7 = (a7);
 #define QKL_MAKE_TMPS9(fmt, a1, a2, a3, a4, a5, a6, a7, a8) \
-	QKL_TYPEOF(a1) t1 = (a1);                               \
-	QKL_TYPEOF(a2) t2 = (a2);                               \
-	QKL_TYPEOF(a3) t3 = (a3);                               \
-	QKL_TYPEOF(a4) t4 = (a4);                               \
-	QKL_TYPEOF(a5) t5 = (a5);                               \
-	QKL_TYPEOF(a6) t6 = (a6);                               \
-	QKL_TYPEOF(a7) t7 = (a7);                               \
-	QKL_TYPEOF(a8) t8 = (a8);
+	QKL_TYPEOF(a1) _qkl_t1 = (a1);                          \
+	QKL_TYPEOF(a2) _qkl_t2 = (a2);                          \
+	QKL_TYPEOF(a3) _qkl_t3 = (a3);                          \
+	QKL_TYPEOF(a4) _qkl_t4 = (a4);                          \
+	QKL_TYPEOF(a5) _qkl_t5 = (a5);                          \
+	QKL_TYPEOF(a6) _qkl_t6 = (a6);                          \
+	QKL_TYPEOF(a7) _qkl_t7 = (a7);                          \
+	QKL_TYPEOF(a8) _qkl_t8 = (a8);
 
 
 #define QKL_TO_BYTE_REP1(fmt)
-#define QKL_TO_BYTE_REP2(fmt, ...) QKL_GET_BYTES(t1)
-#define QKL_TO_BYTE_REP3(fmt, ...) QKL_GET_BYTES(t1), QKL_GET_BYTES(t2)
-#define QKL_TO_BYTE_REP4(fmt, ...) QKL_GET_BYTES(t1), QKL_GET_BYTES(t2), QKL_GET_BYTES(t3)
-#define QKL_TO_BYTE_REP5(fmt, ...) QKL_GET_BYTES(t1), QKL_GET_BYTES(t2), QKL_GET_BYTES(t3), QKL_GET_BYTES(t4)
-#define QKL_TO_BYTE_REP6(fmt, ...) \
-	QKL_GET_BYTES(t1), QKL_GET_BYTES(t2), QKL_GET_BYTES(t3), QKL_GET_BYTES(t4), QKL_GET_BYTES(t5)
-#define QKL_TO_BYTE_REP7(fmt, ...)                                                                 \
-	QKL_GET_BYTES(t1), QKL_GET_BYTES(t2), QKL_GET_BYTES(t3), QKL_GET_BYTES(t4), QKL_GET_BYTES(t5), \
-	    QKL_GET_BYTES(t6)
-#define QKL_TO_BYTE_REP8(fmt, ...)                                                                 \
-	QKL_GET_BYTES(t1), QKL_GET_BYTES(t2), QKL_GET_BYTES(t3), QKL_GET_BYTES(t4), QKL_GET_BYTES(t5), \
-	    QKL_GET_BYTES(t6), QKL_GET_BYTES(t7)
-#define QKL_TO_BYTE_REP9(fmt, ...)                                                                 \
-	QKL_GET_BYTES(t1), QKL_GET_BYTES(t2), QKL_GET_BYTES(t3), QKL_GET_BYTES(t4), QKL_GET_BYTES(t5), \
-	    QKL_GET_BYTES(t6), QKL_GET_BYTES(t7), QKL_GET_BYTES(t8)
+#define QKL_TO_BYTE_REP2(fmt, ...) QKL_GET_BYTES(_qkl_t1)
+#define QKL_TO_BYTE_REP3(fmt, ...) QKL_GET_BYTES(_qkl_t1), QKL_GET_BYTES(_qkl_t2)
+#define QKL_TO_BYTE_REP4(fmt, ...) QKL_GET_BYTES(_qkl_t1), QKL_GET_BYTES(_qkl_t2), QKL_GET_BYTES(_qkl_t3)
+#define QKL_TO_BYTE_REP5(fmt, ...) \
+	QKL_GET_BYTES(_qkl_t1), QKL_GET_BYTES(_qkl_t2), QKL_GET_BYTES(_qkl_t3), QKL_GET_BYTES(_qkl_t4)
+#define QKL_TO_BYTE_REP6(fmt, ...)                                                                  \
+	QKL_GET_BYTES(_qkl_t1), QKL_GET_BYTES(_qkl_t2), QKL_GET_BYTES(_qkl_t3), QKL_GET_BYTES(_qkl_t4), \
+	    QKL_GET_BYTES(_qkl_t5)
+#define QKL_TO_BYTE_REP7(fmt, ...)                                                                  \
+	QKL_GET_BYTES(_qkl_t1), QKL_GET_BYTES(_qkl_t2), QKL_GET_BYTES(_qkl_t3), QKL_GET_BYTES(_qkl_t4), \
+	    QKL_GET_BYTES(_qkl_t5), QKL_GET_BYTES(_qkl_t6)
+#define QKL_TO_BYTE_REP8(fmt, ...)                                                                  \
+	QKL_GET_BYTES(_qkl_t1), QKL_GET_BYTES(_qkl_t2), QKL_GET_BYTES(_qkl_t3), QKL_GET_BYTES(_qkl_t4), \
+	    QKL_GET_BYTES(_qkl_t5), QKL_GET_BYTES(_qkl_t6), QKL_GET_BYTES(_qkl_t7)
+#define QKL_TO_BYTE_REP9(fmt, ...)                                                                  \
+	QKL_GET_BYTES(_qkl_t1), QKL_GET_BYTES(_qkl_t2), QKL_GET_BYTES(_qkl_t3), QKL_GET_BYTES(_qkl_t4), \
+	    QKL_GET_BYTES(_qkl_t5), QKL_GET_BYTES(_qkl_t6), QKL_GET_BYTES(_qkl_t7), QKL_GET_BYTES(_qkl_t8)
 
 #define QKL_GET_BYTES(v)                                                                    \
 	QKL_GET_BYTE_N(0, v), QKL_GET_BYTE_N(1, v), QKL_GET_BYTE_N(2, v), QKL_GET_BYTE_N(3, v), \
@@ -102,8 +104,8 @@ typedef long long unsigned ql_llu;
 #if defined(QKL_INCLUDE_TESTS) && defined(__cplusplus)
 TEST_CASE("QKL_MAKE_TMPS macro") {
 	QKL_MAKE_TMPS("fmt", 5, 10);
-	CHECK(t1 == 5);
-	CHECK(t2 == 10);
+	CHECK(_qkl_t1 == 5);
+	CHECK(_qkl_t2 == 10);
 }
 #endif
 
@@ -226,7 +228,7 @@ static inline uint8_t qkl_get_byte_n(int n, const void *v, int ql_type_id) {
 		}
 		case t_array:
 			v2 = (void *)&v;
-			FALLTHROUGH();
+			QKL_FALLTHROUGH();
 		case t_pointer: {
 			*((ql_llu *)buff) = *((ql_llu *)v2);
 			v2 = buff;
